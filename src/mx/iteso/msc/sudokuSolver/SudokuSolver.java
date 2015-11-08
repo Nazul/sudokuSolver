@@ -7,10 +7,10 @@ package mx.iteso.msc.sudokuSolver;
 
 /**
  *
- * @author Mario_Contreras
+ * @author Mario_Contreras & Erick
  */
 public class SudokuSolver {
     public static void main(String[] args) {
-        System.out.println("Sudoku Solver");
+        System.out.println("Sudoku Solver - work in progress");
     }
 }
