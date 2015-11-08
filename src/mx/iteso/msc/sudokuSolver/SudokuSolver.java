@@ -11,6 +11,7 @@ package mx.iteso.msc.sudokuSolver;
  */
 public class SudokuSolver {
     public static void main(String[] args) {
+        // TODO: call UI instead of console output
         System.out.println("Sudoku Solver - work in progress");
     }
 }
