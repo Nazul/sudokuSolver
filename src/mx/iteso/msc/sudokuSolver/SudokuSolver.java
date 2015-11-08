@@ -8,6 +8,7 @@ package mx.iteso.msc.sudokuSolver;
 /**
  *
  * @author Mario_Contreras & Erick
+ * Listo
  */
 public class SudokuSolver {
     public static void main(String[] args) {
