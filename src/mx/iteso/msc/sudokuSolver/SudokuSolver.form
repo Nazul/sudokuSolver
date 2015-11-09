@@ -87,189 +87,181 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="1" attributes="0">
-              <Group type="103" groupAlignment="1" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
+          <Group type="102" attributes="0">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" alignment="0" attributes="0">
-                              <Component id="cell30" min="-2" max="-2" attributes="0"/>
+                          <Component id="cell10" min="-2" max="-2" attributes="0"/>
+                          <Component id="cell00" min="-2" max="-2" attributes="0"/>
+                          <Component id="cell20" min="-2" max="-2" attributes="0"/>
+                          <Component id="cell30" min="-2" max="-2" attributes="0"/>
+                          <Component id="cell50" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="cell60" min="-2" max="-2" attributes="0"/>
+                          <Component id="cell70" min="-2" max="-2" attributes="0"/>
+                          <Component id="cell80" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="cell01" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="cell11" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="cell21" alignment="0" min="-2" max="-2" attributes="0"/>
+                              </Group>
                               <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="cell02" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="cell12" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="cell22" alignment="0" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="cell03" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="cell13" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="cell23" alignment="0" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="cell04" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="cell14" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="cell24" alignment="0" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="102" attributes="0">
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="cell05" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Component id="cell15" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                          <Group type="102" attributes="0">
+                                              <Component id="cell06" min="-2" max="-2" attributes="0"/>
+                                              <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
+                                              <Component id="cell07" min="-2" max="-2" attributes="0"/>
+                                          </Group>
+                                          <Group type="102" attributes="0">
+                                              <Component id="cell16" min="-2" max="-2" attributes="0"/>
+                                              <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
+                                              <Component id="cell17" min="-2" max="-2" attributes="0"/>
+                                          </Group>
+                                      </Group>
+                                      <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="cell08" min="-2" max="-2" attributes="0"/>
+                                          <Component id="cell18" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                  </Group>
+                                  <Group type="102" attributes="0">
+                                      <Component id="cell25" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
+                                      <Component id="cell26" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
+                                      <Component id="cell27" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
+                                      <Component id="cell28" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
                               <Component id="cell31" min="-2" max="-2" attributes="0"/>
                               <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-                              <Component id="cell32" min="-2" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="cell32" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="cell42" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="cell52" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="cell62" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="cell72" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="cell82" alignment="0" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="cell33" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Component id="cell43" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Component id="cell53" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Component id="cell63" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Component id="cell73" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Group type="102" attributes="0">
+                                              <Component id="cell34" min="-2" max="-2" attributes="0"/>
+                                              <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
+                                              <Component id="cell35" min="-2" max="-2" attributes="0"/>
+                                          </Group>
+                                          <Group type="102" alignment="0" attributes="0">
+                                              <Group type="103" groupAlignment="0" attributes="0">
+                                                  <Component id="cell44" alignment="0" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="cell54" alignment="0" min="-2" max="-2" attributes="0"/>
+                                              </Group>
+                                              <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
+                                              <Group type="103" groupAlignment="0" attributes="0">
+                                                  <Component id="cell55" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="cell45" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="cell65" alignment="0" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="cell75" alignment="0" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="cell85" alignment="0" min="-2" max="-2" attributes="0"/>
+                                              </Group>
+                                          </Group>
+                                          <Component id="cell64" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Component id="cell74" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                  </Group>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Component id="cell83" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
+                                      <Component id="cell84" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
                               <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-                              <Component id="cell33" min="-2" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Group type="102" attributes="0">
+                                      <Component id="cell36" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
+                                      <Component id="cell37" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="cell46" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Component id="cell56" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Component id="cell66" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Group type="102" alignment="0" attributes="0">
+                                              <Component id="cell76" min="-2" max="-2" attributes="0"/>
+                                              <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
+                                          </Group>
+                                          <Component id="cell86" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="cell87" min="-2" max="-2" attributes="0"/>
+                                          <Component id="cell77" min="-2" max="-2" attributes="0"/>
+                                          <Component id="cell67" min="-2" max="-2" attributes="0"/>
+                                          <Component id="cell57" min="-2" max="-2" attributes="0"/>
+                                          <Component id="cell47" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                  </Group>
+                              </Group>
                               <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-                              <Component id="cell34" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-                              <Component id="cell35" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-                              <Component id="cell36" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-                              <Component id="cell37" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-                              <Component id="cell38" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="1" attributes="0">
-                              <Component id="cell40" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-                              <Component id="cell41" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-                              <Component id="cell42" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-                              <Component id="cell43" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-                              <Component id="cell44" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-                              <Component id="cell45" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-                              <Component id="cell46" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-                              <Component id="cell47" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-                              <Component id="cell48" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="1" attributes="0">
-                              <Component id="cell50" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-                              <Component id="cell51" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-                              <Component id="cell52" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-                              <Component id="cell53" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-                              <Component id="cell54" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-                              <Component id="cell55" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-                              <Component id="cell56" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-                              <Component id="cell57" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-                              <Component id="cell58" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                      </Group>
-                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                  </Group>
-                  <Group type="102" attributes="0">
-                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                      <Group type="103" groupAlignment="1" attributes="0">
-                          <Group type="102" alignment="1" attributes="0">
-                              <Component id="cell00" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-                              <Component id="cell01" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-                              <Component id="cell02" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-                              <Component id="cell03" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-                              <Component id="cell04" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-                              <Component id="cell05" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-                              <Component id="cell06" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-                              <Component id="cell07" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-                              <Component id="cell08" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="1" attributes="0">
-                              <Component id="cell10" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-                              <Component id="cell11" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-                              <Component id="cell12" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-                              <Component id="cell13" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-                              <Component id="cell14" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-                              <Component id="cell15" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-                              <Component id="cell16" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-                              <Component id="cell17" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-                              <Component id="cell18" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="1" attributes="0">
-                              <Component id="cell20" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-                              <Component id="cell21" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-                              <Component id="cell22" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-                              <Component id="cell23" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-                              <Component id="cell24" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-                              <Component id="cell25" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-                              <Component id="cell26" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-                              <Component id="cell27" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-                              <Component id="cell28" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="103" alignment="1" groupAlignment="0" attributes="0">
-                              <Group type="102" alignment="0" attributes="0">
-                                  <Component id="cell60" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-                                  <Component id="cell61" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-                                  <Component id="cell62" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-                                  <Component id="cell63" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-                                  <Component id="cell64" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-                                  <Component id="cell65" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-                                  <Component id="cell66" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-                                  <Component id="cell67" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="cell38" min="-2" max="-2" attributes="0"/>
+                                  <Component id="cell48" min="-2" max="-2" attributes="0"/>
+                                  <Component id="cell58" alignment="0" min="-2" max="-2" attributes="0"/>
                                   <Component id="cell68" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <Group type="102" alignment="1" attributes="0">
-                                  <Component id="cell70" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-                                  <Component id="cell71" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-                                  <Component id="cell72" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-                                  <Component id="cell73" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-                                  <Component id="cell74" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-                                  <Component id="cell75" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-                                  <Component id="cell76" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-                                  <Component id="cell77" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
                                   <Component id="cell78" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <Group type="102" alignment="1" attributes="0">
-                                  <Component id="cell80" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-                                  <Component id="cell81" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-                                  <Component id="cell82" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-                                  <Component id="cell83" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-                                  <Component id="cell84" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-                                  <Component id="cell85" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-                                  <Component id="cell86" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-                                  <Component id="cell87" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
                                   <Component id="cell88" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
+                      </Group>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <Component id="cell40" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="cell51" min="-2" max="-2" attributes="0"/>
+                          <Component id="cell41" min="-2" max="-2" attributes="0"/>
+                          <Component id="cell61" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="cell71" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="cell81" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
               </Group>
@@ -279,116 +271,188 @@
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="1" attributes="0">
-                  <Component id="cell08" min="-2" max="-2" attributes="0"/>
-                  <Component id="cell07" min="-2" max="-2" attributes="0"/>
-                  <Component id="cell06" min="-2" max="-2" attributes="0"/>
-                  <Component id="cell05" min="-2" max="-2" attributes="0"/>
-                  <Component id="cell04" min="-2" max="-2" attributes="0"/>
-                  <Component id="cell03" min="-2" max="-2" attributes="0"/>
-                  <Component id="cell02" min="-2" max="-2" attributes="0"/>
-                  <Component id="cell01" min="-2" max="-2" attributes="0"/>
-                  <Component id="cell00" min="-2" max="-2" attributes="0"/>
+          <Group type="102" attributes="0">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="cell00" min="-2" max="-2" attributes="0"/>
+                          <Component id="cell04" alignment="0" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
+                      <Component id="cell10" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="cell20" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="cell21" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="cell22" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="cell23" alignment="0" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="cell32" min="-2" max="-2" attributes="0"/>
+                          <Component id="cell31" min="-2" max="-2" attributes="0"/>
+                          <Component id="cell30" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
+                      <Component id="cell40" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="103" alignment="0" groupAlignment="1" attributes="0">
+                      <Component id="cell81" min="-2" max="-2" attributes="0"/>
+                      <Group type="102" attributes="0">
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Component id="cell01" min="-2" max="-2" attributes="0"/>
+                              <Component id="cell02" min="-2" max="-2" attributes="0"/>
+                              <Component id="cell03" min="-2" max="-2" attributes="0"/>
+                              <Component id="cell05" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="cell06" min="-2" max="-2" attributes="0"/>
+                              <Component id="cell07" min="-2" max="-2" attributes="0"/>
+                              <Component id="cell08" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Group type="103" groupAlignment="1" attributes="0">
+                                      <Component id="cell14" min="-2" max="-2" attributes="0"/>
+                                      <Component id="cell13" min="-2" max="-2" attributes="0"/>
+                                      <Component id="cell15" min="-2" max="-2" attributes="0"/>
+                                      <Component id="cell16" min="-2" max="-2" attributes="0"/>
+                                      <Component id="cell17" min="-2" max="-2" attributes="0"/>
+                                      <Component id="cell18" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="cell26" min="-2" max="-2" attributes="0"/>
+                                      <Component id="cell27" min="-2" max="-2" attributes="0"/>
+                                      <Component id="cell25" min="-2" max="-2" attributes="0"/>
+                                      <Component id="cell28" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="cell24" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                                      <Group type="102" attributes="0">
+                                          <Component id="cell34" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace max="32767" attributes="0"/>
+                                          <Component id="cell54" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <Group type="102" attributes="0">
+                                          <Component id="cell33" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace max="32767" attributes="0"/>
+                                          <Component id="cell53" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <Group type="103" groupAlignment="0" attributes="0">
+                                              <Component id="cell36" min="-2" max="-2" attributes="0"/>
+                                              <Component id="cell37" min="-2" max="-2" attributes="0"/>
+                                              <Component id="cell35" min="-2" max="-2" attributes="0"/>
+                                              <Component id="cell38" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          </Group>
+                                          <Group type="103" groupAlignment="0" attributes="0">
+                                              <Group type="102" attributes="0">
+                                                  <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
+                                                  <Group type="103" groupAlignment="1" attributes="0">
+                                                      <Component id="cell52" alignment="1" min="-2" max="-2" attributes="0"/>
+                                                      <Component id="cell51" alignment="1" min="-2" max="-2" attributes="0"/>
+                                                      <Component id="cell50" alignment="1" min="-2" max="-2" attributes="0"/>
+                                                  </Group>
+                                                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                              </Group>
+                                              <Group type="102" alignment="1" attributes="0">
+                                                  <EmptySpace max="32767" attributes="0"/>
+                                                  <Group type="103" groupAlignment="0" attributes="0">
+                                                      <Component id="cell55" alignment="1" min="-2" max="-2" attributes="0"/>
+                                                      <Component id="cell56" alignment="1" min="-2" max="-2" attributes="0"/>
+                                                      <Component id="cell57" alignment="1" min="-2" max="-2" attributes="0"/>
+                                                      <Component id="cell58" alignment="1" min="-2" max="-2" attributes="0"/>
+                                                  </Group>
+                                              </Group>
+                                          </Group>
+                                      </Group>
+                                  </Group>
+                              </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="cell11" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="cell12" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace min="-2" pref="100" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="cell42" min="-2" max="-2" attributes="0"/>
+                                      <Component id="cell41" min="-2" max="-2" attributes="0"/>
+                                      <Component id="cell43" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="cell44" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="cell45" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="cell46" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="cell47" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="cell48" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                          <Group type="103" groupAlignment="0" attributes="0">
+                              <Group type="102" attributes="0">
+                                  <Component id="cell60" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
+                                  <Component id="cell70" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
+                                  <Component id="cell80" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="cell68" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="cell67" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="cell66" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="cell65" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="cell64" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="cell62" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="cell61" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="cell63" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                      <Group type="102" attributes="0">
+                                          <Component id="cell73" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
+                                          <Component id="cell83" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <Group type="102" attributes="0">
+                                          <Component id="cell72" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
+                                          <Component id="cell82" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                          <Group type="102" attributes="0">
+                                              <Group type="103" groupAlignment="1" attributes="0">
+                                                  <Component id="cell78" alignment="0" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="cell77" alignment="0" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="cell76" alignment="0" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="cell75" alignment="0" min="-2" max="-2" attributes="0"/>
+                                              </Group>
+                                              <Group type="103" groupAlignment="0" attributes="0">
+                                                  <Group type="103" groupAlignment="1" attributes="0">
+                                                      <Component id="cell88" alignment="0" min="-2" max="-2" attributes="0"/>
+                                                      <Component id="cell87" alignment="0" min="-2" max="-2" attributes="0"/>
+                                                  </Group>
+                                                  <Component id="cell85" alignment="0" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="cell86" min="-2" max="-2" attributes="0"/>
+                                              </Group>
+                                          </Group>
+                                          <Group type="102" alignment="1" attributes="0">
+                                              <Component id="cell71" min="-2" max="-2" attributes="0"/>
+                                              <EmptySpace min="-2" pref="50" max="-2" attributes="0"/>
+                                          </Group>
+                                      </Group>
+                                      <Group type="102" attributes="0">
+                                          <Component id="cell74" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
+                                          <Component id="cell84" min="-2" max="-2" attributes="0"/>
+                                      </Group>
+                                  </Group>
+                              </Group>
+                          </Group>
+                      </Group>
+                  </Group>
               </Group>
               <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="1" attributes="0">
-                  <Component id="cell18" alignment="1" min="-2" max="-2" attributes="0"/>
-                  <Component id="cell17" alignment="1" min="-2" max="-2" attributes="0"/>
-                  <Component id="cell16" alignment="1" min="-2" max="-2" attributes="0"/>
-                  <Component id="cell15" alignment="1" min="-2" max="-2" attributes="0"/>
-                  <Component id="cell14" alignment="1" min="-2" max="-2" attributes="0"/>
-                  <Component id="cell13" alignment="1" min="-2" max="-2" attributes="0"/>
-                  <Component id="cell12" alignment="1" min="-2" max="-2" attributes="0"/>
-                  <Component id="cell11" alignment="1" min="-2" max="-2" attributes="0"/>
-                  <Component id="cell10" alignment="1" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="1" attributes="0">
-                  <Component id="cell28" alignment="1" min="-2" max="-2" attributes="0"/>
-                  <Component id="cell27" alignment="1" min="-2" max="-2" attributes="0"/>
-                  <Component id="cell26" alignment="1" min="-2" max="-2" attributes="0"/>
-                  <Component id="cell25" alignment="1" min="-2" max="-2" attributes="0"/>
-                  <Component id="cell24" alignment="1" min="-2" max="-2" attributes="0"/>
-                  <Component id="cell23" alignment="1" min="-2" max="-2" attributes="0"/>
-                  <Component id="cell22" alignment="1" min="-2" max="-2" attributes="0"/>
-                  <Component id="cell21" alignment="1" min="-2" max="-2" attributes="0"/>
-                  <Component id="cell20" alignment="1" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="1" attributes="0">
-                  <Component id="cell38" alignment="1" min="-2" max="-2" attributes="0"/>
-                  <Component id="cell37" alignment="1" min="-2" max="-2" attributes="0"/>
-                  <Component id="cell36" alignment="1" min="-2" max="-2" attributes="0"/>
-                  <Component id="cell35" alignment="1" min="-2" max="-2" attributes="0"/>
-                  <Component id="cell34" alignment="1" min="-2" max="-2" attributes="0"/>
-                  <Component id="cell33" alignment="1" min="-2" max="-2" attributes="0"/>
-                  <Component id="cell32" alignment="1" min="-2" max="-2" attributes="0"/>
-                  <Component id="cell31" alignment="1" min="-2" max="-2" attributes="0"/>
-                  <Component id="cell30" alignment="1" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="1" attributes="0">
-                  <Component id="cell48" alignment="1" min="-2" max="-2" attributes="0"/>
-                  <Component id="cell47" alignment="1" min="-2" max="-2" attributes="0"/>
-                  <Component id="cell46" alignment="1" min="-2" max="-2" attributes="0"/>
-                  <Component id="cell45" alignment="1" min="-2" max="-2" attributes="0"/>
-                  <Component id="cell44" alignment="1" min="-2" max="-2" attributes="0"/>
-                  <Component id="cell43" alignment="1" min="-2" max="-2" attributes="0"/>
-                  <Component id="cell42" alignment="1" min="-2" max="-2" attributes="0"/>
-                  <Component id="cell41" alignment="1" min="-2" max="-2" attributes="0"/>
-                  <Component id="cell40" alignment="1" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="1" attributes="0">
-                  <Component id="cell58" alignment="1" min="-2" max="-2" attributes="0"/>
-                  <Component id="cell57" alignment="1" min="-2" max="-2" attributes="0"/>
-                  <Component id="cell56" alignment="1" min="-2" max="-2" attributes="0"/>
-                  <Component id="cell55" alignment="1" min="-2" max="-2" attributes="0"/>
-                  <Component id="cell54" alignment="1" min="-2" max="-2" attributes="0"/>
-                  <Component id="cell53" alignment="1" min="-2" max="-2" attributes="0"/>
-                  <Component id="cell52" alignment="1" min="-2" max="-2" attributes="0"/>
-                  <Component id="cell51" alignment="1" min="-2" max="-2" attributes="0"/>
-                  <Component id="cell50" alignment="1" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="1" attributes="0">
-                  <Component id="cell68" alignment="1" min="-2" max="-2" attributes="0"/>
-                  <Component id="cell67" alignment="1" min="-2" max="-2" attributes="0"/>
-                  <Component id="cell66" alignment="1" min="-2" max="-2" attributes="0"/>
-                  <Component id="cell65" alignment="1" min="-2" max="-2" attributes="0"/>
-                  <Component id="cell64" alignment="1" min="-2" max="-2" attributes="0"/>
-                  <Component id="cell63" alignment="1" min="-2" max="-2" attributes="0"/>
-                  <Component id="cell62" alignment="1" min="-2" max="-2" attributes="0"/>
-                  <Component id="cell61" alignment="1" min="-2" max="-2" attributes="0"/>
-                  <Component id="cell60" alignment="1" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="1" attributes="0">
-                  <Component id="cell78" alignment="1" min="-2" max="-2" attributes="0"/>
-                  <Component id="cell77" alignment="1" min="-2" max="-2" attributes="0"/>
-                  <Component id="cell76" alignment="1" min="-2" max="-2" attributes="0"/>
-                  <Component id="cell75" alignment="1" min="-2" max="-2" attributes="0"/>
-                  <Component id="cell74" alignment="1" min="-2" max="-2" attributes="0"/>
-                  <Component id="cell73" alignment="1" min="-2" max="-2" attributes="0"/>
-                  <Component id="cell72" alignment="1" min="-2" max="-2" attributes="0"/>
-                  <Component id="cell71" alignment="1" min="-2" max="-2" attributes="0"/>
-                  <Component id="cell70" alignment="1" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="1" attributes="0">
-                  <Component id="cell88" alignment="1" min="-2" max="-2" attributes="0"/>
-                  <Component id="cell87" alignment="1" min="-2" max="-2" attributes="0"/>
-                  <Component id="cell86" alignment="1" min="-2" max="-2" attributes="0"/>
-                  <Component id="cell85" alignment="1" min="-2" max="-2" attributes="0"/>
-                  <Component id="cell84" alignment="1" min="-2" max="-2" attributes="0"/>
-                  <Component id="cell83" alignment="1" min="-2" max="-2" attributes="0"/>
-                  <Component id="cell82" alignment="1" min="-2" max="-2" attributes="0"/>
-                  <Component id="cell81" alignment="1" min="-2" max="-2" attributes="0"/>
-                  <Component id="cell80" alignment="1" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -408,7 +472,7 @@
       <Properties>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.MatteColorBorderInfo">
-            <MatteColorBorder bottom="1" left="1" right="1" top="2"/>
+            <MatteColorBorder bottom="0" left="1" right="1" top="2"/>
           </Border>
         </Property>
         <Property name="letter" type="char" value="L"/>
@@ -428,7 +492,7 @@
       <Properties>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.MatteColorBorderInfo">
-            <MatteColorBorder bottom="1" left="2" right="1" top="2"/>
+            <MatteColorBorder bottom="0" left="2" right="0" top="2"/>
           </Border>
         </Property>
       </Properties>
@@ -437,7 +501,7 @@
       <Properties>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.MatteColorBorderInfo">
-            <MatteColorBorder bottom="1" left="1" right="1" top="2"/>
+            <MatteColorBorder bottom="0" left="1" right="1" top="2"/>
           </Border>
         </Property>
       </Properties>
@@ -446,7 +510,7 @@
       <Properties>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.MatteColorBorderInfo">
-            <MatteColorBorder bottom="1" left="1" right="2" top="2"/>
+            <MatteColorBorder bottom="0" left="0" right="2" top="2"/>
           </Border>
         </Property>
       </Properties>
@@ -455,7 +519,7 @@
       <Properties>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.MatteColorBorderInfo">
-            <MatteColorBorder bottom="1" left="2" right="1" top="2"/>
+            <MatteColorBorder bottom="0" left="2" right="0" top="2"/>
           </Border>
         </Property>
       </Properties>
@@ -464,7 +528,7 @@
       <Properties>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.MatteColorBorderInfo">
-            <MatteColorBorder bottom="1" left="1" right="1" top="2"/>
+            <MatteColorBorder bottom="0" left="1" right="1" top="2"/>
           </Border>
         </Property>
       </Properties>
@@ -473,7 +537,7 @@
       <Properties>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.MatteColorBorderInfo">
-            <MatteColorBorder bottom="1" left="1" right="2" top="2"/>
+            <MatteColorBorder bottom="0" left="0" right="2" top="2"/>
           </Border>
         </Property>
       </Properties>
@@ -501,7 +565,7 @@
       <Properties>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.MatteColorBorderInfo">
-            <MatteColorBorder bottom="1" left="1" right="2" top="1"/>
+            <MatteColorBorder bottom="1" left="0" right="2" top="1"/>
           </Border>
         </Property>
       </Properties>
@@ -510,7 +574,7 @@
       <Properties>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.MatteColorBorderInfo">
-            <MatteColorBorder bottom="1" left="2" right="1" top="1"/>
+            <MatteColorBorder bottom="1" left="2" right="0" top="1"/>
           </Border>
         </Property>
       </Properties>
@@ -528,7 +592,7 @@
       <Properties>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.MatteColorBorderInfo">
-            <MatteColorBorder bottom="1" left="1" right="2" top="1"/>
+            <MatteColorBorder bottom="1" left="0" right="2" top="1"/>
           </Border>
         </Property>
       </Properties>
@@ -537,7 +601,7 @@
       <Properties>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.MatteColorBorderInfo">
-            <MatteColorBorder bottom="1" left="2" right="1" top="1"/>
+            <MatteColorBorder bottom="1" left="2" right="0" top="1"/>
           </Border>
         </Property>
       </Properties>
@@ -555,7 +619,7 @@
       <Properties>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.MatteColorBorderInfo">
-            <MatteColorBorder bottom="1" left="1" right="2" top="1"/>
+            <MatteColorBorder bottom="1" left="0" right="2" top="1"/>
           </Border>
         </Property>
       </Properties>
@@ -574,7 +638,7 @@
       <Properties>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.MatteColorBorderInfo">
-            <MatteColorBorder bottom="2" left="1" right="1" top="1"/>
+            <MatteColorBorder bottom="2" left="1" right="1" top="0"/>
           </Border>
         </Property>
       </Properties>
@@ -592,7 +656,7 @@
       <Properties>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.MatteColorBorderInfo">
-            <MatteColorBorder bottom="2" left="2" right="1" top="1"/>
+            <MatteColorBorder bottom="2" left="2" right="0" top="0"/>
           </Border>
         </Property>
       </Properties>
@@ -601,7 +665,7 @@
       <Properties>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.MatteColorBorderInfo">
-            <MatteColorBorder bottom="2" left="1" right="1" top="1"/>
+            <MatteColorBorder bottom="2" left="1" right="1" top="0"/>
           </Border>
         </Property>
       </Properties>
@@ -610,7 +674,7 @@
       <Properties>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.MatteColorBorderInfo">
-            <MatteColorBorder bottom="2" left="1" right="2" top="1"/>
+            <MatteColorBorder bottom="2" left="0" right="2" top="0"/>
           </Border>
         </Property>
       </Properties>
@@ -619,7 +683,7 @@
       <Properties>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.MatteColorBorderInfo">
-            <MatteColorBorder bottom="2" left="2" right="1" top="1"/>
+            <MatteColorBorder bottom="2" left="2" right="0" top="0"/>
           </Border>
         </Property>
       </Properties>
@@ -628,7 +692,7 @@
       <Properties>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.MatteColorBorderInfo">
-            <MatteColorBorder bottom="2" left="1" right="1" top="1"/>
+            <MatteColorBorder bottom="2" left="1" right="1" top="0"/>
           </Border>
         </Property>
       </Properties>
@@ -637,7 +701,7 @@
       <Properties>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.MatteColorBorderInfo">
-            <MatteColorBorder bottom="2" left="1" right="2" top="1"/>
+            <MatteColorBorder bottom="2" left="0" right="2" top="0"/>
           </Border>
         </Property>
       </Properties>
@@ -646,7 +710,7 @@
       <Properties>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.MatteColorBorderInfo">
-            <MatteColorBorder bottom="1" left="2" right="1" top="2"/>
+            <MatteColorBorder bottom="0" left="2" right="0" top="2"/>
           </Border>
         </Property>
       </Properties>
@@ -655,7 +719,7 @@
       <Properties>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.MatteColorBorderInfo">
-            <MatteColorBorder bottom="1" left="1" right="1" top="2"/>
+            <MatteColorBorder bottom="0" left="1" right="1" top="2"/>
           </Border>
         </Property>
       </Properties>
@@ -664,7 +728,7 @@
       <Properties>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.MatteColorBorderInfo">
-            <MatteColorBorder bottom="1" left="1" right="2" top="2"/>
+            <MatteColorBorder bottom="0" left="0" right="2" top="2"/>
           </Border>
         </Property>
       </Properties>
@@ -673,7 +737,7 @@
       <Properties>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.MatteColorBorderInfo">
-            <MatteColorBorder bottom="1" left="2" right="1" top="2"/>
+            <MatteColorBorder bottom="0" left="2" right="0" top="2"/>
           </Border>
         </Property>
       </Properties>
@@ -682,7 +746,7 @@
       <Properties>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.MatteColorBorderInfo">
-            <MatteColorBorder bottom="1" left="1" right="1" top="2"/>
+            <MatteColorBorder bottom="0" left="1" right="1" top="2"/>
           </Border>
         </Property>
       </Properties>
@@ -691,7 +755,7 @@
       <Properties>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.MatteColorBorderInfo">
-            <MatteColorBorder bottom="1" left="1" right="2" top="2"/>
+            <MatteColorBorder bottom="0" left="0" right="2" top="2"/>
           </Border>
         </Property>
       </Properties>
@@ -700,7 +764,7 @@
       <Properties>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.MatteColorBorderInfo">
-            <MatteColorBorder bottom="1" left="2" right="1" top="2"/>
+            <MatteColorBorder bottom="0" left="2" right="0" top="2"/>
           </Border>
         </Property>
       </Properties>
@@ -709,7 +773,7 @@
       <Properties>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.MatteColorBorderInfo">
-            <MatteColorBorder bottom="1" left="1" right="1" top="2"/>
+            <MatteColorBorder bottom="0" left="1" right="1" top="2"/>
           </Border>
         </Property>
       </Properties>
@@ -718,7 +782,7 @@
       <Properties>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.MatteColorBorderInfo">
-            <MatteColorBorder bottom="1" left="1" right="2" top="2"/>
+            <MatteColorBorder bottom="0" left="0" right="2" top="2"/>
           </Border>
         </Property>
       </Properties>
@@ -727,7 +791,7 @@
       <Properties>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.MatteColorBorderInfo">
-            <MatteColorBorder bottom="1" left="2" right="1" top="1"/>
+            <MatteColorBorder bottom="1" left="2" right="0" top="1"/>
           </Border>
         </Property>
       </Properties>
@@ -745,7 +809,7 @@
       <Properties>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.MatteColorBorderInfo">
-            <MatteColorBorder bottom="1" left="1" right="2" top="1"/>
+            <MatteColorBorder bottom="1" left="0" right="2" top="1"/>
           </Border>
         </Property>
       </Properties>
@@ -754,7 +818,7 @@
       <Properties>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.MatteColorBorderInfo">
-            <MatteColorBorder bottom="1" left="2" right="1" top="1"/>
+            <MatteColorBorder bottom="1" left="2" right="0" top="1"/>
           </Border>
         </Property>
       </Properties>
@@ -772,7 +836,7 @@
       <Properties>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.MatteColorBorderInfo">
-            <MatteColorBorder bottom="1" left="1" right="2" top="1"/>
+            <MatteColorBorder bottom="1" left="0" right="2" top="1"/>
           </Border>
         </Property>
       </Properties>
@@ -781,7 +845,7 @@
       <Properties>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.MatteColorBorderInfo">
-            <MatteColorBorder bottom="1" left="2" right="1" top="1"/>
+            <MatteColorBorder bottom="1" left="2" right="0" top="1"/>
           </Border>
         </Property>
       </Properties>
@@ -799,7 +863,7 @@
       <Properties>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.MatteColorBorderInfo">
-            <MatteColorBorder bottom="1" left="1" right="2" top="1"/>
+            <MatteColorBorder bottom="1" left="0" right="2" top="1"/>
           </Border>
         </Property>
       </Properties>
@@ -808,7 +872,7 @@
       <Properties>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.MatteColorBorderInfo">
-            <MatteColorBorder bottom="2" left="2" right="1" top="1"/>
+            <MatteColorBorder bottom="2" left="2" right="0" top="0"/>
           </Border>
         </Property>
       </Properties>
@@ -817,7 +881,7 @@
       <Properties>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.MatteColorBorderInfo">
-            <MatteColorBorder bottom="2" left="1" right="1" top="1"/>
+            <MatteColorBorder bottom="2" left="1" right="1" top="0"/>
           </Border>
         </Property>
       </Properties>
@@ -826,7 +890,7 @@
       <Properties>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.MatteColorBorderInfo">
-            <MatteColorBorder bottom="2" left="1" right="2" top="1"/>
+            <MatteColorBorder bottom="2" left="0" right="2" top="0"/>
           </Border>
         </Property>
       </Properties>
@@ -835,7 +899,7 @@
       <Properties>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.MatteColorBorderInfo">
-            <MatteColorBorder bottom="2" left="2" right="1" top="1"/>
+            <MatteColorBorder bottom="2" left="2" right="0" top="0"/>
           </Border>
         </Property>
       </Properties>
@@ -844,7 +908,7 @@
       <Properties>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.MatteColorBorderInfo">
-            <MatteColorBorder bottom="2" left="1" right="1" top="1"/>
+            <MatteColorBorder bottom="2" left="1" right="1" top="0"/>
           </Border>
         </Property>
       </Properties>
@@ -853,7 +917,7 @@
       <Properties>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.MatteColorBorderInfo">
-            <MatteColorBorder bottom="2" left="1" right="2" top="1"/>
+            <MatteColorBorder bottom="2" left="0" right="2" top="0"/>
           </Border>
         </Property>
       </Properties>
@@ -862,7 +926,7 @@
       <Properties>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.MatteColorBorderInfo">
-            <MatteColorBorder bottom="2" left="2" right="1" top="1"/>
+            <MatteColorBorder bottom="2" left="2" right="0" top="0"/>
           </Border>
         </Property>
       </Properties>
@@ -871,7 +935,7 @@
       <Properties>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.MatteColorBorderInfo">
-            <MatteColorBorder bottom="2" left="1" right="1" top="1"/>
+            <MatteColorBorder bottom="2" left="1" right="1" top="0"/>
           </Border>
         </Property>
       </Properties>
@@ -880,7 +944,7 @@
       <Properties>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.MatteColorBorderInfo">
-            <MatteColorBorder bottom="2" left="1" right="2" top="1"/>
+            <MatteColorBorder bottom="2" left="0" right="2" top="0"/>
           </Border>
         </Property>
       </Properties>
@@ -889,7 +953,7 @@
       <Properties>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.MatteColorBorderInfo">
-            <MatteColorBorder bottom="1" left="2" right="1" top="2"/>
+            <MatteColorBorder bottom="0" left="2" right="0" top="2"/>
           </Border>
         </Property>
       </Properties>
@@ -898,7 +962,7 @@
       <Properties>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.MatteColorBorderInfo">
-            <MatteColorBorder bottom="1" left="1" right="1" top="2"/>
+            <MatteColorBorder bottom="0" left="1" right="1" top="2"/>
           </Border>
         </Property>
       </Properties>
@@ -907,7 +971,7 @@
       <Properties>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.MatteColorBorderInfo">
-            <MatteColorBorder bottom="1" left="1" right="2" top="2"/>
+            <MatteColorBorder bottom="0" left="0" right="2" top="2"/>
           </Border>
         </Property>
       </Properties>
@@ -916,7 +980,7 @@
       <Properties>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.MatteColorBorderInfo">
-            <MatteColorBorder bottom="1" left="2" right="1" top="2"/>
+            <MatteColorBorder bottom="0" left="2" right="0" top="2"/>
           </Border>
         </Property>
       </Properties>
@@ -925,7 +989,7 @@
       <Properties>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.MatteColorBorderInfo">
-            <MatteColorBorder bottom="1" left="1" right="1" top="2"/>
+            <MatteColorBorder bottom="0" left="1" right="1" top="2"/>
           </Border>
         </Property>
       </Properties>
@@ -934,7 +998,7 @@
       <Properties>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.MatteColorBorderInfo">
-            <MatteColorBorder bottom="1" left="1" right="2" top="2"/>
+            <MatteColorBorder bottom="0" left="0" right="2" top="2"/>
           </Border>
         </Property>
       </Properties>
@@ -943,7 +1007,7 @@
       <Properties>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.MatteColorBorderInfo">
-            <MatteColorBorder bottom="1" left="2" right="1" top="2"/>
+            <MatteColorBorder bottom="0" left="2" right="0" top="2"/>
           </Border>
         </Property>
       </Properties>
@@ -952,7 +1016,7 @@
       <Properties>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.MatteColorBorderInfo">
-            <MatteColorBorder bottom="1" left="1" right="1" top="2"/>
+            <MatteColorBorder bottom="0" left="1" right="1" top="2"/>
           </Border>
         </Property>
       </Properties>
@@ -961,7 +1025,7 @@
       <Properties>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.MatteColorBorderInfo">
-            <MatteColorBorder bottom="1" left="1" right="2" top="2"/>
+            <MatteColorBorder bottom="0" left="0" right="2" top="2"/>
           </Border>
         </Property>
       </Properties>
@@ -970,7 +1034,7 @@
       <Properties>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.MatteColorBorderInfo">
-            <MatteColorBorder bottom="1" left="2" right="1" top="1"/>
+            <MatteColorBorder bottom="1" left="2" right="0" top="1"/>
           </Border>
         </Property>
       </Properties>
@@ -988,7 +1052,7 @@
       <Properties>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.MatteColorBorderInfo">
-            <MatteColorBorder bottom="1" left="1" right="2" top="1"/>
+            <MatteColorBorder bottom="1" left="0" right="2" top="1"/>
           </Border>
         </Property>
       </Properties>
@@ -997,7 +1061,7 @@
       <Properties>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.MatteColorBorderInfo">
-            <MatteColorBorder bottom="1" left="2" right="1" top="1"/>
+            <MatteColorBorder bottom="1" left="2" right="0" top="1"/>
           </Border>
         </Property>
       </Properties>
@@ -1015,7 +1079,7 @@
       <Properties>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.MatteColorBorderInfo">
-            <MatteColorBorder bottom="1" left="1" right="2" top="1"/>
+            <MatteColorBorder bottom="1" left="0" right="2" top="1"/>
           </Border>
         </Property>
       </Properties>
@@ -1024,7 +1088,7 @@
       <Properties>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.MatteColorBorderInfo">
-            <MatteColorBorder bottom="1" left="2" right="1" top="1"/>
+            <MatteColorBorder bottom="1" left="2" right="0" top="1"/>
           </Border>
         </Property>
       </Properties>
@@ -1042,7 +1106,7 @@
       <Properties>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.MatteColorBorderInfo">
-            <MatteColorBorder bottom="1" left="1" right="2" top="1"/>
+            <MatteColorBorder bottom="1" left="0" right="2" top="1"/>
           </Border>
         </Property>
       </Properties>
@@ -1051,7 +1115,7 @@
       <Properties>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.MatteColorBorderInfo">
-            <MatteColorBorder bottom="2" left="2" right="1" top="1"/>
+            <MatteColorBorder bottom="2" left="2" right="0" top="0"/>
           </Border>
         </Property>
       </Properties>
@@ -1060,7 +1124,7 @@
       <Properties>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.MatteColorBorderInfo">
-            <MatteColorBorder bottom="2" left="1" right="1" top="1"/>
+            <MatteColorBorder bottom="2" left="1" right="1" top="0"/>
           </Border>
         </Property>
       </Properties>
@@ -1069,7 +1133,7 @@
       <Properties>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.MatteColorBorderInfo">
-            <MatteColorBorder bottom="2" left="1" right="2" top="1"/>
+            <MatteColorBorder bottom="2" left="0" right="2" top="0"/>
           </Border>
         </Property>
       </Properties>
@@ -1078,7 +1142,7 @@
       <Properties>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.MatteColorBorderInfo">
-            <MatteColorBorder bottom="2" left="2" right="1" top="1"/>
+            <MatteColorBorder bottom="2" left="2" right="0" top="0"/>
           </Border>
         </Property>
       </Properties>
@@ -1087,7 +1151,7 @@
       <Properties>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.MatteColorBorderInfo">
-            <MatteColorBorder bottom="2" left="1" right="1" top="1"/>
+            <MatteColorBorder bottom="2" left="1" right="1" top="0"/>
           </Border>
         </Property>
       </Properties>
@@ -1096,7 +1160,7 @@
       <Properties>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.MatteColorBorderInfo">
-            <MatteColorBorder bottom="2" left="1" right="2" top="1"/>
+            <MatteColorBorder bottom="2" left="0" right="2" top="0"/>
           </Border>
         </Property>
       </Properties>
@@ -1105,7 +1169,7 @@
       <Properties>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.MatteColorBorderInfo">
-            <MatteColorBorder bottom="2" left="2" right="1" top="1"/>
+            <MatteColorBorder bottom="2" left="2" right="0" top="0"/>
           </Border>
         </Property>
       </Properties>
@@ -1114,7 +1178,7 @@
       <Properties>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.MatteColorBorderInfo">
-            <MatteColorBorder bottom="2" left="1" right="1" top="1"/>
+            <MatteColorBorder bottom="2" left="1" right="1" top="0"/>
           </Border>
         </Property>
       </Properties>
@@ -1123,7 +1187,7 @@
       <Properties>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.MatteColorBorderInfo">
-            <MatteColorBorder bottom="2" left="1" right="2" top="1"/>
+            <MatteColorBorder bottom="2" left="0" right="2" top="0"/>
           </Border>
         </Property>
       </Properties>
