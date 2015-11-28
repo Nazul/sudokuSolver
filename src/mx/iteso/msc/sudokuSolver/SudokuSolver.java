@@ -17,12 +17,9 @@ package mx.iteso.msc.sudokuSolver;
 
 import javax.swing.UIManager;
 import java.awt.Component;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import javax.swing.ImageIcon;
 import javax.swing.SwingWorker;
-import javax.swing.Timer;
 
 
 /**
@@ -30,136 +27,23 @@ import javax.swing.Timer;
  * @author Mario Contreras
  */
 public class SudokuSolver extends javax.swing.JFrame {
-    private Cell[][] cells = new Cell[9][9];
-    private Cell[][] solution;
+    private Cell[] cells = new Cell[81];
+    private Cell[] solution;
+    private Difficulty difficulty;
 
+    private enum Difficulty {
+        Easy,
+        Medium,
+        Hard
+    }
+    
     private class NewGridTask extends SwingWorker<Void, Void> {
         /*
          * Main task. Executed in background thread.
          */
         @Override
         public Void doInBackground() {
-//            for(int i = 0; i < cells.length; i++) {
-//                for(int j = 0; j < cells.length; j++) {
-//                    cells[i][j].setValue((int)(Math.random() * 10));
-//                    try {
-//                        Thread.sleep(70);
-//                    } catch (InterruptedException ignore) {}
-//                }
-//            }
-            Cell[] cs = new Cell[81];
-            int k = 0;
-            for(int i = 0; i < cells.length; i++)
-                for(int j = 0; j < cells.length; j++)
-                    cs[k++] = cells[i][j];
-
-            ArrayList<Integer>[] available = new ArrayList[81];
-            for(int i = 0; i < available.length; i++) {
-                available[i] = new ArrayList<>();
-                for(int j = 1; j < 10; j++)
-                    available[i].add(j);
-            }
-            
-            int c = 0;
-            
-            while(c < 81) {
-                if(available[c].size() != 0) {
-                    int i = (int)(Math.random() * (available[c].size() - 1));
-                    int n = available[c].get(i);
-                    Cell cell = newCell(c, n);
-                    if(!conflict(cs, cell)) {
-                        copyCell(cell, cs[c]);
-                        try {
-                            Thread.sleep(70);
-                        } catch (InterruptedException ignore) {}
-                        available[c].remove(i);
-                        c++;
-                    }
-                    else {
-                        available[c].remove(i);
-                    }
-                }
-                else {
-                    for(int x = 1; x < 10; x++) {
-                        available[c].add(x);
-                    }
-                    c--;
-                    cs[c].setAcross(0);
-                    cs[c].setDown(0);
-                    cs[c].setRegion(0);
-                    cs[c].setValue(0);
-                    cs[c].setIndex(0);
-                }
-            }
-
             return null;
-        }
-
-        private boolean conflict(Cell[] cs, Cell cell) {
-            for(Cell c : cs) {
-                if((c.getAcross() != 0 && c.getAcross() == cell.getAcross()) ||
-                   (c.getDown() != 0 && c.getDown() == cell.getDown()) ||
-                   (c.getRegion() != 0 && c.getRegion() == cell.getRegion()))
-                   if(c.getValue() == cell.getValue())
-                       return true;
-            }
-            return false;
-        }
-        
-        private void copyCell(Cell c1, Cell c2) {
-            c2.setAcross(c1.getAcross());
-            c2.setDown(c1.getDown());
-            c2.setRegion(c1.getRegion());
-            c2.setValue(c1.getValue());
-            c2.setIndex(c1.getIndex());
-        }
-        
-        private Cell newCell(int index, int value) {
-            Cell c = new Cell();
-            c.setAcross(getAcrossFromNumber(index + 1));
-            c.setDown(getDownFromNumber(index + 1));
-            c.setRegion(getRegionFromNumber(index + 1));
-            c.setValue(value);
-            c.setIndex(index);
-            return c;
-        }
-        
-        private int getAcrossFromNumber(int n) {
-            return n % 9 != 0 ? n % 9 : 9;
-        }
-        
-        private int getDownFromNumber(int n) {
-            if(getAcrossFromNumber(n) == 9)
-                return n / 9;
-            else
-                return n / 9 + 1;
-        }
-        
-        private int getRegionFromNumber(int n) {
-            int a = getAcrossFromNumber(n);
-            int d = getDownFromNumber(n);
-            int k = 0;
-            
-            if(1 <= a && a < 4 && 1 <= d && d < 4) {
-                k = 1;
-            } else if( 4 <= a && a < 7 && 1 <= d && d < 4) {
-                k = 2;
-            } else if( 7 <= a && a < 10 && 1 <= d && d < 4) {
-                k = 3;
-            } else if( 1 <= a && a < 4 && 4 <= d && d < 7) {
-                k = 4;
-            } else if( 4 <= a && a < 7 && 4 <= d && d < 7) {
-                k = 5;
-            } else if( 7 <= a && a < 10 && 4 <= d && d < 7) {
-                k = 6;
-            } else if( 1 <= a && a < 4 && 7 <= d && d < 10) {
-                k = 7;
-            } else if( 4 <= a && a < 7 && 7 <= d && d < 10) {
-                k = 8;
-            } else if( 7 <= a && a < 10 && 7 <= d && d < 10) {
-                k = 9;
-            }
-            return k;
         }
     }
    
@@ -176,21 +60,174 @@ public class SudokuSolver extends javax.swing.JFrame {
             i = ((Cell)c).getName().charAt(0) - 48;
             j = ((Cell)c).getName().charAt(1) - 48;
             if(c instanceof Cell) {
-                cells[i][j] = (Cell)c;
+                cells[8 * i + i + j] = (Cell)c;
             }
         }
+        // Set easy start startup difficulty
+        setDifficulty(Difficulty.Easy);
         // Set form icon
         this.setIconImage(new ImageIcon(getClass().getResource("/mx/iteso/msc/sudokuSolver/resources/sudoku_small.gif")).getImage());
-        // Refresh screen every 50 miliseconds
-//        ActionListener animate = new ActionListener() {
-//            public void actionPerformed(ActionEvent ae) {
-//                repaint();
-//            }
-//        };
-////        Timer timer = new Timer(500,animate);
-////        timer.start();
         // New game
-        (new NewGridTask()).execute();
+        //(new NewGridTask()).execute();
+        newGame();
+    }
+    
+    private void setDifficulty(Difficulty d) {
+        this.difficulty = d;
+        switch(d) {
+            case Easy:
+                easyMenuItem.setSelected(true);
+                mediumMenuItem.setSelected(false);
+                hardMenuItem.setSelected(false);
+                break;
+            case Medium:
+                easyMenuItem.setSelected(false);
+                mediumMenuItem.setSelected(true);
+                hardMenuItem.setSelected(false);
+                break;
+            case Hard:
+                easyMenuItem.setSelected(false);
+                mediumMenuItem.setSelected(false);
+                hardMenuItem.setSelected(true);
+                break;
+        }
+    }
+    
+    private void newGame() {
+        solution = new Cell[81];
+        for(int i = 0; i < solution.length; i++)
+            solution[i] = new Cell();
+
+        ArrayList<Integer>[] available = new ArrayList[81];
+        for(int i = 0; i < available.length; i++) {
+            available[i] = new ArrayList<>();
+            for(int j = 1; j < 10; j++)
+                available[i].add(j);
+        }
+
+        int c = 0;
+        while(c < 81) {
+            if(!available[c].isEmpty()) {
+                int i = (int)(Math.random() * (available[c].size() - 1));
+                int n = available[c].get(i);
+                Cell cell = newCell(c, n);
+                if(!conflict(solution, cell)) {
+                    copyCell(cell, solution[c]);
+                    available[c].remove(i);
+                    c++;
+                }
+                else {
+                    available[c].remove(i);
+                }
+            }
+            else {
+                for(int x = 1; x < 10; x++) {
+                    available[c].add(x);
+                }
+                c--;
+                solution[c].setAcross(0);
+                solution[c].setDown(0);
+                solution[c].setRegion(0);
+                solution[c].setValue(0);
+                solution[c].setIndex(0);
+            }
+        }
+        int top = 0;
+        ArrayList<Integer> values = new ArrayList<>();
+        switch(difficulty) {
+            case Easy:
+                top = 30;
+                break;
+            case Medium:
+                top = 45;
+                break;
+            case Hard:
+                top = 60;
+                break;
+        }
+        c = 0;
+        while(c < top) {
+            int v = (int)(Math.random() * 81);
+            if(!values.contains(v)) {
+                values.add(v);
+                c++;
+            }
+        }
+        for(int i = 0; i < solution.length; i++) {
+            copyCell(solution[i], cells[i]);
+            cells[i].setLocked(true);
+        }
+        for(int v : values) {
+            cells[v].setValue(0);
+            cells[v].setLocked(false);
+        }
+    }
+
+    private boolean conflict(Cell[] cs, Cell cell) {
+        for(Cell c : cs) {
+            if((c.getAcross() != 0 && c.getAcross() == cell.getAcross()) ||
+               (c.getDown() != 0 && c.getDown() == cell.getDown()) ||
+               (c.getRegion() != 0 && c.getRegion() == cell.getRegion()))
+               if(c.getValue() == cell.getValue())
+                   return true;
+        }
+        return false;
+    }
+
+    private void copyCell(Cell c1, Cell c2) {
+        c2.setAcross(c1.getAcross());
+        c2.setDown(c1.getDown());
+        c2.setRegion(c1.getRegion());
+        c2.setValue(c1.getValue());
+        c2.setIndex(c1.getIndex());
+    }
+
+    private Cell newCell(int index, int value) {
+        Cell c = new Cell();
+        c.setAcross(getAcrossFromNumber(index + 1));
+        c.setDown(getDownFromNumber(index + 1));
+        c.setRegion(getRegionFromNumber(index + 1));
+        c.setValue(value);
+        c.setIndex(index);
+        return c;
+    }
+
+    private int getAcrossFromNumber(int n) {
+        return n % 9 != 0 ? n % 9 : 9;
+    }
+
+    private int getDownFromNumber(int n) {
+        if(getAcrossFromNumber(n) == 9)
+            return n / 9;
+        else
+            return n / 9 + 1;
+    }
+
+    private int getRegionFromNumber(int n) {
+        int a = getAcrossFromNumber(n);
+        int d = getDownFromNumber(n);
+        int k = 0;
+
+        if(1 <= a && a < 4 && 1 <= d && d < 4) {
+            k = 1;
+        } else if( 4 <= a && a < 7 && 1 <= d && d < 4) {
+            k = 2;
+        } else if( 7 <= a && a < 10 && 1 <= d && d < 4) {
+            k = 3;
+        } else if( 1 <= a && a < 4 && 4 <= d && d < 7) {
+            k = 4;
+        } else if( 4 <= a && a < 7 && 4 <= d && d < 7) {
+            k = 5;
+        } else if( 7 <= a && a < 10 && 4 <= d && d < 7) {
+            k = 6;
+        } else if( 1 <= a && a < 4 && 7 <= d && d < 10) {
+            k = 7;
+        } else if( 4 <= a && a < 7 && 7 <= d && d < 10) {
+            k = 8;
+        } else if( 7 <= a && a < 10 && 7 <= d && d < 10) {
+            k = 9;
+        }
+        return k;
     }
 
     /**
@@ -288,6 +325,10 @@ public class SudokuSolver extends javax.swing.JFrame {
         newMenuItem = new javax.swing.JMenuItem();
         jSeparator1 = new javax.swing.JPopupMenu.Separator();
         exitMenuItem = new javax.swing.JMenuItem();
+        difficultyMenu = new javax.swing.JMenu();
+        easyMenuItem = new javax.swing.JRadioButtonMenuItem();
+        mediumMenuItem = new javax.swing.JRadioButtonMenuItem();
+        hardMenuItem = new javax.swing.JRadioButtonMenuItem();
         helpMenu = new javax.swing.JMenu();
         aboutMenuItem = new javax.swing.JMenuItem();
 
@@ -561,6 +602,35 @@ public class SudokuSolver extends javax.swing.JFrame {
         gameMenu.add(exitMenuItem);
 
         menuBar.add(gameMenu);
+
+        difficultyMenu.setText("Difficulty");
+
+        easyMenuItem.setSelected(true);
+        easyMenuItem.setText("Easy (51-30)");
+        easyMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                easyMenuItemActionPerformed(evt);
+            }
+        });
+        difficultyMenu.add(easyMenuItem);
+
+        mediumMenuItem.setText("Medium (36-45)");
+        mediumMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mediumMenuItemActionPerformed(evt);
+            }
+        });
+        difficultyMenu.add(mediumMenuItem);
+
+        hardMenuItem.setText("Hard (21-60)");
+        hardMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                hardMenuItemActionPerformed(evt);
+            }
+        });
+        difficultyMenu.add(hardMenuItem);
+
+        menuBar.add(difficultyMenu);
 
         helpMenu.setMnemonic('h');
         helpMenu.setText("Help");
@@ -881,10 +951,22 @@ public class SudokuSolver extends javax.swing.JFrame {
     }//GEN-LAST:event_aboutMenuItemActionPerformed
 
     private void newMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newMenuItemActionPerformed
-        //timer.start();
         // New game
-        (new NewGridTask()).execute();
+        //(new NewGridTask()).execute();
+        newGame();
     }//GEN-LAST:event_newMenuItemActionPerformed
+
+    private void easyMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_easyMenuItemActionPerformed
+        setDifficulty(Difficulty.Easy);
+    }//GEN-LAST:event_easyMenuItemActionPerformed
+
+    private void mediumMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mediumMenuItemActionPerformed
+        setDifficulty(Difficulty.Medium);
+    }//GEN-LAST:event_mediumMenuItemActionPerformed
+
+    private void hardMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hardMenuItemActionPerformed
+        setDifficulty(Difficulty.Hard);
+    }//GEN-LAST:event_hardMenuItemActionPerformed
 
     /**
      * @param args the command line arguments
@@ -894,20 +976,10 @@ public class SudokuSolver extends javax.swing.JFrame {
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html */
         try {
-//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-//                if ("Nimbus".equals(info.getName())) {
-//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-//                    break;
-//                }
-//            }
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(SudokuSolver.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
-        //</editor-fold>
-
-        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
@@ -1001,10 +1073,14 @@ public class SudokuSolver extends javax.swing.JFrame {
     private mx.iteso.msc.sudokuSolver.Cell cell86;
     private mx.iteso.msc.sudokuSolver.Cell cell87;
     private mx.iteso.msc.sudokuSolver.Cell cell88;
+    private javax.swing.JMenu difficultyMenu;
+    private javax.swing.JRadioButtonMenuItem easyMenuItem;
     private javax.swing.JMenuItem exitMenuItem;
     private javax.swing.JMenu gameMenu;
+    private javax.swing.JRadioButtonMenuItem hardMenuItem;
     private javax.swing.JMenu helpMenu;
     private javax.swing.JPopupMenu.Separator jSeparator1;
+    private javax.swing.JRadioButtonMenuItem mediumMenuItem;
     private javax.swing.JMenuBar menuBar;
     private javax.swing.JMenuItem newMenuItem;
     // End of variables declaration//GEN-END:variables
