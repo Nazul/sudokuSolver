@@ -18,6 +18,8 @@ package mx.iteso.msc.sudokuSolver;
 import javax.swing.UIManager;
 import java.awt.Component;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.SwingWorker;
 
@@ -39,10 +41,95 @@ public class SudokuSolver extends javax.swing.JFrame {
     
     private class NewGridTask extends SwingWorker<Void, Void> {
         /*
-         * Main task. Executed in background thread.
+         * New game (solved). Copy of newGame(). Executed in background thread.
          */
         @Override
         public Void doInBackground() {
+            solution = new Cell[81];
+            for(int i = 0; i < solution.length; i++) {
+                solution[i] = new Cell();
+                solution[i].setLetter(' ');
+                copyCell(solution[i], cells[i]);
+                cells[i].setLocked(false);
+            }
+
+            ArrayList<Integer>[] available = new ArrayList[81];
+            for(int i = 0; i < available.length; i++) {
+                available[i] = new ArrayList<>();
+                for(int j = 1; j < 10; j++)
+                    available[i].add(j);
+            }
+
+            int c = 0;
+            while(c < 81) {
+                if(!available[c].isEmpty()) {
+                    int i = (int)(Math.random() * (available[c].size() - 1));
+                    int n = available[c].get(i);
+                    Cell cell = newCell(c, n);
+                    if(!conflict(cells, cell)) {
+                        copyCell(cell, cells[c]);
+                        available[c].remove(i);
+                        c++;
+                        try {
+                            Thread.sleep(100);
+                        } catch (InterruptedException ex) {
+                            Logger.getLogger(SudokuSolver.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                    }
+                    else {
+                        available[c].remove(i);
+                    }
+                }
+                else {
+                    for(int x = 1; x < 10; x++) {
+                        available[c].add(x);
+                    }
+                    c--;
+                    cells[c].setAcross(0);
+                    cells[c].setDown(0);
+                    cells[c].setRegion(0);
+                    cells[c].setValue(0);
+                    cells[c].setIndex(0);
+                    cells[c].setLetter(' ');
+                }
+            }
+
+            for(int i = 0; i < 81; i += 3) {
+                if(cells[i].getValue() < cells[i + 1].getValue() && cells[i + 1].getValue() < cells[i + 2].getValue()) {
+                    cells[i].setLetter('S');
+                    cells[i + 1].setLetter('M');
+                    cells[i + 2].setLetter('L');
+                }
+                else if(cells[i].getValue() < cells[i + 2].getValue() && cells[i + 2].getValue() < cells[i + 1].getValue()) {
+                    cells[i].setLetter('S');
+                    cells[i + 1].setLetter('L');
+                    cells[i + 2].setLetter('M');
+                }
+                else if(cells[i + 1].getValue() < cells[i].getValue() && cells[i].getValue() < cells[i + 2].getValue()) {
+                    cells[i].setLetter('M');
+                    cells[i + 1].setLetter('S');
+                    cells[i + 2].setLetter('L');
+                }
+                else if(cells[i + 2].getValue() < cells[i].getValue() && cells[i].getValue() < cells[i + 1].getValue()) {
+                    cells[i].setLetter('M');
+                    cells[i + 1].setLetter('L');
+                    cells[i + 2].setLetter('S');
+                }
+                else if(cells[i + 1].getValue() < cells[i + 2].getValue() && cells[i + 2].getValue() < cells[i].getValue()) {
+                    cells[i].setLetter('L');
+                    cells[i + 1].setLetter('S');
+                    cells[i + 2].setLetter('M');
+                }
+                else if(cells[i + 2].getValue() < cells[i + 1].getValue() && cells[i + 1].getValue() < cells[i].getValue()) {
+                    cells[i].setLetter('L');
+                    cells[i + 1].setLetter('M');
+                    cells[i + 2].setLetter('S');
+                }
+            }
+
+            for(int i = 0; i < 81; i++) {
+                copyCell(cells[i], solution[i]);
+            }
             return null;
         }
     }
@@ -68,7 +155,6 @@ public class SudokuSolver extends javax.swing.JFrame {
         // Set form icon
         this.setIconImage(new ImageIcon(getClass().getResource("/mx/iteso/msc/sudokuSolver/resources/sudoku_small.gif")).getImage());
         // New game
-        //(new NewGridTask()).execute();
         newGame();
     }
     
@@ -360,10 +446,13 @@ public class SudokuSolver extends javax.swing.JFrame {
         menuBar = new javax.swing.JMenuBar();
         gameMenu = new javax.swing.JMenu();
         newMenuItem = new javax.swing.JMenuItem();
+        newBlankMenuItem = new javax.swing.JMenuItem();
+        newSolvedMenuItem = new javax.swing.JMenuItem();
+        jSeparator1 = new javax.swing.JPopupMenu.Separator();
         hintMenuItem = new javax.swing.JMenuItem();
         evaluateMenuItem = new javax.swing.JMenuItem();
         solveMenuItem = new javax.swing.JMenuItem();
-        jSeparator1 = new javax.swing.JPopupMenu.Separator();
+        jSeparator2 = new javax.swing.JPopupMenu.Separator();
         exitMenuItem = new javax.swing.JMenuItem();
         difficultyMenu = new javax.swing.JMenu();
         easyMenuItem = new javax.swing.JRadioButtonMenuItem();
@@ -632,6 +721,23 @@ public class SudokuSolver extends javax.swing.JFrame {
         });
         gameMenu.add(newMenuItem);
 
+        newBlankMenuItem.setText("New (Blank)");
+        newBlankMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                newBlankMenuItemActionPerformed(evt);
+            }
+        });
+        gameMenu.add(newBlankMenuItem);
+
+        newSolvedMenuItem.setText("New (Solved)");
+        newSolvedMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                newSolvedMenuItemActionPerformed(evt);
+            }
+        });
+        gameMenu.add(newSolvedMenuItem);
+        gameMenu.add(jSeparator1);
+
         hintMenuItem.setText("Hint");
         hintMenuItem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -655,7 +761,7 @@ public class SudokuSolver extends javax.swing.JFrame {
             }
         });
         gameMenu.add(solveMenuItem);
-        gameMenu.add(jSeparator1);
+        gameMenu.add(jSeparator2);
 
         exitMenuItem.setMnemonic('x');
         exitMenuItem.setText("Exit");
@@ -1017,7 +1123,6 @@ public class SudokuSolver extends javax.swing.JFrame {
 
     private void newMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newMenuItemActionPerformed
         // New game
-        //(new NewGridTask()).execute();
         newGame();
     }//GEN-LAST:event_newMenuItemActionPerformed
 
@@ -1058,6 +1163,20 @@ public class SudokuSolver extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_solveMenuItemActionPerformed
+
+    private void newBlankMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newBlankMenuItemActionPerformed
+        solution = new Cell[81];
+        for(int i = 0; i < solution.length; i++) {
+            solution[i] = new Cell();
+            solution[i].setLetter(' ');
+            copyCell(solution[i], cells[i]);
+            cells[i].setLocked(false);
+        }
+    }//GEN-LAST:event_newBlankMenuItemActionPerformed
+
+    private void newSolvedMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newSolvedMenuItemActionPerformed
+        (new NewGridTask()).execute();
+    }//GEN-LAST:event_newSolvedMenuItemActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1173,9 +1292,12 @@ public class SudokuSolver extends javax.swing.JFrame {
     private javax.swing.JMenu helpMenu;
     private javax.swing.JMenuItem hintMenuItem;
     private javax.swing.JPopupMenu.Separator jSeparator1;
+    private javax.swing.JPopupMenu.Separator jSeparator2;
     private javax.swing.JRadioButtonMenuItem mediumMenuItem;
     private javax.swing.JMenuBar menuBar;
+    private javax.swing.JMenuItem newBlankMenuItem;
     private javax.swing.JMenuItem newMenuItem;
+    private javax.swing.JMenuItem newSolvedMenuItem;
     private javax.swing.JMenuItem solveMenuItem;
     // End of variables declaration//GEN-END:variables
 }
