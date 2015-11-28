@@ -130,8 +130,43 @@ public class SudokuSolver extends javax.swing.JFrame {
                 solution[c].setRegion(0);
                 solution[c].setValue(0);
                 solution[c].setIndex(0);
+                solution[c].setLetter(' ');
             }
         }
+        
+        for(int i = 0; i < 81; i += 3) {
+            if(solution[i].getValue() < solution[i + 1].getValue() && solution[i + 1].getValue() < solution[i + 2].getValue()) {
+                solution[i].setLetter('S');
+                solution[i + 1].setLetter('M');
+                solution[i + 2].setLetter('L');
+            }
+            else if(solution[i].getValue() < solution[i + 2].getValue() && solution[i + 2].getValue() < solution[i + 1].getValue()) {
+                solution[i].setLetter('S');
+                solution[i + 1].setLetter('L');
+                solution[i + 2].setLetter('M');
+            }
+            else if(solution[i + 1].getValue() < solution[i].getValue() && solution[i].getValue() < solution[i + 2].getValue()) {
+                solution[i].setLetter('M');
+                solution[i + 1].setLetter('S');
+                solution[i + 2].setLetter('L');
+            }
+            else if(solution[i + 2].getValue() < solution[i].getValue() && solution[i].getValue() < solution[i + 1].getValue()) {
+                solution[i].setLetter('M');
+                solution[i + 1].setLetter('L');
+                solution[i + 2].setLetter('S');
+            }
+            else if(solution[i + 1].getValue() < solution[i + 2].getValue() && solution[i + 2].getValue() < solution[i].getValue()) {
+                solution[i].setLetter('L');
+                solution[i + 1].setLetter('S');
+                solution[i + 2].setLetter('M');
+            }
+            else if(solution[i + 2].getValue() < solution[i + 1].getValue() && solution[i + 1].getValue() < solution[i].getValue()) {
+                solution[i].setLetter('L');
+                solution[i + 1].setLetter('M');
+                solution[i + 2].setLetter('S');
+            }
+        }
+        
         int top = 0;
         ArrayList<Integer> values = new ArrayList<>();
         switch(difficulty) {
@@ -180,6 +215,7 @@ public class SudokuSolver extends javax.swing.JFrame {
         c2.setRegion(c1.getRegion());
         c2.setValue(c1.getValue());
         c2.setIndex(c1.getIndex());
+        c2.setLetter(c1.getLetter());
     }
 
     private Cell newCell(int index, int value) {
@@ -189,6 +225,7 @@ public class SudokuSolver extends javax.swing.JFrame {
         c.setRegion(getRegionFromNumber(index + 1));
         c.setValue(value);
         c.setIndex(index);
+        c.setLetter(' ');
         return c;
     }
 

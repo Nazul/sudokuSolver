@@ -76,7 +76,20 @@ public class Cell extends javax.swing.JPanel {
     }
     
     public void setLetter(char letter) {
-        letterLabel.setText(Character.toString(letter));
+        switch(letter) {
+            case 's':
+            case 'm':
+            case 'l':
+                letter = Character.toUpperCase(letter);
+            case 'S':
+            case 'M':
+            case 'L':
+                letterLabel.setText(Character.toString(letter));
+                break;
+            default:
+                letterLabel.setText(" ");
+                break;
+        }
     }
     
     public int getAcross() {
