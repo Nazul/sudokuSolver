@@ -323,6 +323,9 @@ public class SudokuSolver extends javax.swing.JFrame {
         menuBar = new javax.swing.JMenuBar();
         gameMenu = new javax.swing.JMenu();
         newMenuItem = new javax.swing.JMenuItem();
+        hintMenuItem = new javax.swing.JMenuItem();
+        evaluateMenuItem = new javax.swing.JMenuItem();
+        solveMenuItem = new javax.swing.JMenuItem();
         jSeparator1 = new javax.swing.JPopupMenu.Separator();
         exitMenuItem = new javax.swing.JMenuItem();
         difficultyMenu = new javax.swing.JMenu();
@@ -582,6 +585,7 @@ public class SudokuSolver extends javax.swing.JFrame {
         gameMenu.setMnemonic('g');
         gameMenu.setText("Game");
 
+        newMenuItem.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_N, java.awt.event.InputEvent.CTRL_MASK));
         newMenuItem.setMnemonic('o');
         newMenuItem.setText("New");
         newMenuItem.addActionListener(new java.awt.event.ActionListener() {
@@ -590,6 +594,30 @@ public class SudokuSolver extends javax.swing.JFrame {
             }
         });
         gameMenu.add(newMenuItem);
+
+        hintMenuItem.setText("Hint");
+        hintMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                hintMenuItemActionPerformed(evt);
+            }
+        });
+        gameMenu.add(hintMenuItem);
+
+        evaluateMenuItem.setText("Evaluate");
+        evaluateMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                evaluateMenuItemActionPerformed(evt);
+            }
+        });
+        gameMenu.add(evaluateMenuItem);
+
+        solveMenuItem.setText("Solve");
+        solveMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                solveMenuItemActionPerformed(evt);
+            }
+        });
+        gameMenu.add(solveMenuItem);
         gameMenu.add(jSeparator1);
 
         exitMenuItem.setMnemonic('x');
@@ -968,6 +996,32 @@ public class SudokuSolver extends javax.swing.JFrame {
         setDifficulty(Difficulty.Hard);
     }//GEN-LAST:event_hardMenuItemActionPerformed
 
+    private void hintMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_hintMenuItemActionPerformed
+        for(int i = 0; i < 81; i++) {
+            if(cells[i].getValue() == 0) {
+                cells[i].setValue(solution[i].getValue());
+                break;
+            }
+        }
+    }//GEN-LAST:event_hintMenuItemActionPerformed
+
+    private void evaluateMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_evaluateMenuItemActionPerformed
+        for(int i = 0; i < 81; i++) {
+            if(!cells[i].getLocked() && cells[i].getValue() != 0) {
+                cells[i].setError(cells[i].getValue() != solution[i].getValue());
+            }
+        }
+    }//GEN-LAST:event_evaluateMenuItemActionPerformed
+
+    private void solveMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_solveMenuItemActionPerformed
+        for(int i = 0; i < 81; i++) {
+            if(!cells[i].getLocked()) {
+                cells[i].setError(cells[i].getValue() != solution[i].getValue());
+                cells[i].setValue(solution[i].getValue());
+            }
+        }
+    }//GEN-LAST:event_solveMenuItemActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1075,14 +1129,17 @@ public class SudokuSolver extends javax.swing.JFrame {
     private mx.iteso.msc.sudokuSolver.Cell cell88;
     private javax.swing.JMenu difficultyMenu;
     private javax.swing.JRadioButtonMenuItem easyMenuItem;
+    private javax.swing.JMenuItem evaluateMenuItem;
     private javax.swing.JMenuItem exitMenuItem;
     private javax.swing.JMenu gameMenu;
     private javax.swing.JRadioButtonMenuItem hardMenuItem;
     private javax.swing.JMenu helpMenu;
+    private javax.swing.JMenuItem hintMenuItem;
     private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JRadioButtonMenuItem mediumMenuItem;
     private javax.swing.JMenuBar menuBar;
     private javax.swing.JMenuItem newMenuItem;
+    private javax.swing.JMenuItem solveMenuItem;
     // End of variables declaration//GEN-END:variables
 }
 

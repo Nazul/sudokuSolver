@@ -122,9 +122,9 @@ public class Cell extends javax.swing.JPanel {
         if(locked)
             valueField.setForeground(Color.BLUE);
         else if(error)
-            valueField.setForeground(Color.BLACK);
-        else
             valueField.setForeground(Color.RED);
+        else
+            valueField.setForeground(Color.BLACK);
     }
     
     public boolean getError() {
