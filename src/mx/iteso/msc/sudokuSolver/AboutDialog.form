@@ -86,7 +86,7 @@
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel2">
       <Properties>
-        <Property name="text" type="java.lang.String" value="&lt;html&gt;&#xa;An academic project by Mario Contreras &amp; Erick Gonz&#xe1;lez.&lt;br/&gt;&#xa;...&lt;br/&gt;&#xa;.....&lt;br/&gt;&#xa;...&lt;br/&gt;&#xa;..&lt;br/&gt;&#xa;.&#xa;&lt;/html&gt;"/>
+        <Property name="text" type="java.lang.String" value="&lt;html&gt;&#xa;&lt;b&gt;An academic project by Mario Contreras and Erick Gonz&#xe1;lez.&lt;/b&gt;&lt;br/&gt;&#xa;&lt;br/&gt;&#xa;Using backtracking algorithms, it generates a sudoku puzzle and if required, it solves it too.&lt;br/&gt;&#xa;&lt;br/&gt;&#xa;Integration project for the first semester of computer systems master&apos;s degree.&lt;br/&gt; &#xa;&lt;/html&gt;"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel3">

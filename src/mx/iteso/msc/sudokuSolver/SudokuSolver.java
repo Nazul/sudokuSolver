@@ -17,7 +17,12 @@ package mx.iteso.msc.sudokuSolver;
 
 import javax.swing.UIManager;
 import java.awt.Component;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import javax.swing.ImageIcon;
+import javax.swing.SwingWorker;
+import javax.swing.Timer;
 
 
 /**
@@ -25,27 +30,167 @@ import javax.swing.ImageIcon;
  * @author Mario Contreras
  */
 public class SudokuSolver extends javax.swing.JFrame {
+    private Cell[][] cells = new Cell[9][9];
+    private Cell[][] solution;
 
+    private class NewGridTask extends SwingWorker<Void, Void> {
+        /*
+         * Main task. Executed in background thread.
+         */
+        @Override
+        public Void doInBackground() {
+//            for(int i = 0; i < cells.length; i++) {
+//                for(int j = 0; j < cells.length; j++) {
+//                    cells[i][j].setValue((int)(Math.random() * 10));
+//                    try {
+//                        Thread.sleep(70);
+//                    } catch (InterruptedException ignore) {}
+//                }
+//            }
+            Cell[] cs = new Cell[81];
+            int k = 0;
+            for(int i = 0; i < cells.length; i++)
+                for(int j = 0; j < cells.length; j++)
+                    cs[k++] = cells[i][j];
+
+            ArrayList<Integer>[] available = new ArrayList[81];
+            for(int i = 0; i < available.length; i++) {
+                available[i] = new ArrayList<>();
+                for(int j = 1; j < 10; j++)
+                    available[i].add(j);
+            }
+            
+            int c = 0;
+            
+            while(c < 81) {
+                if(available[c].size() != 0) {
+                    int i = (int)(Math.random() * (available[c].size() - 1));
+                    int n = available[c].get(i);
+                    Cell cell = newCell(c, n);
+                    if(!conflict(cs, cell)) {
+                        copyCell(cell, cs[c]);
+                        try {
+                            Thread.sleep(70);
+                        } catch (InterruptedException ignore) {}
+                        available[c].remove(i);
+                        c++;
+                    }
+                    else {
+                        available[c].remove(i);
+                    }
+                }
+                else {
+                    for(int x = 1; x < 10; x++) {
+                        available[c].add(x);
+                    }
+                    c--;
+                    cs[c].setAcross(0);
+                    cs[c].setDown(0);
+                    cs[c].setRegion(0);
+                    cs[c].setValue(0);
+                    cs[c].setIndex(0);
+                }
+            }
+
+            return null;
+        }
+
+        private boolean conflict(Cell[] cs, Cell cell) {
+            for(Cell c : cs) {
+                if((c.getAcross() != 0 && c.getAcross() == cell.getAcross()) ||
+                   (c.getDown() != 0 && c.getDown() == cell.getDown()) ||
+                   (c.getRegion() != 0 && c.getRegion() == cell.getRegion()))
+                   if(c.getValue() == cell.getValue())
+                       return true;
+            }
+            return false;
+        }
+        
+        private void copyCell(Cell c1, Cell c2) {
+            c2.setAcross(c1.getAcross());
+            c2.setDown(c1.getDown());
+            c2.setRegion(c1.getRegion());
+            c2.setValue(c1.getValue());
+            c2.setIndex(c1.getIndex());
+        }
+        
+        private Cell newCell(int index, int value) {
+            Cell c = new Cell();
+            c.setAcross(getAcrossFromNumber(index + 1));
+            c.setDown(getDownFromNumber(index + 1));
+            c.setRegion(getRegionFromNumber(index + 1));
+            c.setValue(value);
+            c.setIndex(index);
+            return c;
+        }
+        
+        private int getAcrossFromNumber(int n) {
+            return n % 9 != 0 ? n % 9 : 9;
+        }
+        
+        private int getDownFromNumber(int n) {
+            if(getAcrossFromNumber(n) == 9)
+                return n / 9;
+            else
+                return n / 9 + 1;
+        }
+        
+        private int getRegionFromNumber(int n) {
+            int a = getAcrossFromNumber(n);
+            int d = getDownFromNumber(n);
+            int k = 0;
+            
+            if(1 <= a && a < 4 && 1 <= d && d < 4) {
+                k = 1;
+            } else if( 4 <= a && a < 7 && 1 <= d && d < 4) {
+                k = 2;
+            } else if( 7 <= a && a < 10 && 1 <= d && d < 4) {
+                k = 3;
+            } else if( 1 <= a && a < 4 && 4 <= d && d < 7) {
+                k = 4;
+            } else if( 4 <= a && a < 7 && 4 <= d && d < 7) {
+                k = 5;
+            } else if( 7 <= a && a < 10 && 4 <= d && d < 7) {
+                k = 6;
+            } else if( 1 <= a && a < 4 && 7 <= d && d < 10) {
+                k = 7;
+            } else if( 4 <= a && a < 7 && 7 <= d && d < 10) {
+                k = 8;
+            } else if( 7 <= a && a < 10 && 7 <= d && d < 10) {
+                k = 9;
+            }
+            return k;
+        }
+    }
+   
     /**
-     * Creates new form NewApplication
+     * Creates new form SudokuSolver
      */
     public SudokuSolver() {
         initComponents();
-        // Center
+        // Center form
         setLocationRelativeTo(null);
-        //
+        // For quick access to each cell, we store a reference of the cellxy objects in cells array
         int i = 0, j = 0;
         for(Component c : this.getContentPane().getComponents()) {
+            i = ((Cell)c).getName().charAt(0) - 48;
+            j = ((Cell)c).getName().charAt(1) - 48;
             if(c instanceof Cell) {
-                cells[i][j++] = (Cell)c;
-                if(j == 9) {
-                    j = 0;
-                    i++;
-                }
+                cells[i][j] = (Cell)c;
             }
         }
-        //
+        // Set form icon
         this.setIconImage(new ImageIcon(getClass().getResource("/mx/iteso/msc/sudokuSolver/resources/sudoku_small.gif")).getImage());
+        // Refresh screen every 50 miliseconds
+//        ActionListener animate = new ActionListener() {
+//            public void actionPerformed(ActionEvent ae) {
+//                repaint();
+//            }
+//        };
+////        Timer timer = new Timer(500,animate);
+////        timer.start();
+        // New game
+        (new NewGridTask()).execute();
     }
 
     /**
@@ -140,9 +285,7 @@ public class SudokuSolver extends javax.swing.JFrame {
         cell88 = new mx.iteso.msc.sudokuSolver.Cell();
         menuBar = new javax.swing.JMenuBar();
         gameMenu = new javax.swing.JMenu();
-        openMenuItem = new javax.swing.JMenuItem();
-        saveMenuItem = new javax.swing.JMenuItem();
-        saveAsMenuItem = new javax.swing.JMenuItem();
+        newMenuItem = new javax.swing.JMenuItem();
         jSeparator1 = new javax.swing.JPopupMenu.Separator();
         exitMenuItem = new javax.swing.JMenuItem();
         helpMenu = new javax.swing.JMenu();
@@ -152,188 +295,260 @@ public class SudokuSolver extends javax.swing.JFrame {
         setTitle("Sudoku Solver");
         setResizable(false);
 
-        cell00.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 0, 0, new java.awt.Color(0, 0, 0)));
-        cell00.setValue(1);
+        cell00.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 1, 1, new java.awt.Color(0, 0, 0)));
+        cell00.setName("00"); // NOI18N
 
-        cell01.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 1, 0, 1, new java.awt.Color(0, 0, 0)));
-        cell01.setLetter('L');
+        cell01.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 0, 1, 0, new java.awt.Color(0, 0, 0)));
+        cell01.setName("01"); // NOI18N
 
-        cell02.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 0, 0, 2, new java.awt.Color(0, 0, 0)));
-        cell02.setLetter('M');
+        cell02.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 1, 1, 2, new java.awt.Color(0, 0, 0)));
+        cell02.setName("02"); // NOI18N
 
-        cell03.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 0, 0, new java.awt.Color(0, 0, 0)));
+        cell03.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 1, 1, new java.awt.Color(0, 0, 0)));
+        cell03.setName("03"); // NOI18N
 
-        cell04.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 1, 0, 1, new java.awt.Color(0, 0, 0)));
+        cell04.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 0, 1, 0, new java.awt.Color(0, 0, 0)));
+        cell04.setName("04"); // NOI18N
 
-        cell05.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 0, 0, 2, new java.awt.Color(0, 0, 0)));
+        cell05.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 1, 1, 2, new java.awt.Color(0, 0, 0)));
+        cell05.setName("05"); // NOI18N
 
-        cell06.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 0, 0, new java.awt.Color(0, 0, 0)));
+        cell06.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 1, 1, new java.awt.Color(0, 0, 0)));
+        cell06.setName("06"); // NOI18N
 
-        cell07.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 1, 0, 1, new java.awt.Color(0, 0, 0)));
+        cell07.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 0, 1, 0, new java.awt.Color(0, 0, 0)));
+        cell07.setName("07"); // NOI18N
 
-        cell08.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 0, 0, 2, new java.awt.Color(0, 0, 0)));
+        cell08.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 1, 1, 2, new java.awt.Color(0, 0, 0)));
+        cell08.setName("08"); // NOI18N
 
-        cell10.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 2, 1, 0, new java.awt.Color(0, 0, 0)));
-        cell10.setValue(2);
+        cell10.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 2, 0, 1, new java.awt.Color(0, 0, 0)));
+        cell10.setName("10"); // NOI18N
 
         cell11.setBorder(new javax.swing.border.MatteBorder(null));
+        cell11.setName("11"); // NOI18N
 
-        cell12.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 0, 1, 2, new java.awt.Color(0, 0, 0)));
+        cell12.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 1, 0, 2, new java.awt.Color(0, 0, 0)));
+        cell12.setName("12"); // NOI18N
 
-        cell13.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 2, 1, 0, new java.awt.Color(0, 0, 0)));
+        cell13.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 2, 0, 1, new java.awt.Color(0, 0, 0)));
+        cell13.setName("13"); // NOI18N
 
         cell14.setBorder(new javax.swing.border.MatteBorder(null));
+        cell14.setName("14"); // NOI18N
 
-        cell15.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 0, 1, 2, new java.awt.Color(0, 0, 0)));
+        cell15.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 1, 0, 2, new java.awt.Color(0, 0, 0)));
+        cell15.setName("15"); // NOI18N
 
-        cell16.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 2, 1, 0, new java.awt.Color(0, 0, 0)));
+        cell16.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 2, 0, 1, new java.awt.Color(0, 0, 0)));
+        cell16.setName("16"); // NOI18N
 
         cell17.setBorder(new javax.swing.border.MatteBorder(null));
+        cell17.setName("17"); // NOI18N
 
-        cell18.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 0, 1, 2, new java.awt.Color(0, 0, 0)));
+        cell18.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 1, 0, 2, new java.awt.Color(0, 0, 0)));
+        cell18.setName("18"); // NOI18N
 
-        cell20.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 2, 2, 0, new java.awt.Color(0, 0, 0)));
-        cell20.setValue(3);
+        cell20.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 2, 2, 1, new java.awt.Color(0, 0, 0)));
+        cell20.setName("20"); // NOI18N
 
-        cell21.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 1, 2, 1, new java.awt.Color(0, 0, 0)));
+        cell21.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 0, 2, 0, new java.awt.Color(0, 0, 0)));
+        cell21.setName("21"); // NOI18N
 
-        cell22.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 2, new java.awt.Color(0, 0, 0)));
+        cell22.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 2, 2, new java.awt.Color(0, 0, 0)));
+        cell22.setName("22"); // NOI18N
 
-        cell23.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 2, 2, 0, new java.awt.Color(0, 0, 0)));
+        cell23.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 2, 2, 1, new java.awt.Color(0, 0, 0)));
+        cell23.setName("23"); // NOI18N
 
-        cell24.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 1, 2, 1, new java.awt.Color(0, 0, 0)));
+        cell24.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 0, 2, 0, new java.awt.Color(0, 0, 0)));
+        cell24.setName("24"); // NOI18N
 
-        cell25.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 2, new java.awt.Color(0, 0, 0)));
+        cell25.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 2, 2, new java.awt.Color(0, 0, 0)));
+        cell25.setName("25"); // NOI18N
 
-        cell26.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 2, 2, 0, new java.awt.Color(0, 0, 0)));
+        cell26.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 2, 2, 1, new java.awt.Color(0, 0, 0)));
+        cell26.setName("26"); // NOI18N
 
-        cell27.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 1, 2, 1, new java.awt.Color(0, 0, 0)));
+        cell27.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 0, 2, 0, new java.awt.Color(0, 0, 0)));
+        cell27.setName("27"); // NOI18N
 
-        cell28.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 2, new java.awt.Color(0, 0, 0)));
+        cell28.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 2, 2, new java.awt.Color(0, 0, 0)));
+        cell28.setName("28"); // NOI18N
 
-        cell30.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 0, 0, new java.awt.Color(0, 0, 0)));
+        cell30.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 1, 1, new java.awt.Color(0, 0, 0)));
+        cell30.setName("30"); // NOI18N
 
-        cell31.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 1, 0, 1, new java.awt.Color(0, 0, 0)));
+        cell31.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 0, 1, 0, new java.awt.Color(0, 0, 0)));
+        cell31.setName("31"); // NOI18N
 
-        cell32.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 0, 0, 2, new java.awt.Color(0, 0, 0)));
+        cell32.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 1, 1, 2, new java.awt.Color(0, 0, 0)));
+        cell32.setName("32"); // NOI18N
 
-        cell33.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 0, 0, new java.awt.Color(0, 0, 0)));
+        cell33.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 1, 1, new java.awt.Color(0, 0, 0)));
+        cell33.setName("33"); // NOI18N
 
-        cell34.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 1, 0, 1, new java.awt.Color(0, 0, 0)));
+        cell34.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 0, 1, 0, new java.awt.Color(0, 0, 0)));
+        cell34.setName("34"); // NOI18N
 
-        cell35.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 0, 0, 2, new java.awt.Color(0, 0, 0)));
+        cell35.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 1, 1, 2, new java.awt.Color(0, 0, 0)));
+        cell35.setName("35"); // NOI18N
 
-        cell36.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 0, 0, new java.awt.Color(0, 0, 0)));
+        cell36.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 1, 1, new java.awt.Color(0, 0, 0)));
+        cell36.setName("36"); // NOI18N
 
-        cell37.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 1, 0, 1, new java.awt.Color(0, 0, 0)));
+        cell37.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 0, 1, 0, new java.awt.Color(0, 0, 0)));
+        cell37.setName("37"); // NOI18N
 
-        cell38.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 0, 0, 2, new java.awt.Color(0, 0, 0)));
+        cell38.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 1, 1, 2, new java.awt.Color(0, 0, 0)));
+        cell38.setName("38"); // NOI18N
 
-        cell40.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 2, 1, 0, new java.awt.Color(0, 0, 0)));
+        cell40.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 2, 0, 1, new java.awt.Color(0, 0, 0)));
+        cell40.setName("40"); // NOI18N
 
         cell41.setBorder(new javax.swing.border.MatteBorder(null));
+        cell41.setName("41"); // NOI18N
 
-        cell42.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 0, 1, 2, new java.awt.Color(0, 0, 0)));
+        cell42.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 1, 0, 2, new java.awt.Color(0, 0, 0)));
+        cell42.setName("42"); // NOI18N
 
-        cell43.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 2, 1, 0, new java.awt.Color(0, 0, 0)));
+        cell43.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 2, 0, 1, new java.awt.Color(0, 0, 0)));
+        cell43.setName("43"); // NOI18N
 
         cell44.setBorder(new javax.swing.border.MatteBorder(null));
+        cell44.setName("44"); // NOI18N
 
-        cell45.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 0, 1, 2, new java.awt.Color(0, 0, 0)));
+        cell45.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 1, 0, 2, new java.awt.Color(0, 0, 0)));
+        cell45.setName("45"); // NOI18N
 
-        cell46.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 2, 1, 0, new java.awt.Color(0, 0, 0)));
+        cell46.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 2, 0, 1, new java.awt.Color(0, 0, 0)));
+        cell46.setName("46"); // NOI18N
 
         cell47.setBorder(new javax.swing.border.MatteBorder(null));
+        cell47.setName("47"); // NOI18N
 
-        cell48.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 0, 1, 2, new java.awt.Color(0, 0, 0)));
+        cell48.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 1, 0, 2, new java.awt.Color(0, 0, 0)));
+        cell48.setName("48"); // NOI18N
 
-        cell50.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 2, 2, 0, new java.awt.Color(0, 0, 0)));
+        cell50.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 2, 2, 1, new java.awt.Color(0, 0, 0)));
+        cell50.setName("50"); // NOI18N
 
-        cell51.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 1, 2, 1, new java.awt.Color(0, 0, 0)));
+        cell51.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 0, 2, 0, new java.awt.Color(0, 0, 0)));
+        cell51.setName("51"); // NOI18N
 
-        cell52.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 2, new java.awt.Color(0, 0, 0)));
+        cell52.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 2, 2, new java.awt.Color(0, 0, 0)));
+        cell52.setName("52"); // NOI18N
 
-        cell53.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 2, 2, 0, new java.awt.Color(0, 0, 0)));
+        cell53.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 2, 2, 1, new java.awt.Color(0, 0, 0)));
+        cell53.setName("53"); // NOI18N
 
-        cell54.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 1, 2, 1, new java.awt.Color(0, 0, 0)));
+        cell54.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 0, 2, 0, new java.awt.Color(0, 0, 0)));
+        cell54.setName("54"); // NOI18N
 
-        cell55.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 2, new java.awt.Color(0, 0, 0)));
+        cell55.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 2, 2, new java.awt.Color(0, 0, 0)));
+        cell55.setName("55"); // NOI18N
 
-        cell56.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 2, 2, 0, new java.awt.Color(0, 0, 0)));
+        cell56.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 2, 2, 1, new java.awt.Color(0, 0, 0)));
+        cell56.setName("56"); // NOI18N
 
-        cell57.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 1, 2, 1, new java.awt.Color(0, 0, 0)));
+        cell57.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 0, 2, 0, new java.awt.Color(0, 0, 0)));
+        cell57.setName("57"); // NOI18N
 
-        cell58.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 2, new java.awt.Color(0, 0, 0)));
+        cell58.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 2, 2, new java.awt.Color(0, 0, 0)));
+        cell58.setName("58"); // NOI18N
 
-        cell60.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 0, 0, new java.awt.Color(0, 0, 0)));
+        cell60.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 1, 1, new java.awt.Color(0, 0, 0)));
+        cell60.setName("60"); // NOI18N
 
-        cell61.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 1, 0, 1, new java.awt.Color(0, 0, 0)));
+        cell61.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 0, 1, 0, new java.awt.Color(0, 0, 0)));
+        cell61.setName("61"); // NOI18N
 
-        cell62.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 0, 0, 2, new java.awt.Color(0, 0, 0)));
+        cell62.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 1, 1, 2, new java.awt.Color(0, 0, 0)));
+        cell62.setName("62"); // NOI18N
 
-        cell63.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 0, 0, new java.awt.Color(0, 0, 0)));
+        cell63.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 1, 1, new java.awt.Color(0, 0, 0)));
+        cell63.setName("63"); // NOI18N
 
-        cell64.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 1, 0, 1, new java.awt.Color(0, 0, 0)));
+        cell64.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 0, 1, 0, new java.awt.Color(0, 0, 0)));
+        cell64.setName("64"); // NOI18N
 
-        cell65.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 0, 0, 2, new java.awt.Color(0, 0, 0)));
+        cell65.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 1, 1, 2, new java.awt.Color(0, 0, 0)));
+        cell65.setName("65"); // NOI18N
 
-        cell66.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 0, 0, new java.awt.Color(0, 0, 0)));
+        cell66.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 2, 1, 1, new java.awt.Color(0, 0, 0)));
+        cell66.setName("66"); // NOI18N
 
-        cell67.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 1, 0, 1, new java.awt.Color(0, 0, 0)));
+        cell67.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 0, 1, 0, new java.awt.Color(0, 0, 0)));
+        cell67.setName("67"); // NOI18N
 
-        cell68.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 0, 0, 2, new java.awt.Color(0, 0, 0)));
+        cell68.setBorder(javax.swing.BorderFactory.createMatteBorder(2, 1, 1, 2, new java.awt.Color(0, 0, 0)));
+        cell68.setName("68"); // NOI18N
 
-        cell70.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 2, 1, 0, new java.awt.Color(0, 0, 0)));
+        cell70.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 2, 0, 1, new java.awt.Color(0, 0, 0)));
+        cell70.setName("70"); // NOI18N
 
         cell71.setBorder(new javax.swing.border.MatteBorder(null));
+        cell71.setName("71"); // NOI18N
 
-        cell72.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 0, 1, 2, new java.awt.Color(0, 0, 0)));
+        cell72.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 1, 0, 2, new java.awt.Color(0, 0, 0)));
+        cell72.setName("72"); // NOI18N
 
-        cell73.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 2, 1, 0, new java.awt.Color(0, 0, 0)));
+        cell73.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 2, 0, 1, new java.awt.Color(0, 0, 0)));
+        cell73.setName("73"); // NOI18N
 
         cell74.setBorder(new javax.swing.border.MatteBorder(null));
+        cell74.setName("74"); // NOI18N
 
-        cell75.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 0, 1, 2, new java.awt.Color(0, 0, 0)));
+        cell75.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 1, 0, 2, new java.awt.Color(0, 0, 0)));
+        cell75.setName("75"); // NOI18N
 
-        cell76.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 2, 1, 0, new java.awt.Color(0, 0, 0)));
+        cell76.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 2, 0, 1, new java.awt.Color(0, 0, 0)));
+        cell76.setName("76"); // NOI18N
 
         cell77.setBorder(new javax.swing.border.MatteBorder(null));
+        cell77.setName("77"); // NOI18N
 
-        cell78.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 0, 1, 2, new java.awt.Color(0, 0, 0)));
+        cell78.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 1, 0, 2, new java.awt.Color(0, 0, 0)));
+        cell78.setName("78"); // NOI18N
 
-        cell80.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 2, 2, 0, new java.awt.Color(0, 0, 0)));
+        cell80.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 2, 2, 1, new java.awt.Color(0, 0, 0)));
+        cell80.setName("80"); // NOI18N
 
-        cell81.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 1, 2, 1, new java.awt.Color(0, 0, 0)));
+        cell81.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 0, 2, 0, new java.awt.Color(0, 0, 0)));
+        cell81.setName("81"); // NOI18N
 
-        cell82.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 2, new java.awt.Color(0, 0, 0)));
+        cell82.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 2, 2, new java.awt.Color(0, 0, 0)));
+        cell82.setName("82"); // NOI18N
 
-        cell83.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 2, 2, 0, new java.awt.Color(0, 0, 0)));
+        cell83.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 2, 2, 1, new java.awt.Color(0, 0, 0)));
+        cell83.setName("83"); // NOI18N
 
-        cell84.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 1, 2, 1, new java.awt.Color(0, 0, 0)));
+        cell84.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 0, 2, 0, new java.awt.Color(0, 0, 0)));
+        cell84.setName("84"); // NOI18N
 
-        cell85.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 2, new java.awt.Color(0, 0, 0)));
+        cell85.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 2, 2, new java.awt.Color(0, 0, 0)));
+        cell85.setName("85"); // NOI18N
 
-        cell86.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 2, 2, 0, new java.awt.Color(0, 0, 0)));
+        cell86.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 2, 2, 1, new java.awt.Color(0, 0, 0)));
+        cell86.setName("86"); // NOI18N
 
-        cell87.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 1, 2, 1, new java.awt.Color(0, 0, 0)));
+        cell87.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 0, 2, 0, new java.awt.Color(0, 0, 0)));
+        cell87.setName("87"); // NOI18N
 
-        cell88.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 2, new java.awt.Color(0, 0, 0)));
+        cell88.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 2, 2, new java.awt.Color(0, 0, 0)));
+        cell88.setName("88"); // NOI18N
 
         gameMenu.setMnemonic('g');
         gameMenu.setText("Game");
 
-        openMenuItem.setMnemonic('o');
-        openMenuItem.setText("Open");
-        gameMenu.add(openMenuItem);
-
-        saveMenuItem.setMnemonic('s');
-        saveMenuItem.setText("Save");
-        gameMenu.add(saveMenuItem);
-
-        saveAsMenuItem.setMnemonic('a');
-        saveAsMenuItem.setText("Save As ...");
-        saveAsMenuItem.setDisplayedMnemonicIndex(5);
-        gameMenu.add(saveAsMenuItem);
+        newMenuItem.setMnemonic('o');
+        newMenuItem.setText("New");
+        newMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                newMenuItemActionPerformed(evt);
+            }
+        });
+        gameMenu.add(newMenuItem);
         gameMenu.add(jSeparator1);
 
         exitMenuItem.setMnemonic('x');
@@ -480,9 +695,7 @@ public class SudokuSolver extends javax.swing.JFrame {
                                             .addComponent(cell46, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addComponent(cell56, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addComponent(cell66, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addGroup(layout.createSequentialGroup()
-                                                .addComponent(cell76, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addGap(0, 0, 0))
+                                            .addComponent(cell76, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addComponent(cell86, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                         .addGap(0, 0, 0)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -642,9 +855,8 @@ public class SudokuSolver extends javax.swing.JFrame {
                                                     .addComponent(cell76, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                     .addComponent(cell75, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                                        .addComponent(cell88, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                        .addComponent(cell87, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                    .addComponent(cell88, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                    .addComponent(cell87, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                     .addComponent(cell85, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                                     .addComponent(cell86, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -668,8 +880,12 @@ public class SudokuSolver extends javax.swing.JFrame {
         (new AboutDialog(this, true)).show();
     }//GEN-LAST:event_aboutMenuItemActionPerformed
 
-    Cell[][] cells = new Cell[9][9];
-    
+    private void newMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newMenuItemActionPerformed
+        //timer.start();
+        // New game
+        (new NewGridTask()).execute();
+    }//GEN-LAST:event_newMenuItemActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -790,9 +1006,7 @@ public class SudokuSolver extends javax.swing.JFrame {
     private javax.swing.JMenu helpMenu;
     private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JMenuBar menuBar;
-    private javax.swing.JMenuItem openMenuItem;
-    private javax.swing.JMenuItem saveAsMenuItem;
-    private javax.swing.JMenuItem saveMenuItem;
+    private javax.swing.JMenuItem newMenuItem;
     // End of variables declaration//GEN-END:variables
 }
 

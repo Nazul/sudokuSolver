@@ -10,24 +10,14 @@
             <Property name="text" type="java.lang.String" value="Game"/>
           </Properties>
           <SubComponents>
-            <MenuItem class="javax.swing.JMenuItem" name="openMenuItem">
+            <MenuItem class="javax.swing.JMenuItem" name="newMenuItem">
               <Properties>
                 <Property name="mnemonic" type="int" value="111"/>
-                <Property name="text" type="java.lang.String" value="Open"/>
+                <Property name="text" type="java.lang.String" value="New"/>
               </Properties>
-            </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="saveMenuItem">
-              <Properties>
-                <Property name="mnemonic" type="int" value="115"/>
-                <Property name="text" type="java.lang.String" value="Save"/>
-              </Properties>
-            </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="saveAsMenuItem">
-              <Properties>
-                <Property name="mnemonic" type="int" value="97"/>
-                <Property name="text" type="java.lang.String" value="Save As ..."/>
-                <Property name="displayedMnemonicIndex" type="int" value="5"/>
-              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="newMenuItemActionPerformed"/>
+              </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JPopupMenu$Separator" name="jSeparator1">
             </MenuItem>
@@ -225,10 +215,7 @@
                                           <Component id="cell46" alignment="0" min="-2" max="-2" attributes="0"/>
                                           <Component id="cell56" alignment="0" min="-2" max="-2" attributes="0"/>
                                           <Component id="cell66" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          <Group type="102" alignment="0" attributes="0">
-                                              <Component id="cell76" min="-2" max="-2" attributes="0"/>
-                                              <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-                                          </Group>
+                                          <Component id="cell76" alignment="0" min="-2" max="-2" attributes="0"/>
                                           <Component id="cell86" alignment="0" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                       <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
@@ -428,10 +415,8 @@
                                                   <Component id="cell75" alignment="0" min="-2" max="-2" attributes="0"/>
                                               </Group>
                                               <Group type="103" groupAlignment="0" attributes="0">
-                                                  <Group type="103" groupAlignment="1" attributes="0">
-                                                      <Component id="cell88" alignment="0" min="-2" max="-2" attributes="0"/>
-                                                      <Component id="cell87" alignment="0" min="-2" max="-2" attributes="0"/>
-                                                  </Group>
+                                                  <Component id="cell88" alignment="0" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="cell87" alignment="0" min="-2" max="-2" attributes="0"/>
                                                   <Component id="cell85" alignment="0" min="-2" max="-2" attributes="0"/>
                                                   <Component id="cell86" min="-2" max="-2" attributes="0"/>
                                               </Group>
@@ -462,94 +447,100 @@
       <Properties>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.MatteColorBorderInfo">
-            <MatteColorBorder bottom="0" left="2" right="0" top="2"/>
+            <MatteColorBorder bottom="1" left="2" right="1" top="2"/>
           </Border>
         </Property>
-        <Property name="value" type="int" value="1"/>
+        <Property name="name" type="java.lang.String" value="00" noResource="true"/>
       </Properties>
     </Component>
     <Component class="mx.iteso.msc.sudokuSolver.Cell" name="cell01">
       <Properties>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.MatteColorBorderInfo">
-            <MatteColorBorder bottom="0" left="1" right="1" top="2"/>
+            <MatteColorBorder bottom="1" left="0" right="0" top="2"/>
           </Border>
         </Property>
-        <Property name="letter" type="char" value="L"/>
+        <Property name="name" type="java.lang.String" value="01" noResource="true"/>
       </Properties>
     </Component>
     <Component class="mx.iteso.msc.sudokuSolver.Cell" name="cell02">
       <Properties>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.MatteColorBorderInfo">
-            <MatteColorBorder bottom="0" left="0" right="2" top="2"/>
+            <MatteColorBorder bottom="1" left="1" right="2" top="2"/>
           </Border>
         </Property>
-        <Property name="letter" type="char" value="M"/>
+        <Property name="name" type="java.lang.String" value="02" noResource="true"/>
       </Properties>
     </Component>
     <Component class="mx.iteso.msc.sudokuSolver.Cell" name="cell03">
       <Properties>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.MatteColorBorderInfo">
-            <MatteColorBorder bottom="0" left="2" right="0" top="2"/>
+            <MatteColorBorder bottom="1" left="2" right="1" top="2"/>
           </Border>
         </Property>
+        <Property name="name" type="java.lang.String" value="03" noResource="true"/>
       </Properties>
     </Component>
     <Component class="mx.iteso.msc.sudokuSolver.Cell" name="cell04">
       <Properties>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.MatteColorBorderInfo">
-            <MatteColorBorder bottom="0" left="1" right="1" top="2"/>
+            <MatteColorBorder bottom="1" left="0" right="0" top="2"/>
           </Border>
         </Property>
+        <Property name="name" type="java.lang.String" value="04" noResource="true"/>
       </Properties>
     </Component>
     <Component class="mx.iteso.msc.sudokuSolver.Cell" name="cell05">
       <Properties>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.MatteColorBorderInfo">
-            <MatteColorBorder bottom="0" left="0" right="2" top="2"/>
+            <MatteColorBorder bottom="1" left="1" right="2" top="2"/>
           </Border>
         </Property>
+        <Property name="name" type="java.lang.String" value="05" noResource="true"/>
       </Properties>
     </Component>
     <Component class="mx.iteso.msc.sudokuSolver.Cell" name="cell06">
       <Properties>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.MatteColorBorderInfo">
-            <MatteColorBorder bottom="0" left="2" right="0" top="2"/>
+            <MatteColorBorder bottom="1" left="2" right="1" top="2"/>
           </Border>
         </Property>
+        <Property name="name" type="java.lang.String" value="06" noResource="true"/>
       </Properties>
     </Component>
     <Component class="mx.iteso.msc.sudokuSolver.Cell" name="cell07">
       <Properties>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.MatteColorBorderInfo">
-            <MatteColorBorder bottom="0" left="1" right="1" top="2"/>
+            <MatteColorBorder bottom="1" left="0" right="0" top="2"/>
           </Border>
         </Property>
+        <Property name="name" type="java.lang.String" value="07" noResource="true"/>
       </Properties>
     </Component>
     <Component class="mx.iteso.msc.sudokuSolver.Cell" name="cell08">
       <Properties>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.MatteColorBorderInfo">
-            <MatteColorBorder bottom="0" left="0" right="2" top="2"/>
+            <MatteColorBorder bottom="1" left="1" right="2" top="2"/>
           </Border>
         </Property>
+        <Property name="name" type="java.lang.String" value="08" noResource="true"/>
       </Properties>
     </Component>
     <Component class="mx.iteso.msc.sudokuSolver.Cell" name="cell10">
       <Properties>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.MatteColorBorderInfo">
-            <MatteColorBorder bottom="1" left="2" right="0" top="1"/>
+            <MatteColorBorder bottom="0" left="2" right="1" top="0"/>
           </Border>
         </Property>
-        <Property name="value" type="int" value="2"/>
+        <Property name="name" type="java.lang.String" value="10" noResource="true"/>
       </Properties>
     </Component>
     <Component class="mx.iteso.msc.sudokuSolver.Cell" name="cell11">
@@ -559,24 +550,27 @@
             <MatteColorBorder/>
           </Border>
         </Property>
+        <Property name="name" type="java.lang.String" value="11" noResource="true"/>
       </Properties>
     </Component>
     <Component class="mx.iteso.msc.sudokuSolver.Cell" name="cell12">
       <Properties>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.MatteColorBorderInfo">
-            <MatteColorBorder bottom="1" left="0" right="2" top="1"/>
+            <MatteColorBorder bottom="0" left="1" right="2" top="0"/>
           </Border>
         </Property>
+        <Property name="name" type="java.lang.String" value="12" noResource="true"/>
       </Properties>
     </Component>
     <Component class="mx.iteso.msc.sudokuSolver.Cell" name="cell13">
       <Properties>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.MatteColorBorderInfo">
-            <MatteColorBorder bottom="1" left="2" right="0" top="1"/>
+            <MatteColorBorder bottom="0" left="2" right="1" top="0"/>
           </Border>
         </Property>
+        <Property name="name" type="java.lang.String" value="13" noResource="true"/>
       </Properties>
     </Component>
     <Component class="mx.iteso.msc.sudokuSolver.Cell" name="cell14">
@@ -586,24 +580,27 @@
             <MatteColorBorder/>
           </Border>
         </Property>
+        <Property name="name" type="java.lang.String" value="14" noResource="true"/>
       </Properties>
     </Component>
     <Component class="mx.iteso.msc.sudokuSolver.Cell" name="cell15">
       <Properties>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.MatteColorBorderInfo">
-            <MatteColorBorder bottom="1" left="0" right="2" top="1"/>
+            <MatteColorBorder bottom="0" left="1" right="2" top="0"/>
           </Border>
         </Property>
+        <Property name="name" type="java.lang.String" value="15" noResource="true"/>
       </Properties>
     </Component>
     <Component class="mx.iteso.msc.sudokuSolver.Cell" name="cell16">
       <Properties>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.MatteColorBorderInfo">
-            <MatteColorBorder bottom="1" left="2" right="0" top="1"/>
+            <MatteColorBorder bottom="0" left="2" right="1" top="0"/>
           </Border>
         </Property>
+        <Property name="name" type="java.lang.String" value="16" noResource="true"/>
       </Properties>
     </Component>
     <Component class="mx.iteso.msc.sudokuSolver.Cell" name="cell17">
@@ -613,187 +610,207 @@
             <MatteColorBorder/>
           </Border>
         </Property>
+        <Property name="name" type="java.lang.String" value="17" noResource="true"/>
       </Properties>
     </Component>
     <Component class="mx.iteso.msc.sudokuSolver.Cell" name="cell18">
       <Properties>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.MatteColorBorderInfo">
-            <MatteColorBorder bottom="1" left="0" right="2" top="1"/>
+            <MatteColorBorder bottom="0" left="1" right="2" top="0"/>
           </Border>
         </Property>
+        <Property name="name" type="java.lang.String" value="18" noResource="true"/>
       </Properties>
     </Component>
     <Component class="mx.iteso.msc.sudokuSolver.Cell" name="cell20">
       <Properties>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.MatteColorBorderInfo">
-            <MatteColorBorder bottom="2" left="2" right="0" top="0"/>
+            <MatteColorBorder bottom="2" left="2" right="1" top="1"/>
           </Border>
         </Property>
-        <Property name="value" type="int" value="3"/>
+        <Property name="name" type="java.lang.String" value="20" noResource="true"/>
       </Properties>
     </Component>
     <Component class="mx.iteso.msc.sudokuSolver.Cell" name="cell21">
       <Properties>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.MatteColorBorderInfo">
-            <MatteColorBorder bottom="2" left="1" right="1" top="0"/>
+            <MatteColorBorder bottom="2" left="0" right="0" top="1"/>
           </Border>
         </Property>
+        <Property name="name" type="java.lang.String" value="21" noResource="true"/>
       </Properties>
     </Component>
     <Component class="mx.iteso.msc.sudokuSolver.Cell" name="cell22">
       <Properties>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.MatteColorBorderInfo">
-            <MatteColorBorder bottom="2" left="0" right="2" top="0"/>
+            <MatteColorBorder bottom="2" left="1" right="2" top="1"/>
           </Border>
         </Property>
+        <Property name="name" type="java.lang.String" value="22" noResource="true"/>
       </Properties>
     </Component>
     <Component class="mx.iteso.msc.sudokuSolver.Cell" name="cell23">
       <Properties>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.MatteColorBorderInfo">
-            <MatteColorBorder bottom="2" left="2" right="0" top="0"/>
+            <MatteColorBorder bottom="2" left="2" right="1" top="1"/>
           </Border>
         </Property>
+        <Property name="name" type="java.lang.String" value="23" noResource="true"/>
       </Properties>
     </Component>
     <Component class="mx.iteso.msc.sudokuSolver.Cell" name="cell24">
       <Properties>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.MatteColorBorderInfo">
-            <MatteColorBorder bottom="2" left="1" right="1" top="0"/>
+            <MatteColorBorder bottom="2" left="0" right="0" top="1"/>
           </Border>
         </Property>
+        <Property name="name" type="java.lang.String" value="24" noResource="true"/>
       </Properties>
     </Component>
     <Component class="mx.iteso.msc.sudokuSolver.Cell" name="cell25">
       <Properties>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.MatteColorBorderInfo">
-            <MatteColorBorder bottom="2" left="0" right="2" top="0"/>
+            <MatteColorBorder bottom="2" left="1" right="2" top="1"/>
           </Border>
         </Property>
+        <Property name="name" type="java.lang.String" value="25" noResource="true"/>
       </Properties>
     </Component>
     <Component class="mx.iteso.msc.sudokuSolver.Cell" name="cell26">
       <Properties>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.MatteColorBorderInfo">
-            <MatteColorBorder bottom="2" left="2" right="0" top="0"/>
+            <MatteColorBorder bottom="2" left="2" right="1" top="1"/>
           </Border>
         </Property>
+        <Property name="name" type="java.lang.String" value="26" noResource="true"/>
       </Properties>
     </Component>
     <Component class="mx.iteso.msc.sudokuSolver.Cell" name="cell27">
       <Properties>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.MatteColorBorderInfo">
-            <MatteColorBorder bottom="2" left="1" right="1" top="0"/>
+            <MatteColorBorder bottom="2" left="0" right="0" top="1"/>
           </Border>
         </Property>
+        <Property name="name" type="java.lang.String" value="27" noResource="true"/>
       </Properties>
     </Component>
     <Component class="mx.iteso.msc.sudokuSolver.Cell" name="cell28">
       <Properties>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.MatteColorBorderInfo">
-            <MatteColorBorder bottom="2" left="0" right="2" top="0"/>
+            <MatteColorBorder bottom="2" left="1" right="2" top="1"/>
           </Border>
         </Property>
+        <Property name="name" type="java.lang.String" value="28" noResource="true"/>
       </Properties>
     </Component>
     <Component class="mx.iteso.msc.sudokuSolver.Cell" name="cell30">
       <Properties>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.MatteColorBorderInfo">
-            <MatteColorBorder bottom="0" left="2" right="0" top="2"/>
+            <MatteColorBorder bottom="1" left="2" right="1" top="2"/>
           </Border>
         </Property>
+        <Property name="name" type="java.lang.String" value="30" noResource="true"/>
       </Properties>
     </Component>
     <Component class="mx.iteso.msc.sudokuSolver.Cell" name="cell31">
       <Properties>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.MatteColorBorderInfo">
-            <MatteColorBorder bottom="0" left="1" right="1" top="2"/>
+            <MatteColorBorder bottom="1" left="0" right="0" top="2"/>
           </Border>
         </Property>
+        <Property name="name" type="java.lang.String" value="31" noResource="true"/>
       </Properties>
     </Component>
     <Component class="mx.iteso.msc.sudokuSolver.Cell" name="cell32">
       <Properties>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.MatteColorBorderInfo">
-            <MatteColorBorder bottom="0" left="0" right="2" top="2"/>
+            <MatteColorBorder bottom="1" left="1" right="2" top="2"/>
           </Border>
         </Property>
+        <Property name="name" type="java.lang.String" value="32" noResource="true"/>
       </Properties>
     </Component>
     <Component class="mx.iteso.msc.sudokuSolver.Cell" name="cell33">
       <Properties>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.MatteColorBorderInfo">
-            <MatteColorBorder bottom="0" left="2" right="0" top="2"/>
+            <MatteColorBorder bottom="1" left="2" right="1" top="2"/>
           </Border>
         </Property>
+        <Property name="name" type="java.lang.String" value="33" noResource="true"/>
       </Properties>
     </Component>
     <Component class="mx.iteso.msc.sudokuSolver.Cell" name="cell34">
       <Properties>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.MatteColorBorderInfo">
-            <MatteColorBorder bottom="0" left="1" right="1" top="2"/>
+            <MatteColorBorder bottom="1" left="0" right="0" top="2"/>
           </Border>
         </Property>
+        <Property name="name" type="java.lang.String" value="34" noResource="true"/>
       </Properties>
     </Component>
     <Component class="mx.iteso.msc.sudokuSolver.Cell" name="cell35">
       <Properties>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.MatteColorBorderInfo">
-            <MatteColorBorder bottom="0" left="0" right="2" top="2"/>
+            <MatteColorBorder bottom="1" left="1" right="2" top="2"/>
           </Border>
         </Property>
+        <Property name="name" type="java.lang.String" value="35" noResource="true"/>
       </Properties>
     </Component>
     <Component class="mx.iteso.msc.sudokuSolver.Cell" name="cell36">
       <Properties>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.MatteColorBorderInfo">
-            <MatteColorBorder bottom="0" left="2" right="0" top="2"/>
+            <MatteColorBorder bottom="1" left="2" right="1" top="2"/>
           </Border>
         </Property>
+        <Property name="name" type="java.lang.String" value="36" noResource="true"/>
       </Properties>
     </Component>
     <Component class="mx.iteso.msc.sudokuSolver.Cell" name="cell37">
       <Properties>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.MatteColorBorderInfo">
-            <MatteColorBorder bottom="0" left="1" right="1" top="2"/>
+            <MatteColorBorder bottom="1" left="0" right="0" top="2"/>
           </Border>
         </Property>
+        <Property name="name" type="java.lang.String" value="37" noResource="true"/>
       </Properties>
     </Component>
     <Component class="mx.iteso.msc.sudokuSolver.Cell" name="cell38">
       <Properties>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.MatteColorBorderInfo">
-            <MatteColorBorder bottom="0" left="0" right="2" top="2"/>
+            <MatteColorBorder bottom="1" left="1" right="2" top="2"/>
           </Border>
         </Property>
+        <Property name="name" type="java.lang.String" value="38" noResource="true"/>
       </Properties>
     </Component>
     <Component class="mx.iteso.msc.sudokuSolver.Cell" name="cell40">
       <Properties>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.MatteColorBorderInfo">
-            <MatteColorBorder bottom="1" left="2" right="0" top="1"/>
+            <MatteColorBorder bottom="0" left="2" right="1" top="0"/>
           </Border>
         </Property>
+        <Property name="name" type="java.lang.String" value="40" noResource="true"/>
       </Properties>
     </Component>
     <Component class="mx.iteso.msc.sudokuSolver.Cell" name="cell41">
@@ -803,24 +820,27 @@
             <MatteColorBorder/>
           </Border>
         </Property>
+        <Property name="name" type="java.lang.String" value="41" noResource="true"/>
       </Properties>
     </Component>
     <Component class="mx.iteso.msc.sudokuSolver.Cell" name="cell42">
       <Properties>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.MatteColorBorderInfo">
-            <MatteColorBorder bottom="1" left="0" right="2" top="1"/>
+            <MatteColorBorder bottom="0" left="1" right="2" top="0"/>
           </Border>
         </Property>
+        <Property name="name" type="java.lang.String" value="42" noResource="true"/>
       </Properties>
     </Component>
     <Component class="mx.iteso.msc.sudokuSolver.Cell" name="cell43">
       <Properties>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.MatteColorBorderInfo">
-            <MatteColorBorder bottom="1" left="2" right="0" top="1"/>
+            <MatteColorBorder bottom="0" left="2" right="1" top="0"/>
           </Border>
         </Property>
+        <Property name="name" type="java.lang.String" value="43" noResource="true"/>
       </Properties>
     </Component>
     <Component class="mx.iteso.msc.sudokuSolver.Cell" name="cell44">
@@ -830,24 +850,27 @@
             <MatteColorBorder/>
           </Border>
         </Property>
+        <Property name="name" type="java.lang.String" value="44" noResource="true"/>
       </Properties>
     </Component>
     <Component class="mx.iteso.msc.sudokuSolver.Cell" name="cell45">
       <Properties>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.MatteColorBorderInfo">
-            <MatteColorBorder bottom="1" left="0" right="2" top="1"/>
+            <MatteColorBorder bottom="0" left="1" right="2" top="0"/>
           </Border>
         </Property>
+        <Property name="name" type="java.lang.String" value="45" noResource="true"/>
       </Properties>
     </Component>
     <Component class="mx.iteso.msc.sudokuSolver.Cell" name="cell46">
       <Properties>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.MatteColorBorderInfo">
-            <MatteColorBorder bottom="1" left="2" right="0" top="1"/>
+            <MatteColorBorder bottom="0" left="2" right="1" top="0"/>
           </Border>
         </Property>
+        <Property name="name" type="java.lang.String" value="46" noResource="true"/>
       </Properties>
     </Component>
     <Component class="mx.iteso.msc.sudokuSolver.Cell" name="cell47">
@@ -857,186 +880,207 @@
             <MatteColorBorder/>
           </Border>
         </Property>
+        <Property name="name" type="java.lang.String" value="47" noResource="true"/>
       </Properties>
     </Component>
     <Component class="mx.iteso.msc.sudokuSolver.Cell" name="cell48">
       <Properties>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.MatteColorBorderInfo">
-            <MatteColorBorder bottom="1" left="0" right="2" top="1"/>
+            <MatteColorBorder bottom="0" left="1" right="2" top="0"/>
           </Border>
         </Property>
+        <Property name="name" type="java.lang.String" value="48" noResource="true"/>
       </Properties>
     </Component>
     <Component class="mx.iteso.msc.sudokuSolver.Cell" name="cell50">
       <Properties>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.MatteColorBorderInfo">
-            <MatteColorBorder bottom="2" left="2" right="0" top="0"/>
+            <MatteColorBorder bottom="2" left="2" right="1" top="1"/>
           </Border>
         </Property>
+        <Property name="name" type="java.lang.String" value="50" noResource="true"/>
       </Properties>
     </Component>
     <Component class="mx.iteso.msc.sudokuSolver.Cell" name="cell51">
       <Properties>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.MatteColorBorderInfo">
-            <MatteColorBorder bottom="2" left="1" right="1" top="0"/>
+            <MatteColorBorder bottom="2" left="0" right="0" top="1"/>
           </Border>
         </Property>
+        <Property name="name" type="java.lang.String" value="51" noResource="true"/>
       </Properties>
     </Component>
     <Component class="mx.iteso.msc.sudokuSolver.Cell" name="cell52">
       <Properties>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.MatteColorBorderInfo">
-            <MatteColorBorder bottom="2" left="0" right="2" top="0"/>
+            <MatteColorBorder bottom="2" left="1" right="2" top="1"/>
           </Border>
         </Property>
+        <Property name="name" type="java.lang.String" value="52" noResource="true"/>
       </Properties>
     </Component>
     <Component class="mx.iteso.msc.sudokuSolver.Cell" name="cell53">
       <Properties>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.MatteColorBorderInfo">
-            <MatteColorBorder bottom="2" left="2" right="0" top="0"/>
+            <MatteColorBorder bottom="2" left="2" right="1" top="1"/>
           </Border>
         </Property>
+        <Property name="name" type="java.lang.String" value="53" noResource="true"/>
       </Properties>
     </Component>
     <Component class="mx.iteso.msc.sudokuSolver.Cell" name="cell54">
       <Properties>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.MatteColorBorderInfo">
-            <MatteColorBorder bottom="2" left="1" right="1" top="0"/>
+            <MatteColorBorder bottom="2" left="0" right="0" top="1"/>
           </Border>
         </Property>
+        <Property name="name" type="java.lang.String" value="54" noResource="true"/>
       </Properties>
     </Component>
     <Component class="mx.iteso.msc.sudokuSolver.Cell" name="cell55">
       <Properties>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.MatteColorBorderInfo">
-            <MatteColorBorder bottom="2" left="0" right="2" top="0"/>
+            <MatteColorBorder bottom="2" left="1" right="2" top="1"/>
           </Border>
         </Property>
+        <Property name="name" type="java.lang.String" value="55" noResource="true"/>
       </Properties>
     </Component>
     <Component class="mx.iteso.msc.sudokuSolver.Cell" name="cell56">
       <Properties>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.MatteColorBorderInfo">
-            <MatteColorBorder bottom="2" left="2" right="0" top="0"/>
+            <MatteColorBorder bottom="2" left="2" right="1" top="1"/>
           </Border>
         </Property>
+        <Property name="name" type="java.lang.String" value="56" noResource="true"/>
       </Properties>
     </Component>
     <Component class="mx.iteso.msc.sudokuSolver.Cell" name="cell57">
       <Properties>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.MatteColorBorderInfo">
-            <MatteColorBorder bottom="2" left="1" right="1" top="0"/>
+            <MatteColorBorder bottom="2" left="0" right="0" top="1"/>
           </Border>
         </Property>
+        <Property name="name" type="java.lang.String" value="57" noResource="true"/>
       </Properties>
     </Component>
     <Component class="mx.iteso.msc.sudokuSolver.Cell" name="cell58">
       <Properties>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.MatteColorBorderInfo">
-            <MatteColorBorder bottom="2" left="0" right="2" top="0"/>
+            <MatteColorBorder bottom="2" left="1" right="2" top="1"/>
           </Border>
         </Property>
+        <Property name="name" type="java.lang.String" value="58" noResource="true"/>
       </Properties>
     </Component>
     <Component class="mx.iteso.msc.sudokuSolver.Cell" name="cell60">
       <Properties>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.MatteColorBorderInfo">
-            <MatteColorBorder bottom="0" left="2" right="0" top="2"/>
+            <MatteColorBorder bottom="1" left="2" right="1" top="2"/>
           </Border>
         </Property>
+        <Property name="name" type="java.lang.String" value="60" noResource="true"/>
       </Properties>
     </Component>
     <Component class="mx.iteso.msc.sudokuSolver.Cell" name="cell61">
       <Properties>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.MatteColorBorderInfo">
-            <MatteColorBorder bottom="0" left="1" right="1" top="2"/>
+            <MatteColorBorder bottom="1" left="0" right="0" top="2"/>
           </Border>
         </Property>
+        <Property name="name" type="java.lang.String" value="61" noResource="true"/>
       </Properties>
     </Component>
     <Component class="mx.iteso.msc.sudokuSolver.Cell" name="cell62">
       <Properties>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.MatteColorBorderInfo">
-            <MatteColorBorder bottom="0" left="0" right="2" top="2"/>
+            <MatteColorBorder bottom="1" left="1" right="2" top="2"/>
           </Border>
         </Property>
+        <Property name="name" type="java.lang.String" value="62" noResource="true"/>
       </Properties>
     </Component>
     <Component class="mx.iteso.msc.sudokuSolver.Cell" name="cell63">
       <Properties>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.MatteColorBorderInfo">
-            <MatteColorBorder bottom="0" left="2" right="0" top="2"/>
+            <MatteColorBorder bottom="1" left="2" right="1" top="2"/>
           </Border>
         </Property>
+        <Property name="name" type="java.lang.String" value="63" noResource="true"/>
       </Properties>
     </Component>
     <Component class="mx.iteso.msc.sudokuSolver.Cell" name="cell64">
       <Properties>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.MatteColorBorderInfo">
-            <MatteColorBorder bottom="0" left="1" right="1" top="2"/>
+            <MatteColorBorder bottom="1" left="0" right="0" top="2"/>
           </Border>
         </Property>
+        <Property name="name" type="java.lang.String" value="64" noResource="true"/>
       </Properties>
     </Component>
     <Component class="mx.iteso.msc.sudokuSolver.Cell" name="cell65">
       <Properties>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.MatteColorBorderInfo">
-            <MatteColorBorder bottom="0" left="0" right="2" top="2"/>
+            <MatteColorBorder bottom="1" left="1" right="2" top="2"/>
           </Border>
         </Property>
+        <Property name="name" type="java.lang.String" value="65" noResource="true"/>
       </Properties>
     </Component>
     <Component class="mx.iteso.msc.sudokuSolver.Cell" name="cell66">
       <Properties>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.MatteColorBorderInfo">
-            <MatteColorBorder bottom="0" left="2" right="0" top="2"/>
+            <MatteColorBorder bottom="1" left="2" right="1" top="2"/>
           </Border>
         </Property>
+        <Property name="name" type="java.lang.String" value="66" noResource="true"/>
       </Properties>
     </Component>
     <Component class="mx.iteso.msc.sudokuSolver.Cell" name="cell67">
       <Properties>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.MatteColorBorderInfo">
-            <MatteColorBorder bottom="0" left="1" right="1" top="2"/>
+            <MatteColorBorder bottom="1" left="0" right="0" top="2"/>
           </Border>
         </Property>
+        <Property name="name" type="java.lang.String" value="67" noResource="true"/>
       </Properties>
     </Component>
     <Component class="mx.iteso.msc.sudokuSolver.Cell" name="cell68">
       <Properties>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.MatteColorBorderInfo">
-            <MatteColorBorder bottom="0" left="0" right="2" top="2"/>
+            <MatteColorBorder bottom="1" left="1" right="2" top="2"/>
           </Border>
         </Property>
+        <Property name="name" type="java.lang.String" value="68" noResource="true"/>
       </Properties>
     </Component>
     <Component class="mx.iteso.msc.sudokuSolver.Cell" name="cell70">
       <Properties>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.MatteColorBorderInfo">
-            <MatteColorBorder bottom="1" left="2" right="0" top="1"/>
+            <MatteColorBorder bottom="0" left="2" right="1" top="0"/>
           </Border>
         </Property>
+        <Property name="name" type="java.lang.String" value="70" noResource="true"/>
       </Properties>
     </Component>
     <Component class="mx.iteso.msc.sudokuSolver.Cell" name="cell71">
@@ -1046,24 +1090,27 @@
             <MatteColorBorder/>
           </Border>
         </Property>
+        <Property name="name" type="java.lang.String" value="71" noResource="true"/>
       </Properties>
     </Component>
     <Component class="mx.iteso.msc.sudokuSolver.Cell" name="cell72">
       <Properties>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.MatteColorBorderInfo">
-            <MatteColorBorder bottom="1" left="0" right="2" top="1"/>
+            <MatteColorBorder bottom="0" left="1" right="2" top="0"/>
           </Border>
         </Property>
+        <Property name="name" type="java.lang.String" value="72" noResource="true"/>
       </Properties>
     </Component>
     <Component class="mx.iteso.msc.sudokuSolver.Cell" name="cell73">
       <Properties>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.MatteColorBorderInfo">
-            <MatteColorBorder bottom="1" left="2" right="0" top="1"/>
+            <MatteColorBorder bottom="0" left="2" right="1" top="0"/>
           </Border>
         </Property>
+        <Property name="name" type="java.lang.String" value="73" noResource="true"/>
       </Properties>
     </Component>
     <Component class="mx.iteso.msc.sudokuSolver.Cell" name="cell74">
@@ -1073,24 +1120,27 @@
             <MatteColorBorder/>
           </Border>
         </Property>
+        <Property name="name" type="java.lang.String" value="74" noResource="true"/>
       </Properties>
     </Component>
     <Component class="mx.iteso.msc.sudokuSolver.Cell" name="cell75">
       <Properties>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.MatteColorBorderInfo">
-            <MatteColorBorder bottom="1" left="0" right="2" top="1"/>
+            <MatteColorBorder bottom="0" left="1" right="2" top="0"/>
           </Border>
         </Property>
+        <Property name="name" type="java.lang.String" value="75" noResource="true"/>
       </Properties>
     </Component>
     <Component class="mx.iteso.msc.sudokuSolver.Cell" name="cell76">
       <Properties>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.MatteColorBorderInfo">
-            <MatteColorBorder bottom="1" left="2" right="0" top="1"/>
+            <MatteColorBorder bottom="0" left="2" right="1" top="0"/>
           </Border>
         </Property>
+        <Property name="name" type="java.lang.String" value="76" noResource="true"/>
       </Properties>
     </Component>
     <Component class="mx.iteso.msc.sudokuSolver.Cell" name="cell77">
@@ -1100,96 +1150,107 @@
             <MatteColorBorder/>
           </Border>
         </Property>
+        <Property name="name" type="java.lang.String" value="77" noResource="true"/>
       </Properties>
     </Component>
     <Component class="mx.iteso.msc.sudokuSolver.Cell" name="cell78">
       <Properties>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.MatteColorBorderInfo">
-            <MatteColorBorder bottom="1" left="0" right="2" top="1"/>
+            <MatteColorBorder bottom="0" left="1" right="2" top="0"/>
           </Border>
         </Property>
+        <Property name="name" type="java.lang.String" value="78" noResource="true"/>
       </Properties>
     </Component>
     <Component class="mx.iteso.msc.sudokuSolver.Cell" name="cell80">
       <Properties>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.MatteColorBorderInfo">
-            <MatteColorBorder bottom="2" left="2" right="0" top="0"/>
+            <MatteColorBorder bottom="2" left="2" right="1" top="1"/>
           </Border>
         </Property>
+        <Property name="name" type="java.lang.String" value="80" noResource="true"/>
       </Properties>
     </Component>
     <Component class="mx.iteso.msc.sudokuSolver.Cell" name="cell81">
       <Properties>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.MatteColorBorderInfo">
-            <MatteColorBorder bottom="2" left="1" right="1" top="0"/>
+            <MatteColorBorder bottom="2" left="0" right="0" top="1"/>
           </Border>
         </Property>
+        <Property name="name" type="java.lang.String" value="81" noResource="true"/>
       </Properties>
     </Component>
     <Component class="mx.iteso.msc.sudokuSolver.Cell" name="cell82">
       <Properties>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.MatteColorBorderInfo">
-            <MatteColorBorder bottom="2" left="0" right="2" top="0"/>
+            <MatteColorBorder bottom="2" left="1" right="2" top="1"/>
           </Border>
         </Property>
+        <Property name="name" type="java.lang.String" value="82" noResource="true"/>
       </Properties>
     </Component>
     <Component class="mx.iteso.msc.sudokuSolver.Cell" name="cell83">
       <Properties>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.MatteColorBorderInfo">
-            <MatteColorBorder bottom="2" left="2" right="0" top="0"/>
+            <MatteColorBorder bottom="2" left="2" right="1" top="1"/>
           </Border>
         </Property>
+        <Property name="name" type="java.lang.String" value="83" noResource="true"/>
       </Properties>
     </Component>
     <Component class="mx.iteso.msc.sudokuSolver.Cell" name="cell84">
       <Properties>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.MatteColorBorderInfo">
-            <MatteColorBorder bottom="2" left="1" right="1" top="0"/>
+            <MatteColorBorder bottom="2" left="0" right="0" top="1"/>
           </Border>
         </Property>
+        <Property name="name" type="java.lang.String" value="84" noResource="true"/>
       </Properties>
     </Component>
     <Component class="mx.iteso.msc.sudokuSolver.Cell" name="cell85">
       <Properties>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.MatteColorBorderInfo">
-            <MatteColorBorder bottom="2" left="0" right="2" top="0"/>
+            <MatteColorBorder bottom="2" left="1" right="2" top="1"/>
           </Border>
         </Property>
+        <Property name="name" type="java.lang.String" value="85" noResource="true"/>
       </Properties>
     </Component>
     <Component class="mx.iteso.msc.sudokuSolver.Cell" name="cell86">
       <Properties>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.MatteColorBorderInfo">
-            <MatteColorBorder bottom="2" left="2" right="0" top="0"/>
+            <MatteColorBorder bottom="2" left="2" right="1" top="1"/>
           </Border>
         </Property>
+        <Property name="name" type="java.lang.String" value="86" noResource="true"/>
       </Properties>
     </Component>
     <Component class="mx.iteso.msc.sudokuSolver.Cell" name="cell87">
       <Properties>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.MatteColorBorderInfo">
-            <MatteColorBorder bottom="2" left="1" right="1" top="0"/>
+            <MatteColorBorder bottom="2" left="0" right="0" top="1"/>
           </Border>
         </Property>
+        <Property name="name" type="java.lang.String" value="87" noResource="true"/>
       </Properties>
     </Component>
     <Component class="mx.iteso.msc.sudokuSolver.Cell" name="cell88">
       <Properties>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.MatteColorBorderInfo">
-            <MatteColorBorder bottom="2" left="0" right="2" top="0"/>
+            <MatteColorBorder bottom="2" left="1" right="2" top="1"/>
           </Border>
         </Property>
+        <Property name="name" type="java.lang.String" value="88" noResource="true"/>
       </Properties>
     </Component>
   </SubComponents>

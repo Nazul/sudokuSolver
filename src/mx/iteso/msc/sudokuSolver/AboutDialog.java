@@ -97,7 +97,7 @@ public class AboutDialog extends javax.swing.JDialog {
         jLabel1.setFont(new java.awt.Font("Verdana", 1, 18)); // NOI18N
         jLabel1.setText("Sudoku Solver");
 
-        jLabel2.setText("<html>\nAn academic project by Mario Contreras & Erick González.<br/>\n...<br/>\n.....<br/>\n...<br/>\n..<br/>\n.\n</html>");
+        jLabel2.setText("<html>\n<b>An academic project by Mario Contreras and Erick González.</b><br/>\n<br/>\nUsing backtracking algorithms, it generates a sudoku puzzle and if required, it solves it too.<br/>\n<br/>\nIntegration project for the first semester of computer systems master's degree.<br/> \n</html>");
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/mx/iteso/msc/sudokuSolver/resources/sudoku_large.gif"))); // NOI18N
 
