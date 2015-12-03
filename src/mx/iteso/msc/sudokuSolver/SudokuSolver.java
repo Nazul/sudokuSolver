@@ -452,6 +452,7 @@ public class SudokuSolver extends javax.swing.JFrame {
         hintMenuItem = new javax.swing.JMenuItem();
         evaluateMenuItem = new javax.swing.JMenuItem();
         solveMenuItem = new javax.swing.JMenuItem();
+        solveBackTrackingMenuItem = new javax.swing.JMenuItem();
         jSeparator2 = new javax.swing.JPopupMenu.Separator();
         exitMenuItem = new javax.swing.JMenuItem();
         difficultyMenu = new javax.swing.JMenu();
@@ -761,6 +762,14 @@ public class SudokuSolver extends javax.swing.JFrame {
             }
         });
         gameMenu.add(solveMenuItem);
+
+        solveBackTrackingMenuItem.setText("Solve (Backtracking)");
+        solveBackTrackingMenuItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                solveBackTrackingMenuItemActionPerformed(evt);
+            }
+        });
+        gameMenu.add(solveBackTrackingMenuItem);
         gameMenu.add(jSeparator2);
 
         exitMenuItem.setMnemonic('x');
@@ -1178,6 +1187,19 @@ public class SudokuSolver extends javax.swing.JFrame {
         (new NewGridTask()).execute();
     }//GEN-LAST:event_newSolvedMenuItemActionPerformed
 
+    private void solveBackTrackingMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_solveBackTrackingMenuItemActionPerformed
+
+//        for(int i = 0; i < 81; i++) {
+//            cells[i].setValue(i % 9);
+//        }
+
+        for(int i = 0; i < 81; i++) {
+            if(!cells[i].getLocked())
+                cells[i].setValue(5);
+        }
+
+    }//GEN-LAST:event_solveBackTrackingMenuItemActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1298,6 +1320,7 @@ public class SudokuSolver extends javax.swing.JFrame {
     private javax.swing.JMenuItem newBlankMenuItem;
     private javax.swing.JMenuItem newMenuItem;
     private javax.swing.JMenuItem newSolvedMenuItem;
+    private javax.swing.JMenuItem solveBackTrackingMenuItem;
     private javax.swing.JMenuItem solveMenuItem;
     // End of variables declaration//GEN-END:variables
 }
