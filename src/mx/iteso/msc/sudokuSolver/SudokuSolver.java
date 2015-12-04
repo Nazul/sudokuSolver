@@ -1187,17 +1187,453 @@ public class SudokuSolver extends javax.swing.JFrame {
         (new NewGridTask()).execute();
     }//GEN-LAST:event_newSolvedMenuItemActionPerformed
 
-    private void solveBackTrackingMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_solveBackTrackingMenuItemActionPerformed
-
-//        for(int i = 0; i < 81; i++) {
-//            cells[i].setValue(i % 9);
-//        }
-
-        for(int i = 0; i < 81; i++) {
-            if(!cells[i].getLocked())
-                cells[i].setValue(5);
+    int[] getIndex(boolean[][] Locke){
+        int[] k = {-1, -1};
+        for(int i = 0; i < 9; i++){
+            for(int j = 0; j < 9; j++){
+                if(!Locke[i][j]){
+                    k[0] = i;
+                    k[1] = j;
+                    return k;
+                }
+            }
         }
-
+        return k;
+    }
+    
+    void Mat(char[][] Letter, int[][] Value, int C){
+        for(int i = 0; i < 9; i++){
+            for(int j = 0; j < 9; j++){
+                System.out.print(Letter[i][j]);
+                System.out.print(Value[i][j] + " ");
+            }
+            System.out.println("");
+        }
+        System.out.println(C);
+    }
+    
+    void PrintP(Pila p){
+        while(p != null){
+            System.out.print(p.getValue() + " ");
+            p = p.getNext();
+        }
+        System.out.println("");
+    }
+    
+    Pila putValue(int min, int max){
+        Pila p = null, q;
+        for(int i = min; i <= max; i++)
+        {
+            if(p == null){
+                p = new Pila(i);
+            }
+            else{
+                q = p;
+                while(q.getNext() != null){
+                    q = q.getNext();
+                }
+                q.putNext(new Pila(i));
+            }
+        }
+        return p;
+    }
+    //Busca todos los elementos verticales
+    Pila ListValueV(int[][] Value, boolean[][] Locke2, int ind_j){
+        Pila p = null, q;
+        for(int i = 0; i < 9; i++)
+        {
+            if(Locke2[i][ind_j]){
+                if(p == null){
+                    p = new Pila(Value[i][ind_j]);
+                }
+                else{
+                    q = p;
+                    while(q.getNext() != null){
+                        q = q.getNext();
+                    }
+                    q.putNext(new Pila(Value[i][ind_j]));
+                }
+            }
+        }
+        return p;
+    }
+    //Busca todos los elementos horizontal
+    Pila ListValueH(int[][] Value, boolean[][] Locke2, int ind_i){
+        Pila p = null, q;
+        for(int j = 0; j < 9; j++)
+        {
+            if(Locke2[ind_i][j]){
+                if(p == null){
+                    p = new Pila(Value[ind_i][j]);
+                }
+                else{
+                    q = p;
+                    while(q.getNext() != null){
+                        q = q.getNext();
+                    }
+                    q.putNext(new Pila(Value[ind_i][j]));
+                }
+            }
+        }
+        return p;
+    }
+    //Busca todos los elementos Submatriz
+    Pila ListValueM(int[][] Value, boolean[][] Locke2, int ind_i, int ind_j){
+        Pila p = null, q;
+        for(int i = 0; i < 3; i++)
+        {
+            for(int j = 0; j < 3; j++)
+            {
+                if(Locke2[ind_i+i][ind_j+j]){
+                    if(p == null){
+                        p = new Pila(Value[ind_i+i][ind_j+j]);
+                    }
+                    else{
+                        q = p;
+                        while(q.getNext() != null){
+                            q = q.getNext();
+                        }
+                        q.putNext(new Pila(Value[ind_i+i][ind_j+j]));
+                    }
+                }
+            }
+        }
+        return p;
+    }
+    
+    Pila Mezcla(Pila p, Pila e){
+        Pila q = p, r = null;
+        while(e != null){
+            boolean b = true;
+            p = q;
+            while(p != null && b){
+                if(p.getValue() == e.getValue()){
+                    if(p.getValue() == q.getValue()){
+                        q = p.getNext();
+                        b = false;
+                    } else if(p.getNext() == null){
+                        r.putNext(null);
+                        b = false;
+                    } else{
+                        r.putNext(p.getNext());
+                        b = false;
+                    }
+                }
+                if(b){
+                    r = p;
+                    p = p.getNext();
+                }
+            }
+            e = e.getNext();
+        }
+        return q;
+    }
+    
+    Pila getSolution(char[][] Letter, int[][] Value, boolean[][] Locke2, int ind_i, int ind_j){
+        Pila p = null, e = null;
+        //Primero se buscan los limites segun las letras
+        switch(ind_j){
+            case 0:case 3:case 6:
+                switch(Letter[ind_i][ind_j]){
+                    case 'S':                              //caso 0:       //caso 3        //caso 6
+                        if(Letter[ind_i][ind_j+1] == 'M'){//0->S,1->M,2->L//3->S,4->M,5->L//6->S,7->M,8->L
+                            if(Locke2[ind_i][ind_j+1] && Locke2[ind_i][ind_j+2]){//se inserta desde 1 hasta M-1
+                                p = putValue(1, Value[ind_i][ind_j+1]-1);
+                            }else if(!Locke2[ind_i][ind_j+1] && Locke2[ind_i][ind_j+2]){//se inserta desde 1 hasta L-1
+                                p = putValue(1, Value[ind_i][ind_j+2]-1);
+                            }else if(Locke2[ind_i][ind_j+1] && !Locke2[ind_i][ind_j+2]){//se inserta desde 1 hasta M-1
+                                p = putValue(1, Value[ind_i][ind_j+1]-1);
+                            }else{//se inserta desde 1 hasta 9
+                                p = putValue(1, 9);
+                            }
+                        }     //caso 0:       //caso 3        //caso 6
+                        else{//0->S,1->L,2->M//3->S,4->L,5->M//6->S,7->L,8->M
+                            if(Locke2[ind_i][ind_j+2] && Locke2[ind_i][ind_j+1]){//se inserta desde 1 hasta M-1
+                                p = putValue(1, Value[ind_i][ind_j+2]-1);
+                            }else if(!Locke2[ind_i][ind_j+2] && Locke2[ind_i][ind_j+1]){//se inserta desde 1 hasta L-1
+                                p = putValue(1, Value[ind_i][ind_j+1]-1);
+                            }else if(Locke2[ind_i][ind_j+2] && !Locke2[ind_i][ind_j+1]){//se inserta desde 1 hasta M-1
+                                p = putValue(1, Value[ind_i][ind_j+2]-1);
+                            }else{//se inserta desde 1 hasta 9
+                                p = putValue(1, 9);
+                            }
+                        }
+                        break;
+                    case 'M':                              //caso 0:       //caso 3        //caso 6
+                        if(Letter[ind_i][ind_j+1] == 'S'){//0->M,1->S,2->L//3->M,4->S,5->L//6->M,7->S,8->L
+                            if(Locke2[ind_i][ind_j+1] && Locke2[ind_i][ind_j+2]){//se inserta desde S+1 hasta L-1
+                                p = putValue(Value[ind_i][ind_j+1]+1, Value[ind_i][ind_j+2]-1);
+                            }else if(!Locke2[ind_i][ind_j+1]&& Locke2[ind_i][ind_j+2]){//se inserta desde 1 hasta L-1
+                                p = putValue(1,Value[ind_i][ind_j+2]-1);
+                            }else if(Locke2[ind_i][ind_j+1] && !Locke2[ind_i][ind_j+2]){//se inserta desde S+1 hasta 9
+                                p = putValue(Value[ind_i][ind_j+1]+1, 9);
+                            }else{//se inserta desde 1 hasta 9
+                                p = putValue(1, 9);
+                            }
+                        }     //caso 0:       //caso 3        //caso 6
+                        else{//0->M,1->L,2->S//3->M,4->L,5->S//6->M,7->L,8->S
+                            if(Locke2[ind_i][ind_j+2] && Locke2[ind_i][ind_j+1]){//se inserta desde S+1 hasta L-1
+                                p = putValue(Value[ind_i][ind_j+2]+1, Value[ind_i][ind_j+1]-1);
+                            }else if(!Locke2[ind_i][ind_j+2]&& Locke2[ind_i][ind_j+1]){//se inserta desde 1 hasta L-1
+                                p = putValue(1,Value[ind_i][ind_j+1]-1);
+                            }else if(Locke2[ind_i][ind_j+2] && !Locke2[ind_i][ind_j+1]){//se inserta desde S+1 hasta 9
+                                p = putValue(Value[ind_i][ind_j+2]+1, 9);
+                            }else{//se inserta desde 1 hasta 9
+                                p = putValue(1, 9);
+                            }
+                        }
+                        break;
+                    case 'L':                              //caso 0:       //caso 3        //caso 6
+                        if(Letter[ind_i][ind_j+1] == 'S'){//0->L,1->S,2->M//3->L,4->S,5->M//6->L,7->S,8->M
+                            if(Locke2[ind_i][ind_j+1] && Locke2[ind_i][ind_j+2]){//se inserta desde M+1 hasta 9
+                                p = putValue(Value[ind_i][ind_j+2]+1, 9);
+                            }else if(!Locke2[ind_i][ind_j+1] && Locke2[ind_i][ind_j+2]){//se inserta desde M+1 hasta 9
+                                p = putValue(Value[ind_i][ind_j+2]+1, 9);
+                            }else if(Locke2[ind_i][ind_j+1] && !Locke2[ind_i][ind_j+2]){//se inserta desde S+1 hasta 9
+                                p = putValue(Value[ind_i][ind_j+1]+1, 9);
+                            }else{//se inserta desde 1 hasta 9
+                                p = putValue(1, 9);
+                            }
+                        }     //caso 0:       //caso 3        //caso 6
+                        else{//0->L,1->M,2->S//3->L,4->M,5->S//6->L,7->M,8->S
+                            if(Locke2[ind_i][ind_j+2] && Locke2[ind_i][ind_j+1]){//se inserta desde M+1 hasta 9
+                                p = putValue(Value[ind_i][ind_j+1]+1, 9);
+                            }else if(!Locke2[ind_i][ind_j+2] && Locke2[ind_i][ind_j+1]){//se inserta desde M+1 hasta 9
+                                p = putValue(Value[ind_i][ind_j+1]+1, 9);
+                            }else if(Locke2[ind_i][ind_j+2] && !Locke2[ind_i][ind_j+1]){//se inserta desde S+1 hasta 9
+                                p = putValue(Value[ind_i][ind_j+2]+1, 9);
+                            }else{//se inserta desde 1 hasta 9
+                                p = putValue(1, 9);
+                            }
+                        }
+                        break;
+                }
+                break;
+            case 1: case 4: case 7:
+                switch(Letter[ind_i][ind_j]){
+                    case 'S':                              //caso 1:       //caso 4        //caso 7
+                        if(Letter[ind_i][ind_j-1] == 'M'){//0->M,1->S,2->L//3->M,4->S,5->L//6->M,7->S,8->L
+                            if(Locke2[ind_i][ind_j-1] && Locke2[ind_i][ind_j+1]){//se inserta desde 1 hasta M-1
+                                p = putValue(1, Value[ind_i][ind_j-1]-1);
+                            }else if(!Locke2[ind_i][ind_j-1] && Locke2[ind_i][ind_j+1]){//se inserta desde 1 hasta L-1
+                                p = putValue(1, Value[ind_i][ind_j+1]-1);
+                            }else if(Locke2[ind_i][ind_j-1] && !Locke2[ind_i][ind_j+1]){//se inserta desde 1 hasta M-1
+                                p = putValue(1, Value[ind_i][ind_j-1]-1);
+                            }else{//se inserta desde 1 hasta 9
+                                p = putValue(1, 9);
+                            }
+                        }     //caso 1:       //caso 4        //caso 7
+                        else{//0->L,1->S,2->M//3->L,4->S,5->M//6->L,7->S,8->M
+                            if(Locke2[ind_i][ind_j+1] && Locke2[ind_i][ind_j-1]){//se inserta desde 1 hasta M-1
+                                p = putValue(1, Value[ind_i][ind_j+1]-1);
+                            }else if(!Locke2[ind_i][ind_j+1] && Locke2[ind_i][ind_j-1]){//se inserta desde 1 hasta L-1
+                                p = putValue(1, Value[ind_i][ind_j-1]-1);
+                            }else if(Locke2[ind_i][ind_j+1] && !Locke2[ind_i][ind_j-1]){//se inserta desde 1 hasta M-1
+                                p = putValue(1, Value[ind_i][ind_j+1]-1);
+                            }else{//se inserta desde 1 hasta 9
+                                p = putValue(1, 9);
+                            }
+                        }
+                        break;
+                    case 'M':                              //caso 1:       //caso 4        //caso 7
+                        if(Letter[ind_i][ind_j-1] == 'S'){//0->S,1->M,2->L//3->S,4->M,5->L//6->S,7->M,8->L
+                            if(Locke2[ind_i][ind_j-1] && Locke2[ind_i][ind_j+1]){//se inserta desde S+1 hasta L-1
+                                p = putValue(Value[ind_i][ind_j-1]+1, Value[ind_i][ind_j+1]-1);
+                            }else if(!Locke2[ind_i][ind_j-1] && Locke2[ind_i][ind_j+1]){//se inserta desde 1 hasta L-1
+                                p = putValue(1,  Value[ind_i][ind_j+1]-1);
+                            }else if(Locke2[ind_i][ind_j-1] && !Locke2[ind_i][ind_j+1]){//se inserta desde S+1 hasta 9
+                                p = putValue(Value[ind_i][ind_j-1]+1, 9);
+                            }else{//se inserta desde 1 hasta 9
+                                p = putValue(1, 9);
+                            }
+                        }     //caso 1:       //caso 4        //caso 7
+                        else{//0->L,1->M,2->S//3->L,4->M,5->S//6->L,7->M,8->S
+                            if(Locke2[ind_i][ind_j+1] && Locke2[ind_i][ind_j-1]){//se inserta desde S+1 hasta L-1
+                                p = putValue(Value[ind_i][ind_j+1]+1, Value[ind_i][ind_j-1]-1);
+                            }else if(!Locke2[ind_i][ind_j+1] && Locke2[ind_i][ind_j-1]){//se inserta desde 1 hasta L-1
+                                p = putValue(1, Value[ind_i][ind_j-1]-1);
+                            }else if(Locke2[ind_i][ind_j+1] && !Locke2[ind_i][ind_j-1]){//se inserta desde S+1 hasta 9
+                                p = putValue(Value[ind_i][ind_j+1]+1, 9);
+                            }else{//se inserta desde 1 hasta 9
+                                p = putValue(1, 9);
+                            }
+                        }
+                        break;
+                    case 'L':                              //caso 1:       //caso 4        //caso 7
+                        if(Letter[ind_i][ind_j-1] == 'S'){//0->S,1->L,2->M//3->S,4->L,5->M//6->S,7->L,8->M
+                            if(Locke2[ind_i][ind_j-1] && Locke2[ind_i][ind_j+1]){//se inserta desde M+1 hasta 9
+                                p = putValue(Value[ind_i][ind_j+1]+1, 9);
+                            }else if(!Locke2[ind_i][ind_j-1] && Locke2[ind_i][ind_j+1]){//se inserta desde M+1 hasta 9
+                                p = putValue(Value[ind_i][ind_j+1]+1, 9);
+                            }else if(Locke2[ind_i][ind_j-1] && !Locke2[ind_i][ind_j+1]){//se inserta desde S+1 hasta 9
+                                p = putValue(Value[ind_i][ind_j-1]+1, 9);
+                            }else{//se inserta desde 1 hasta 9
+                                p = putValue(1, 9);
+                            }
+                        }     //caso 1:       //caso 4        //caso 7
+                        else{//0->M,1->L,2->S//3->M,4->L,5->S//6->M,7->L,8->S
+                            if(Locke2[ind_i][ind_j+1] && Locke2[ind_i][ind_j-1]){//se inserta desde M+1 hasta 9
+                                p = putValue(Value[ind_i][ind_j-1]+1, 9);
+                            }else if(!Locke2[ind_i][ind_j+1] && Locke2[ind_i][ind_j-1]){//se inserta desde M+1 hasta 9
+                                p = putValue(Value[ind_i][ind_j-1]+1, 9);
+                            }else if(Locke2[ind_i][ind_j+1] && !Locke2[ind_i][ind_j-1]){//se inserta desde S+1 hasta 9
+                                p = putValue(Value[ind_i][ind_j+1]+1, 9);
+                            }else{//se inserta desde 1 hasta 9
+                                p = putValue(1, 9);
+                            }
+                        }
+                        break;
+                }
+                break;
+            case 2: case 5: case 8:
+                switch(Letter[ind_i][ind_j]){
+                    case 'S':                              //caso 2:       //caso 5        //caso 8
+                        if(Letter[ind_i][ind_j-2] == 'M'){//0->M,1->L,2->S//3->M,4->L,5->S//6->M,7->L,8->S
+                            if(Locke2[ind_i][ind_j-2] && Locke2[ind_i][ind_j-1]){//se inserta desde 1 hasta M-1
+                                p = putValue(1, Value[ind_i][ind_j-2]-1);
+                            }else if(!Locke2[ind_i][ind_j-2] && Locke2[ind_i][ind_j-1]){//se inserta desde 1 hasta L-1
+                                p = putValue(1, Value[ind_i][ind_j-1]-1);
+                            }else if(Locke2[ind_i][ind_j-2] && !Locke2[ind_i][ind_j-1]){//se inserta desde 1 hasta M-1
+                                p = putValue(1, Value[ind_i][ind_j-2]-1);
+                            }else{//se inserta desde 1 hasta 9
+                                p = putValue(1, 9);
+                            }
+                        }     //caso 2:       //caso 5        //caso 8
+                        else{//0->L,1->M,2->S//3->L,4->M,5->S//6->L,7->M,8->S
+                            if(Locke2[ind_i][ind_j-1] && Locke2[ind_i][ind_j-2]){//se inserta desde 1 hasta M-1
+                                p = putValue(1, Value[ind_i][ind_j-1]-1);
+                            }else if(!Locke2[ind_i][ind_j-1] && Locke2[ind_i][ind_j-2]){//se inserta desde 1 hasta L-1
+                                p = putValue(1, Value[ind_i][ind_j-2]-1);
+                            }else if(Locke2[ind_i][ind_j-1] && !Locke2[ind_i][ind_j-2]){//se inserta desde 1 hasta M-1
+                                p = putValue(1, Value[ind_i][ind_j-1]-1);
+                            }else{//se inserta desde 1 hasta 9
+                                p = putValue(1, 9);
+                            }
+                        }
+                        break;
+                    case 'M':                              //caso 2:       //caso 5        //caso 8
+                        if(Letter[ind_i][ind_j-2] == 'S'){//0->S,1->L,2->M//3->S,4->L,5->M//6->S,7->L,8->M
+                            if(Locke2[ind_i][ind_j-2] && Locke2[ind_i][ind_j-1]){//se inserta desde S+1 hasta L-1
+                                p = putValue(Value[ind_i][ind_j-2]+1, Value[ind_i][ind_j-1]-1);
+                            }else if(!Locke2[ind_i][ind_j-2] && Locke2[ind_i][ind_j-1]){//se inserta desde 1 hasta L-1
+                                p = putValue(1, Value[ind_i][ind_j-1]-1);
+                            }else if(Locke2[ind_i][ind_j-2] && !Locke2[ind_i][ind_j-1]){//se inserta desde S+1 hasta 9
+                                p = putValue(Value[ind_i][ind_j-2]+1, 9);
+                            }else{//se inserta desde 1 hasta 9
+                                p = putValue(1, 9);
+                            }
+                        }     //caso 2:       //caso 4        //caso 8
+                        else{//0->L,1->S,2->M//3->L,4->S,5->M//6->L,7->S,8->M
+                            if(Locke2[ind_i][ind_j-1] && Locke2[ind_i][ind_j-2]){//se inserta desde S+1 hasta L-1
+                                p = putValue(Value[ind_i][ind_j-1]+1, Value[ind_i][ind_j-2]-1);
+                            }else if(!Locke2[ind_i][ind_j-1] && Locke2[ind_i][ind_j-2]){//se inserta desde 1 hasta L-1
+                                p = putValue(1, Value[ind_i][ind_j-2]-1);
+                            }else if(Locke2[ind_i][ind_j-1] && !Locke2[ind_i][ind_j-2]){//se inserta desde S+1 hasta 9
+                                p = putValue(Value[ind_i][ind_j-1]+1, 9);
+                            }else{//se inserta desde 1 hasta 9
+                                p = putValue(1, 9);
+                            }
+                        }
+                        break;
+                    case 'L':                              //caso 2:       //caso 5        //caso 8
+                        if(Letter[ind_i][ind_j-2] == 'S'){//0->S,1->M,2->L//3->S,4->M,5->L//6->S,7->M,8->L
+                            if(Locke2[ind_i][ind_j-2] && Locke2[ind_i][ind_j-1]){//se inserta desde M+1 hasta 9
+                                p = putValue(Value[ind_i][ind_j-1]+1, 9);
+                            }else if(!Locke2[ind_i][ind_j-2] && Locke2[ind_i][ind_j-1]){//se inserta desde M+1 hasta 9
+                                p = putValue(Value[ind_i][ind_j-1]+1, 9);
+                            }else if(Locke2[ind_i][ind_j-2] && !Locke2[ind_i][ind_j-1]){//se inserta desde S+1 hasta 9
+                                p = putValue(Value[ind_i][ind_j-2]+1, 9);
+                            }else{//se inserta desde 1 hasta 9
+                                p = putValue(1, 9);
+                            }
+                        }     //caso 2:       //caso 5        //caso 8
+                        else{//0->M,1->S,2->L//3->M,4->S,5->L//6->M,7->S,8->L
+                            if(Locke2[ind_i][ind_j-1] && Locke2[ind_i][ind_j-2]){//se inserta desde M+1 hasta 9
+                                p = putValue(Value[ind_i][ind_j-2]+1, 9);
+                            }else if(!Locke2[ind_i][ind_j-1] && Locke2[ind_i][ind_j-2]){//se inserta desde M+1 hasta 9
+                                p = putValue(Value[ind_i][ind_j-2]+1, 9);
+                            }else if(Locke2[ind_i][ind_j-1] && !Locke2[ind_i][ind_j-2]){//se inserta desde S+1 hasta 9
+                                p = putValue(Value[ind_i][ind_j-1]+1, 9);
+                            }else{//se inserta desde 1 hasta 9
+                                p = putValue(1, 9);
+                            }
+                        }
+                        break;
+                }
+                break;
+        }
+        //Se eliminan los elementos
+        e = ListValueV( Value, Locke2, ind_j);
+        p = Mezcla( p, e);
+        e = ListValueH( Value, Locke2, ind_i);
+        p = Mezcla( p, e);
+        if((ind_j>=0&&ind_j<3)&&(ind_i>=0&&ind_i<3)){e = ListValueM( Value, Locke2, 0, 0);}//1
+        else if((ind_j>=3&&ind_j<6)&&(ind_i>=0&&ind_i<3)){e = ListValueM( Value, Locke2, 0, 3);}//2
+        else if((ind_j>=6&&ind_j<9)&&(ind_i>=0&&ind_i<3)){e = ListValueM( Value, Locke2, 0, 6);}//3
+        else if((ind_j>=0&&ind_j<3)&&(ind_i>=3&&ind_i<6)){e = ListValueM( Value, Locke2, 3, 0);}//4
+        else if((ind_j>=3&&ind_j<6)&&(ind_i>=3&&ind_i<6)){e = ListValueM( Value, Locke2, 3, 3);}//5
+        else if((ind_j>=6&&ind_j<9)&&(ind_i>=3&&ind_i<6)){e = ListValueM( Value, Locke2, 3, 6);}//6
+        else if((ind_j>=0&&ind_j<3)&&(ind_i>=6&&ind_i<9)){e = ListValueM( Value, Locke2, 6, 0);}//7
+        else if((ind_j>=3&&ind_j<6)&&(ind_i>=6&&ind_i<9)){e = ListValueM( Value, Locke2, 6, 3);}//8
+        else if((ind_j>=6&&ind_j<9)&&(ind_i>=6&&ind_i<9)){e = ListValueM( Value, Locke2, 6, 6);}//9
+        p = Mezcla( p, e);
+        PrintP(p);
+        return p;
+    }
+    
+    private void solveBackTrackingMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_solveBackTrackingMenuItemActionPerformed
+        char[][]     Letter = new    char[9][9];
+        int[][]      Value  = new     int[9][9];
+        boolean[][]  Locke  = new boolean[9][9];
+        boolean[][]  Locke2 = new boolean[9][9];
+        int i = 0, j = 0, C = 0;
+        for(int c = 0; c < 81; c++){
+            Letter[i][j] = cells[c].getLetter();
+            Value[i][j]  = cells[c].getValue();
+            Locke[i][j]  = cells[c].getLocked();
+            Locke2[i][j] = cells[c].getLocked();
+            if(cells[c].getValue() != 0)
+                C++;
+            j++;
+            if(j == 9){
+                j = 0;
+                i++;
+            }
+        }
+//        for(i = 0; i < 81; i++) {
+//            if(!cells[i].getLocked())
+//                cells[i].setValue(5);
+//        }
+        
+        Mat(Letter, Value,C);
+        Pila[]   ListSolution = new Pila[81-C];
+        int[][]  ListIndex    = new int[81-C][2];
+        boolean[] NewSolution = new boolean[81-C];
+        for(i = 0; i < 81-C; i++){
+            ListSolution[i] = null;
+            NewSolution[i]  = false;
+            ListIndex[i][0] = -1;
+            ListIndex[i][1] = -1;
+        }
+        int N = 0;
+        while(C < 81){
+            //valiidar para no hacer busquedas inecesarias
+            ListIndex[N] = getIndex(Locke);
+            i = ListIndex[N][0]; j = ListIndex[N][1];
+            Locke[i][j] = true;
+            if(NewSolution[N] == false){
+                ListSolution[N] = getSolution(Letter, Value, Locke2, i, j);
+                NewSolution[N] = true;
+            }
+            else{
+                
+            }
+            //quitar esta sentencia
+            Value[i][j] = 5;
+//            Mat(Letter, Value,C);
+            N++;
+            C++;
+        }
     }//GEN-LAST:event_solveBackTrackingMenuItemActionPerformed
 
     /**
