@@ -1201,6 +1201,16 @@ public class SudokuSolver extends javax.swing.JFrame {
         return k;
     }
     
+    boolean[][] copy(boolean[][] L){
+        boolean[][] c = new boolean[9][9];
+        for(int i = 0; i < 9; i++){
+            for(int j = 0; j < 9; j++){
+                c[i][j] = L[i][j];
+            }
+        }
+        return c;
+    }
+    
     void Mat(char[][] Letter, int[][] Value, int C){
         for(int i = 0; i < 9; i++){
             for(int j = 0; j < 9; j++){
@@ -1212,7 +1222,20 @@ public class SudokuSolver extends javax.swing.JFrame {
         System.out.println(C);
     }
     
-    void PrintP(Pila p){
+    void Mat2(boolean[][] b){
+        for(int i = 0; i < 9; i++){
+            for(int j = 0; j < 9; j++){
+                if(b[i][j])
+                    System.out.print(". ");
+                else
+                    System.out.print("f ");
+            }
+            System.out.println("");
+        }
+    }
+    
+    void PrintP(Pila p, int N){
+        System.out.print(N + ".- ");
         while(p != null){
             System.out.print(p.getValue() + " ");
             p = p.getNext();
@@ -1329,7 +1352,7 @@ public class SudokuSolver extends javax.swing.JFrame {
         return q;
     }
     
-    Pila getSolution(char[][] Letter, int[][] Value, boolean[][] Locke2, int ind_i, int ind_j){
+    Pila getSolution(char[][] Letter, int[][] Value, boolean[][] Locke2, int ind_i, int ind_j, int N){
         Pila p = null, e = null;
         //Primero se buscan los limites segun las letras
         switch(ind_j){
@@ -1339,23 +1362,23 @@ public class SudokuSolver extends javax.swing.JFrame {
                         if(Letter[ind_i][ind_j+1] == 'M'){//0->S,1->M,2->L//3->S,4->M,5->L//6->S,7->M,8->L
                             if(Locke2[ind_i][ind_j+1] && Locke2[ind_i][ind_j+2]){//se inserta desde 1 hasta M-1
                                 p = putValue(1, Value[ind_i][ind_j+1]-1);
-                            }else if(!Locke2[ind_i][ind_j+1] && Locke2[ind_i][ind_j+2]){//se inserta desde 1 hasta L-1
-                                p = putValue(1, Value[ind_i][ind_j+2]-1);
+                            }else if(!Locke2[ind_i][ind_j+1] && Locke2[ind_i][ind_j+2]){//se inserta desde 1 hasta L-2
+                                p = putValue(1, Value[ind_i][ind_j+2]-2);
                             }else if(Locke2[ind_i][ind_j+1] && !Locke2[ind_i][ind_j+2]){//se inserta desde 1 hasta M-1
                                 p = putValue(1, Value[ind_i][ind_j+1]-1);
-                            }else{//se inserta desde 1 hasta 9
-                                p = putValue(1, 9);
+                            }else{//se inserta desde 1 hasta 7
+                                p = putValue(1, 7);
                             }
                         }     //caso 0:       //caso 3        //caso 6
                         else{//0->S,1->L,2->M//3->S,4->L,5->M//6->S,7->L,8->M
                             if(Locke2[ind_i][ind_j+2] && Locke2[ind_i][ind_j+1]){//se inserta desde 1 hasta M-1
                                 p = putValue(1, Value[ind_i][ind_j+2]-1);
-                            }else if(!Locke2[ind_i][ind_j+2] && Locke2[ind_i][ind_j+1]){//se inserta desde 1 hasta L-1
-                                p = putValue(1, Value[ind_i][ind_j+1]-1);
+                            }else if(!Locke2[ind_i][ind_j+2] && Locke2[ind_i][ind_j+1]){//se inserta desde 1 hasta L-2
+                                p = putValue(1, Value[ind_i][ind_j+1]-2);
                             }else if(Locke2[ind_i][ind_j+2] && !Locke2[ind_i][ind_j+1]){//se inserta desde 1 hasta M-1
                                 p = putValue(1, Value[ind_i][ind_j+2]-1);
-                            }else{//se inserta desde 1 hasta 9
-                                p = putValue(1, 9);
+                            }else{//se inserta desde 1 hasta 7
+                                p = putValue(1, 7);
                             }
                         }
                         break;
@@ -1363,23 +1386,23 @@ public class SudokuSolver extends javax.swing.JFrame {
                         if(Letter[ind_i][ind_j+1] == 'S'){//0->M,1->S,2->L//3->M,4->S,5->L//6->M,7->S,8->L
                             if(Locke2[ind_i][ind_j+1] && Locke2[ind_i][ind_j+2]){//se inserta desde S+1 hasta L-1
                                 p = putValue(Value[ind_i][ind_j+1]+1, Value[ind_i][ind_j+2]-1);
-                            }else if(!Locke2[ind_i][ind_j+1]&& Locke2[ind_i][ind_j+2]){//se inserta desde 1 hasta L-1
-                                p = putValue(1,Value[ind_i][ind_j+2]-1);
-                            }else if(Locke2[ind_i][ind_j+1] && !Locke2[ind_i][ind_j+2]){//se inserta desde S+1 hasta 9
-                                p = putValue(Value[ind_i][ind_j+1]+1, 9);
-                            }else{//se inserta desde 1 hasta 9
-                                p = putValue(1, 9);
+                            }else if(!Locke2[ind_i][ind_j+1]&& Locke2[ind_i][ind_j+2]){//se inserta desde 2 hasta L-1
+                                p = putValue(2,Value[ind_i][ind_j+2]-1);
+                            }else if(Locke2[ind_i][ind_j+1] && !Locke2[ind_i][ind_j+2]){//se inserta desde S+1 hasta 8
+                                p = putValue(Value[ind_i][ind_j+1]+1, 8);
+                            }else{//se inserta desde 2 hasta 8
+                                p = putValue(2, 8);
                             }
                         }     //caso 0:       //caso 3        //caso 6
                         else{//0->M,1->L,2->S//3->M,4->L,5->S//6->M,7->L,8->S
                             if(Locke2[ind_i][ind_j+2] && Locke2[ind_i][ind_j+1]){//se inserta desde S+1 hasta L-1
                                 p = putValue(Value[ind_i][ind_j+2]+1, Value[ind_i][ind_j+1]-1);
-                            }else if(!Locke2[ind_i][ind_j+2]&& Locke2[ind_i][ind_j+1]){//se inserta desde 1 hasta L-1
-                                p = putValue(1,Value[ind_i][ind_j+1]-1);
-                            }else if(Locke2[ind_i][ind_j+2] && !Locke2[ind_i][ind_j+1]){//se inserta desde S+1 hasta 9
-                                p = putValue(Value[ind_i][ind_j+2]+1, 9);
-                            }else{//se inserta desde 1 hasta 9
-                                p = putValue(1, 9);
+                            }else if(!Locke2[ind_i][ind_j+2]&& Locke2[ind_i][ind_j+1]){//se inserta desde 2 hasta L-1
+                                p = putValue(2,Value[ind_i][ind_j+1]-1);
+                            }else if(Locke2[ind_i][ind_j+2] && !Locke2[ind_i][ind_j+1]){//se inserta desde S+1 hasta 8
+                                p = putValue(Value[ind_i][ind_j+2]+1, 8);
+                            }else{//se inserta desde 2 hasta 8
+                                p = putValue(2, 8);
                             }
                         }
                         break;
@@ -1389,10 +1412,10 @@ public class SudokuSolver extends javax.swing.JFrame {
                                 p = putValue(Value[ind_i][ind_j+2]+1, 9);
                             }else if(!Locke2[ind_i][ind_j+1] && Locke2[ind_i][ind_j+2]){//se inserta desde M+1 hasta 9
                                 p = putValue(Value[ind_i][ind_j+2]+1, 9);
-                            }else if(Locke2[ind_i][ind_j+1] && !Locke2[ind_i][ind_j+2]){//se inserta desde S+1 hasta 9
-                                p = putValue(Value[ind_i][ind_j+1]+1, 9);
-                            }else{//se inserta desde 1 hasta 9
-                                p = putValue(1, 9);
+                            }else if(Locke2[ind_i][ind_j+1] && !Locke2[ind_i][ind_j+2]){//se inserta desde S+2 hasta 9
+                                p = putValue(Value[ind_i][ind_j+1]+2, 9);
+                            }else{//se inserta desde 3 hasta 9
+                                p = putValue(3, 9);
                             }
                         }     //caso 0:       //caso 3        //caso 6
                         else{//0->L,1->M,2->S//3->L,4->M,5->S//6->L,7->M,8->S
@@ -1400,10 +1423,10 @@ public class SudokuSolver extends javax.swing.JFrame {
                                 p = putValue(Value[ind_i][ind_j+1]+1, 9);
                             }else if(!Locke2[ind_i][ind_j+2] && Locke2[ind_i][ind_j+1]){//se inserta desde M+1 hasta 9
                                 p = putValue(Value[ind_i][ind_j+1]+1, 9);
-                            }else if(Locke2[ind_i][ind_j+2] && !Locke2[ind_i][ind_j+1]){//se inserta desde S+1 hasta 9
-                                p = putValue(Value[ind_i][ind_j+2]+1, 9);
-                            }else{//se inserta desde 1 hasta 9
-                                p = putValue(1, 9);
+                            }else if(Locke2[ind_i][ind_j+2] && !Locke2[ind_i][ind_j+1]){//se inserta desde S+2 hasta 9
+                                p = putValue(Value[ind_i][ind_j+2]+2, 9);
+                            }else{//se inserta desde 3 hasta 9
+                                p = putValue(3, 9);
                             }
                         }
                         break;
@@ -1415,23 +1438,23 @@ public class SudokuSolver extends javax.swing.JFrame {
                         if(Letter[ind_i][ind_j-1] == 'M'){//0->M,1->S,2->L//3->M,4->S,5->L//6->M,7->S,8->L
                             if(Locke2[ind_i][ind_j-1] && Locke2[ind_i][ind_j+1]){//se inserta desde 1 hasta M-1
                                 p = putValue(1, Value[ind_i][ind_j-1]-1);
-                            }else if(!Locke2[ind_i][ind_j-1] && Locke2[ind_i][ind_j+1]){//se inserta desde 1 hasta L-1
-                                p = putValue(1, Value[ind_i][ind_j+1]-1);
+                            }else if(!Locke2[ind_i][ind_j-1] && Locke2[ind_i][ind_j+1]){//se inserta desde 1 hasta L-2
+                                p = putValue(1, Value[ind_i][ind_j+1]-2);
                             }else if(Locke2[ind_i][ind_j-1] && !Locke2[ind_i][ind_j+1]){//se inserta desde 1 hasta M-1
                                 p = putValue(1, Value[ind_i][ind_j-1]-1);
-                            }else{//se inserta desde 1 hasta 9
-                                p = putValue(1, 9);
+                            }else{//se inserta desde 1 hasta 7
+                                p = putValue(1, 7);
                             }
                         }     //caso 1:       //caso 4        //caso 7
                         else{//0->L,1->S,2->M//3->L,4->S,5->M//6->L,7->S,8->M
                             if(Locke2[ind_i][ind_j+1] && Locke2[ind_i][ind_j-1]){//se inserta desde 1 hasta M-1
                                 p = putValue(1, Value[ind_i][ind_j+1]-1);
-                            }else if(!Locke2[ind_i][ind_j+1] && Locke2[ind_i][ind_j-1]){//se inserta desde 1 hasta L-1
-                                p = putValue(1, Value[ind_i][ind_j-1]-1);
+                            }else if(!Locke2[ind_i][ind_j+1] && Locke2[ind_i][ind_j-1]){//se inserta desde 1 hasta L-2
+                                p = putValue(1, Value[ind_i][ind_j-1]-2);
                             }else if(Locke2[ind_i][ind_j+1] && !Locke2[ind_i][ind_j-1]){//se inserta desde 1 hasta M-1
                                 p = putValue(1, Value[ind_i][ind_j+1]-1);
-                            }else{//se inserta desde 1 hasta 9
-                                p = putValue(1, 9);
+                            }else{//se inserta desde 1 hasta 7
+                                p = putValue(1, 7);
                             }
                         }
                         break;
@@ -1439,23 +1462,23 @@ public class SudokuSolver extends javax.swing.JFrame {
                         if(Letter[ind_i][ind_j-1] == 'S'){//0->S,1->M,2->L//3->S,4->M,5->L//6->S,7->M,8->L
                             if(Locke2[ind_i][ind_j-1] && Locke2[ind_i][ind_j+1]){//se inserta desde S+1 hasta L-1
                                 p = putValue(Value[ind_i][ind_j-1]+1, Value[ind_i][ind_j+1]-1);
-                            }else if(!Locke2[ind_i][ind_j-1] && Locke2[ind_i][ind_j+1]){//se inserta desde 1 hasta L-1
-                                p = putValue(1,  Value[ind_i][ind_j+1]-1);
-                            }else if(Locke2[ind_i][ind_j-1] && !Locke2[ind_i][ind_j+1]){//se inserta desde S+1 hasta 9
-                                p = putValue(Value[ind_i][ind_j-1]+1, 9);
-                            }else{//se inserta desde 1 hasta 9
-                                p = putValue(1, 9);
+                            }else if(!Locke2[ind_i][ind_j-1] && Locke2[ind_i][ind_j+1]){//se inserta desde 2 hasta L-1
+                                p = putValue(2,  Value[ind_i][ind_j+1]-1);
+                            }else if(Locke2[ind_i][ind_j-1] && !Locke2[ind_i][ind_j+1]){//se inserta desde S+1 hasta 8
+                                p = putValue(Value[ind_i][ind_j-1]+1, 8);
+                            }else{//se inserta desde 2 hasta 8
+                                p = putValue(2, 8);
                             }
                         }     //caso 1:       //caso 4        //caso 7
                         else{//0->L,1->M,2->S//3->L,4->M,5->S//6->L,7->M,8->S
                             if(Locke2[ind_i][ind_j+1] && Locke2[ind_i][ind_j-1]){//se inserta desde S+1 hasta L-1
                                 p = putValue(Value[ind_i][ind_j+1]+1, Value[ind_i][ind_j-1]-1);
-                            }else if(!Locke2[ind_i][ind_j+1] && Locke2[ind_i][ind_j-1]){//se inserta desde 1 hasta L-1
-                                p = putValue(1, Value[ind_i][ind_j-1]-1);
-                            }else if(Locke2[ind_i][ind_j+1] && !Locke2[ind_i][ind_j-1]){//se inserta desde S+1 hasta 9
-                                p = putValue(Value[ind_i][ind_j+1]+1, 9);
-                            }else{//se inserta desde 1 hasta 9
-                                p = putValue(1, 9);
+                            }else if(!Locke2[ind_i][ind_j+1] && Locke2[ind_i][ind_j-1]){//se inserta desde 2 hasta L-1
+                                p = putValue(2, Value[ind_i][ind_j-1]-1);
+                            }else if(Locke2[ind_i][ind_j+1] && !Locke2[ind_i][ind_j-1]){//se inserta desde S+1 hasta 8
+                                p = putValue(Value[ind_i][ind_j+1]+1, 8);
+                            }else{//se inserta desde 2 hasta 8
+                                p = putValue(2, 8);
                             }
                         }
                         break;
@@ -1465,10 +1488,10 @@ public class SudokuSolver extends javax.swing.JFrame {
                                 p = putValue(Value[ind_i][ind_j+1]+1, 9);
                             }else if(!Locke2[ind_i][ind_j-1] && Locke2[ind_i][ind_j+1]){//se inserta desde M+1 hasta 9
                                 p = putValue(Value[ind_i][ind_j+1]+1, 9);
-                            }else if(Locke2[ind_i][ind_j-1] && !Locke2[ind_i][ind_j+1]){//se inserta desde S+1 hasta 9
-                                p = putValue(Value[ind_i][ind_j-1]+1, 9);
-                            }else{//se inserta desde 1 hasta 9
-                                p = putValue(1, 9);
+                            }else if(Locke2[ind_i][ind_j-1] && !Locke2[ind_i][ind_j+1]){//se inserta desde S+2 hasta 9
+                                p = putValue(Value[ind_i][ind_j-1]+2, 9);
+                            }else{//se inserta desde 3 hasta 9
+                                p = putValue(3, 9);
                             }
                         }     //caso 1:       //caso 4        //caso 7
                         else{//0->M,1->L,2->S//3->M,4->L,5->S//6->M,7->L,8->S
@@ -1476,10 +1499,10 @@ public class SudokuSolver extends javax.swing.JFrame {
                                 p = putValue(Value[ind_i][ind_j-1]+1, 9);
                             }else if(!Locke2[ind_i][ind_j+1] && Locke2[ind_i][ind_j-1]){//se inserta desde M+1 hasta 9
                                 p = putValue(Value[ind_i][ind_j-1]+1, 9);
-                            }else if(Locke2[ind_i][ind_j+1] && !Locke2[ind_i][ind_j-1]){//se inserta desde S+1 hasta 9
-                                p = putValue(Value[ind_i][ind_j+1]+1, 9);
-                            }else{//se inserta desde 1 hasta 9
-                                p = putValue(1, 9);
+                            }else if(Locke2[ind_i][ind_j+1] && !Locke2[ind_i][ind_j-1]){//se inserta desde S+2 hasta 9
+                                p = putValue(Value[ind_i][ind_j+1]+2, 9);
+                            }else{//se inserta desde 3 hasta 9
+                                p = putValue(3, 9);
                             }
                         }
                         break;
@@ -1491,23 +1514,23 @@ public class SudokuSolver extends javax.swing.JFrame {
                         if(Letter[ind_i][ind_j-2] == 'M'){//0->M,1->L,2->S//3->M,4->L,5->S//6->M,7->L,8->S
                             if(Locke2[ind_i][ind_j-2] && Locke2[ind_i][ind_j-1]){//se inserta desde 1 hasta M-1
                                 p = putValue(1, Value[ind_i][ind_j-2]-1);
-                            }else if(!Locke2[ind_i][ind_j-2] && Locke2[ind_i][ind_j-1]){//se inserta desde 1 hasta L-1
-                                p = putValue(1, Value[ind_i][ind_j-1]-1);
+                            }else if(!Locke2[ind_i][ind_j-2] && Locke2[ind_i][ind_j-1]){//se inserta desde 1 hasta L-2
+                                p = putValue(1, Value[ind_i][ind_j-1]-2);
                             }else if(Locke2[ind_i][ind_j-2] && !Locke2[ind_i][ind_j-1]){//se inserta desde 1 hasta M-1
                                 p = putValue(1, Value[ind_i][ind_j-2]-1);
-                            }else{//se inserta desde 1 hasta 9
-                                p = putValue(1, 9);
+                            }else{//se inserta desde 1 hasta 7
+                                p = putValue(1, 7);
                             }
                         }     //caso 2:       //caso 5        //caso 8
                         else{//0->L,1->M,2->S//3->L,4->M,5->S//6->L,7->M,8->S
                             if(Locke2[ind_i][ind_j-1] && Locke2[ind_i][ind_j-2]){//se inserta desde 1 hasta M-1
                                 p = putValue(1, Value[ind_i][ind_j-1]-1);
-                            }else if(!Locke2[ind_i][ind_j-1] && Locke2[ind_i][ind_j-2]){//se inserta desde 1 hasta L-1
-                                p = putValue(1, Value[ind_i][ind_j-2]-1);
+                            }else if(!Locke2[ind_i][ind_j-1] && Locke2[ind_i][ind_j-2]){//se inserta desde 1 hasta L-2
+                                p = putValue(1, Value[ind_i][ind_j-2]-2);
                             }else if(Locke2[ind_i][ind_j-1] && !Locke2[ind_i][ind_j-2]){//se inserta desde 1 hasta M-1
                                 p = putValue(1, Value[ind_i][ind_j-1]-1);
-                            }else{//se inserta desde 1 hasta 9
-                                p = putValue(1, 9);
+                            }else{//se inserta desde 1 hasta 7
+                                p = putValue(1, 7);
                             }
                         }
                         break;
@@ -1515,23 +1538,23 @@ public class SudokuSolver extends javax.swing.JFrame {
                         if(Letter[ind_i][ind_j-2] == 'S'){//0->S,1->L,2->M//3->S,4->L,5->M//6->S,7->L,8->M
                             if(Locke2[ind_i][ind_j-2] && Locke2[ind_i][ind_j-1]){//se inserta desde S+1 hasta L-1
                                 p = putValue(Value[ind_i][ind_j-2]+1, Value[ind_i][ind_j-1]-1);
-                            }else if(!Locke2[ind_i][ind_j-2] && Locke2[ind_i][ind_j-1]){//se inserta desde 1 hasta L-1
-                                p = putValue(1, Value[ind_i][ind_j-1]-1);
-                            }else if(Locke2[ind_i][ind_j-2] && !Locke2[ind_i][ind_j-1]){//se inserta desde S+1 hasta 9
-                                p = putValue(Value[ind_i][ind_j-2]+1, 9);
-                            }else{//se inserta desde 1 hasta 9
-                                p = putValue(1, 9);
+                            }else if(!Locke2[ind_i][ind_j-2] && Locke2[ind_i][ind_j-1]){//se inserta desde 2 hasta L-1
+                                p = putValue(2, Value[ind_i][ind_j-1]-1);
+                            }else if(Locke2[ind_i][ind_j-2] && !Locke2[ind_i][ind_j-1]){//se inserta desde S+1 hasta 8
+                                p = putValue(Value[ind_i][ind_j-2]+1, 8);
+                            }else{//se inserta desde 2 hasta 8
+                                p = putValue(2, 8);
                             }
                         }     //caso 2:       //caso 4        //caso 8
                         else{//0->L,1->S,2->M//3->L,4->S,5->M//6->L,7->S,8->M
                             if(Locke2[ind_i][ind_j-1] && Locke2[ind_i][ind_j-2]){//se inserta desde S+1 hasta L-1
                                 p = putValue(Value[ind_i][ind_j-1]+1, Value[ind_i][ind_j-2]-1);
-                            }else if(!Locke2[ind_i][ind_j-1] && Locke2[ind_i][ind_j-2]){//se inserta desde 1 hasta L-1
-                                p = putValue(1, Value[ind_i][ind_j-2]-1);
-                            }else if(Locke2[ind_i][ind_j-1] && !Locke2[ind_i][ind_j-2]){//se inserta desde S+1 hasta 9
-                                p = putValue(Value[ind_i][ind_j-1]+1, 9);
-                            }else{//se inserta desde 1 hasta 9
-                                p = putValue(1, 9);
+                            }else if(!Locke2[ind_i][ind_j-1] && Locke2[ind_i][ind_j-2]){//se inserta desde 2 hasta L-1
+                                p = putValue(2, Value[ind_i][ind_j-2]-1);
+                            }else if(Locke2[ind_i][ind_j-1] && !Locke2[ind_i][ind_j-2]){//se inserta desde S+1 hasta 8
+                                p = putValue(Value[ind_i][ind_j-1]+1, 8);
+                            }else{//se inserta desde 2 hasta 8
+                                p = putValue(2, 8);
                             }
                         }
                         break;
@@ -1541,10 +1564,10 @@ public class SudokuSolver extends javax.swing.JFrame {
                                 p = putValue(Value[ind_i][ind_j-1]+1, 9);
                             }else if(!Locke2[ind_i][ind_j-2] && Locke2[ind_i][ind_j-1]){//se inserta desde M+1 hasta 9
                                 p = putValue(Value[ind_i][ind_j-1]+1, 9);
-                            }else if(Locke2[ind_i][ind_j-2] && !Locke2[ind_i][ind_j-1]){//se inserta desde S+1 hasta 9
-                                p = putValue(Value[ind_i][ind_j-2]+1, 9);
-                            }else{//se inserta desde 1 hasta 9
-                                p = putValue(1, 9);
+                            }else if(Locke2[ind_i][ind_j-2] && !Locke2[ind_i][ind_j-1]){//se inserta desde S+2 hasta 9
+                                p = putValue(Value[ind_i][ind_j-2]+2, 9);
+                            }else{//se inserta desde 3 hasta 9
+                                p = putValue(3, 9);
                             }
                         }     //caso 2:       //caso 5        //caso 8
                         else{//0->M,1->S,2->L//3->M,4->S,5->L//6->M,7->S,8->L
@@ -1552,10 +1575,10 @@ public class SudokuSolver extends javax.swing.JFrame {
                                 p = putValue(Value[ind_i][ind_j-2]+1, 9);
                             }else if(!Locke2[ind_i][ind_j-1] && Locke2[ind_i][ind_j-2]){//se inserta desde M+1 hasta 9
                                 p = putValue(Value[ind_i][ind_j-2]+1, 9);
-                            }else if(Locke2[ind_i][ind_j-1] && !Locke2[ind_i][ind_j-2]){//se inserta desde S+1 hasta 9
-                                p = putValue(Value[ind_i][ind_j-1]+1, 9);
-                            }else{//se inserta desde 1 hasta 9
-                                p = putValue(1, 9);
+                            }else if(Locke2[ind_i][ind_j-1] && !Locke2[ind_i][ind_j-2]){//se inserta desde S+2 hasta 9
+                                p = putValue(Value[ind_i][ind_j-1]+2, 9);
+                            }else{//se inserta desde 3 hasta 9
+                                p = putValue(3, 9);
                             }
                         }
                         break;
@@ -1563,10 +1586,15 @@ public class SudokuSolver extends javax.swing.JFrame {
                 break;
         }
         //Se eliminan los elementos
+        //PrintP(p, N);
         e = ListValueV( Value, Locke2, ind_j);
+        //PrintP(e, N);
         p = Mezcla( p, e);
+        //PrintP(p, N);
         e = ListValueH( Value, Locke2, ind_i);
+        //PrintP(e, N);
         p = Mezcla( p, e);
+        //PrintP(p, N);
         if((ind_j>=0&&ind_j<3)&&(ind_i>=0&&ind_i<3)){e = ListValueM( Value, Locke2, 0, 0);}//1
         else if((ind_j>=3&&ind_j<6)&&(ind_i>=0&&ind_i<3)){e = ListValueM( Value, Locke2, 0, 3);}//2
         else if((ind_j>=6&&ind_j<9)&&(ind_i>=0&&ind_i<3)){e = ListValueM( Value, Locke2, 0, 6);}//3
@@ -1576,9 +1604,244 @@ public class SudokuSolver extends javax.swing.JFrame {
         else if((ind_j>=0&&ind_j<3)&&(ind_i>=6&&ind_i<9)){e = ListValueM( Value, Locke2, 6, 0);}//7
         else if((ind_j>=3&&ind_j<6)&&(ind_i>=6&&ind_i<9)){e = ListValueM( Value, Locke2, 6, 3);}//8
         else if((ind_j>=6&&ind_j<9)&&(ind_i>=6&&ind_i<9)){e = ListValueM( Value, Locke2, 6, 6);}//9
+        //PrintP(e, N);
         p = Mezcla( p, e);
-        PrintP(p);
+        PrintP(p, N);
         return p;
+    }
+    
+    Pila getIndexS(Pila[] p, int N){
+        Pila q = null, r;
+        for(int i = 0; i < N; i++){
+            if(p[i].getNext() == null){
+                if(q == null){
+                    q = new Pila(i);
+                }else{
+                    r = q;
+                    while(r.getNext() != null){
+                            r = r.getNext();
+                    }
+                    r.putNext(new Pila(i));
+                }
+            }
+        }
+        return q;
+    }
+    
+    boolean encontrar(int pValue, char[][] Letter, int[][] Value, int ind_i, int ind_j, int ind_ii, int ind_jj){
+        switch(ind_j){
+            case 0:case 3:case 6:
+                switch(Letter[ind_i][ind_j]){
+                    case 'S':
+                        if(Letter[ind_i][ind_j+1] == 'M')
+                        {
+                            if((Value[ind_i][ind_j+1] != 0 && Value[ind_i][ind_j+2] == 0) || (Value[ind_i][ind_j+1] != 0 && Value[ind_i][ind_j+2] != 0)){
+                                if(pValue > Value[ind_i][ind_j+1]) return true;//No cumple S < M
+                            }else if(Value[ind_i][ind_j+1] == 0 && Value[ind_i][ind_j+2] != 0){
+                                if(pValue > (Value[ind_i][ind_j+2]-1)) return true;//No cumple S < (L-1)
+                            }
+                        }else{
+                            if((Value[ind_i][ind_j+2] != 0 && Value[ind_i][ind_j+1] == 0) || (Value[ind_i][ind_j+2] != 0 && Value[ind_i][ind_j+1] != 0)){
+                                if(pValue > Value[ind_i][ind_j+2]) return true;//No cumple S < M
+                            }else if(Value[ind_i][ind_j+2] == 0 && Value[ind_i][ind_j+1] != 0){
+                                if(pValue > (Value[ind_i][ind_j+1]-1)) return true;//No cumple S < (L-1)
+                            }
+                        }
+                        break;
+                    case 'M':
+                        if(Letter[ind_i][ind_j+1] == 'S')
+                        {
+                            if(Value[ind_i][ind_j+1] != 0 && Value[ind_i][ind_j+2] == 0){
+                                if(pValue < Value[ind_i][ind_j+1]) return true;//No cumple M > S
+                            }else if(Value[ind_i][ind_j+1] == 0 && Value[ind_i][ind_j+2] != 0){
+                                if(pValue > Value[ind_i][ind_j+2]) return true;//No cumple M < L
+                            }else if(Value[ind_i][ind_j+1] != 0 && Value[ind_i][ind_j+2] != 0){
+                                if((pValue<Value[ind_i][ind_j+1])||(pValue>Value[ind_i][ind_j+2])) return true;//No cumple S<M<L
+                            }
+                        }else{
+                            if(Value[ind_i][ind_j+2] != 0 && Value[ind_i][ind_j+1] == 0){
+                                if(pValue < Value[ind_i][ind_j+2]) return true;//No cumple M > S
+                            }else if(Value[ind_i][ind_j+2] == 0 && Value[ind_i][ind_j+1] != 0){
+                                if(pValue > Value[ind_i][ind_j+1]) return true;//No cumple M < L
+                            }else if(Value[ind_i][ind_j+1] != 0 && Value[ind_i][ind_j+2] != 0){
+                                if((pValue<Value[ind_i][ind_j+2])||(pValue>Value[ind_i][ind_j+1])) return true;//No cumple S<M<L
+                            }
+                        }
+                        break;
+                    case 'L':
+                        if(Letter[ind_i][ind_j+1] == 'S')
+                        {
+                            if(Value[ind_i][ind_j+1] != 0 && Value[ind_i][ind_j+2] == 0){
+                                if(pValue < (Value[ind_i][ind_j+1]+1)) return true;//No cumple L > S+1
+                            }else if((Value[ind_i][ind_j+1] == 0 && Value[ind_i][ind_j+2] != 0) || (Value[ind_i][ind_j+1] != 0 && Value[ind_i][ind_j+2] != 0)){
+                                if(pValue < Value[ind_i][ind_j+2]) return true;//No cumple L > M
+                            }
+                        }else{
+                            if(Value[ind_i][ind_j+2] != 0 && Value[ind_i][ind_j+1] == 0){
+                                if(pValue < (Value[ind_i][ind_j+2]+1)) return true;//No cumple L > S+1
+                            }else if((Value[ind_i][ind_j+2] == 0 && Value[ind_i][ind_j+1] != 0) || (Value[ind_i][ind_j+2] != 0 && Value[ind_i][ind_j+1] != 0)){
+                                if(pValue < Value[ind_i][ind_j+1]) return true;//No cumple L > M
+                            }
+                        }
+                        break;
+                }
+                break;
+            case 1:case 4:case 7:
+                switch(Letter[ind_i][ind_j]){
+                    case 'S':
+                        if(Letter[ind_i][ind_j-1] == 'M')
+                        {
+                            if((Value[ind_i][ind_j-1] != 0 && Value[ind_i][ind_j+1] == 0) || (Value[ind_i][ind_j-1] != 0 && Value[ind_i][ind_j+1] != 0)){
+                                if(pValue > Value[ind_i][ind_j-1]) return true;//No cumple S < M
+                            }else if(Value[ind_i][ind_j-1] == 0 && Value[ind_i][ind_j+1] != 0){
+                                if(pValue > (Value[ind_i][ind_j+1]-1)) return true;//No cumple S < (L-1)
+                            }
+                        }else{
+                            if((Value[ind_i][ind_j+1] != 0 && Value[ind_i][ind_j-1] == 0) || (Value[ind_i][ind_j+1] != 0 && Value[ind_i][ind_j-1] != 0)){
+                                if(pValue > Value[ind_i][ind_j+1]) return true;//No cumple S < M
+                            }else if(Value[ind_i][ind_j+1] == 0 && Value[ind_i][ind_j-1] != 0){
+                                if(pValue > (Value[ind_i][ind_j-1]-1)) return true;//No cumple S < (L-1)
+                            }
+                        }
+                        break;
+                    case 'M':
+                        if(Letter[ind_i][ind_j-1] == 'S')
+                        {
+                            if(Value[ind_i][ind_j-1] != 0 && Value[ind_i][ind_j+1] == 0){
+                                if(pValue < Value[ind_i][ind_j-1]) return true;//No cumple M > S
+                            }else if(Value[ind_i][ind_j-1] == 0 && Value[ind_i][ind_j+1] != 0){
+                                if(pValue > Value[ind_i][ind_j+1]) return true;//No cumple M < L
+                            }else if(Value[ind_i][ind_j-1] != 0 && Value[ind_i][ind_j+1] != 0){
+                                if((pValue<Value[ind_i][ind_j-1])||(pValue>Value[ind_i][ind_j+1])) return true;//No cumple S<M<L
+                            }
+                        }else{
+                            if(Value[ind_i][ind_j+1] != 0 && Value[ind_i][ind_j-1] == 0){
+                                if(pValue < Value[ind_i][ind_j+1]) return true;//No cumple M > S
+                            }else if(Value[ind_i][ind_j+1] == 0 && Value[ind_i][ind_j-1] != 0){
+                                if(pValue > Value[ind_i][ind_j-1]) return true;//No cumple M < L
+                            }else if(Value[ind_i][ind_j+1] != 0 && Value[ind_i][ind_j-1] != 0){
+                                if((pValue<Value[ind_i][ind_j+1])||(pValue>Value[ind_i][ind_j-1])) return true;//No cumple S<M<L
+                            }
+                        }
+                        break;
+                    case 'L':
+                        if(Letter[ind_i][ind_j-1] == 'S')
+                        {
+                            if(Value[ind_i][ind_j-1] != 0 && Value[ind_i][ind_j+1] == 0){
+                                if(pValue < (Value[ind_i][ind_j-1]+1)) return true;//No cumple L > S+1
+                            }else if((Value[ind_i][ind_j-1] == 0 && Value[ind_i][ind_j+1] != 0) || (Value[ind_i][ind_j-1] != 0 && Value[ind_i][ind_j+1] != 0)){
+                                if(pValue < Value[ind_i][ind_j+1]) return true;//No cumple L > M
+                            }
+                        }else{
+                            if(Value[ind_i][ind_j+1] != 0 && Value[ind_i][ind_j-1] == 0){
+                                if(pValue < (Value[ind_i][ind_j+1]+1)) return true;//No cumple L > S+1
+                            }else if((Value[ind_i][ind_j+1] == 0 && Value[ind_i][ind_j-1] != 0) || (Value[ind_i][ind_j+1] != 0 && Value[ind_i][ind_j-1] != 0)){
+                                if(pValue < Value[ind_i][ind_j-1]) return true;//No cumple L > M
+                            }
+                        }
+                        break;
+                }
+                break;
+            case 2:case 5:case 8:
+                switch(Letter[ind_i][ind_j]){
+                    case 'S':
+                        if(Letter[ind_i][ind_j-2] == 'M')
+                        {
+                            if((Value[ind_i][ind_j-2] != 0 && Value[ind_i][ind_j-1] == 0) || (Value[ind_i][ind_j-2] != 0 && Value[ind_i][ind_j-1] != 0)){
+                                if(pValue > Value[ind_i][ind_j-2]) return true;//No cumple S < M
+                            }else if(Value[ind_i][ind_j-2] == 0 && Value[ind_i][ind_j-1] != 0){
+                                if(pValue > (Value[ind_i][ind_j-1]-1)) return true;//No cumple S < (L-1)
+                            }
+                        }else{
+                            if((Value[ind_i][ind_j-1] != 0 && Value[ind_i][ind_j-2] == 0) || (Value[ind_i][ind_j-1] != 0 && Value[ind_i][ind_j-2] != 0)){
+                                if(pValue > Value[ind_i][ind_j-1]) return true;//No cumple S < M
+                            }else if(Value[ind_i][ind_j-1] == 0 && Value[ind_i][ind_j-2] != 0){
+                                if(pValue > (Value[ind_i][ind_j-2]-1)) return true;//No cumple S < (L-1)
+                            }
+                        }
+                        break;
+                    case 'M':
+                        if(Letter[ind_i][ind_j-2] == 'S')
+                        {
+                            if(Value[ind_i][ind_j-2] != 0 && Value[ind_i][ind_j-1] == 0){
+                                if(pValue < Value[ind_i][ind_j-2]) return true;//No cumple M > S
+                            }else if(Value[ind_i][ind_j-2] == 0 && Value[ind_i][ind_j-1] != 0){
+                                if(pValue > Value[ind_i][ind_j-1]) return true;//No cumple M < L
+                            }else if(Value[ind_i][ind_j-2] != 0 && Value[ind_i][ind_j-1] != 0){
+                                if((pValue<Value[ind_i][ind_j-2])||(pValue>Value[ind_i][ind_j-1])) return true;//No cumple S<M<L
+                            }
+                        }else{
+                            if(Value[ind_i][ind_j-1] != 0 && Value[ind_i][ind_j-2] == 0){
+                                if(pValue < Value[ind_i][ind_j-1]) return true;//No cumple M > S
+                            }else if(Value[ind_i][ind_j-1] == 0 && Value[ind_i][ind_j-2] != 0){
+                                if(pValue > Value[ind_i][ind_j-2]) return true;//No cumple M < L
+                            }else if(Value[ind_i][ind_j-1] != 0 && Value[ind_i][ind_j-2] != 0){
+                                if((pValue<Value[ind_i][ind_j-1])||(pValue>Value[ind_i][ind_j-2])) return true;//No cumple S<M<L
+                            }
+                        }
+                        break;
+                    case 'L':
+                        if(Letter[ind_i][ind_j-2] == 'S')
+                        {
+                            if(Value[ind_i][ind_j-2] != 0 && Value[ind_i][ind_j-1] == 0){
+                                if(pValue < (Value[ind_i][ind_j-2]+1)) return true;//No cumple L > S+1
+                            }else if((Value[ind_i][ind_j-2] == 0 && Value[ind_i][ind_j-1] != 0) || (Value[ind_i][ind_j-2] != 0 && Value[ind_i][ind_j-1] != 0)){
+                                if(pValue < Value[ind_i][ind_j-1]) return true;//No cumple L > M
+                            }
+                        }else{
+                            if(Value[ind_i][ind_j-1] != 0 && Value[ind_i][ind_j-2] == 0){
+                                if(pValue < (Value[ind_i][ind_j+1]+1)) return true;//No cumple L > S+1
+                            }else if((Value[ind_i][ind_j-1] == 0 && Value[ind_i][ind_j-2] != 0) || (Value[ind_i][ind_j-1] != 0 && Value[ind_i][ind_j-2] != 0)){
+                                if(pValue < Value[ind_i][ind_j-2]) return true;//No cumple L > M
+                            }
+                        }
+                        break;
+                }
+                break;
+        }
+        for(int i = 0; i < 9; i++)
+        {
+            //buscamos de forma vertical
+            if(Value[i][ind_j] == pValue){
+                System.out.println("ConflictoV en i "+i+" j "+ind_j);
+                return true;
+            }
+            //buscamos de forma horizontal
+            if(Value[ind_i][i] == pValue){
+                System.out.println("ConflictoH en i "+ind_i+" j "+i);
+                return true;
+            }
+        }
+        //buscamos en la submatriz
+        for(int i = 0; i < 3; i++){
+            for(int j = 0; j < 3; j++){
+                if(Value[ind_ii+i][ind_jj+j] == pValue){
+                    System.out.println("ConflictoM en i "+(ind_ii+i)+" j "+(ind_jj+j));
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+    
+    int Restablecer(Pila[] ListSolution, Pila[] ListDescartados, int N, int des){
+        int pValue = ListSolution[N].getValue(), i, j;
+        Pila q = ListDescartados[N];
+        if(q == null){ListDescartados[N] = new Pila(pValue);}
+        else{
+            while(q.getNext() != null){q = q.getNext();}
+            q.putNext(new Pila(pValue));
+        }
+        q = ListSolution[N];
+        if(q.getNext() != null){
+            ListSolution[N] = q.getNext();
+            return des;
+        }else{
+            ListSolution[N] = ListDescartados[N];//se regresan todas las posibles soluciones
+            ListDescartados[N] = null;//Se reinicia los descartados
+            des = Restablecer(ListSolution, ListDescartados,N-1, des+1);
+        }
+        return des;
     }
     
     private void solveBackTrackingMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_solveBackTrackingMenuItemActionPerformed
@@ -1586,6 +1849,7 @@ public class SudokuSolver extends javax.swing.JFrame {
         int[][]      Value  = new     int[9][9];
         boolean[][]  Locke  = new boolean[9][9];
         boolean[][]  Locke2 = new boolean[9][9];
+        Pila p, q;
         int i = 0, j = 0, C = 0;
         for(int c = 0; c < 81; c++){
             Letter[i][j] = cells[c].getLetter();
@@ -1604,7 +1868,8 @@ public class SudokuSolver extends javax.swing.JFrame {
 //            if(!cells[i].getLocked())
 //                cells[i].setValue(5);
 //        }
-        
+        Mat2(Locke2);
+        //Mat2(Locke);
         Mat(Letter, Value,C);
         Pila[]   ListSolution = new Pila[81-C];
         int[][]  ListIndex    = new int[81-C][2];
@@ -1615,24 +1880,107 @@ public class SudokuSolver extends javax.swing.JFrame {
             ListIndex[i][0] = -1;
             ListIndex[i][1] = -1;
         }
-        int N = 0;
+        int N = 0, M = 81-C;
+        boolean b = true;
         while(C < 81){
-            //valiidar para no hacer busquedas inecesarias
-            ListIndex[N] = getIndex(Locke);
-            i = ListIndex[N][0]; j = ListIndex[N][1];
-            Locke[i][j] = true;
-            if(NewSolution[N] == false){
-                ListSolution[N] = getSolution(Letter, Value, Locke2, i, j);
-                NewSolution[N] = true;
+            if(b){
+                do{
+                    for(N = 0; N < M; N++)
+                    {
+                        ListIndex[N] = getIndex(Locke);
+                        i = ListIndex[N][0]; j = ListIndex[N][1];
+                        Locke[i][j] = true;
+                        ListSolution[N] = getSolution(Letter, Value, Locke2, i, j, N);
+                        NewSolution[N] = true;
+                    }
+                    p = getIndexS(ListSolution, N);
+                    PrintP(p, 100);
+                    q = p;
+                    while(q != null){
+                        N = q.getValue();
+                        i = ListIndex[N][0]; j = ListIndex[N][1];
+                        Value[i][j] = ListSolution[N].getValue();
+                        Locke2[i][j] = true;
+                        cells[(i*9)+j].setValue(Value[i][j]);
+                        M--;
+                        q = q.getNext();
+                    }
+                    if(p != null){
+                        Locke = copy(Locke2);
+                    }
+                    Mat2(Locke2);
+                    //Mat2(Locke);
+                    Mat(Letter, Value,M);
+                }while(p != null);
+                C = 81 - M;
+                N = 0;
+                b = false;
             }
-            else{
-                
+            if(C < 81){
+                Pila[]   ListDescartados = new Pila[M];
+                for(N = 0; N < M; N++){
+                    ListDescartados[N] = null;
+                }
+                for(N = 0; N < M; N++){
+                    Mat(Letter, Value,N);
+                    i = ListIndex[N][0]; j = ListIndex[N][1];
+                    int pValue = ListSolution[N].getValue(), ii = 0, jj = 0;
+                    boolean stop = true;
+                    if((j>=0&&j<3)&&(i>=0&&i<3)){ii = 0; jj = 0;}//1
+                    else if((j>=3&&j<6)&&(i>=0&&i<3)){ii = 0; jj = 3;}//2
+                    else if((j>=6&&j<9)&&(i>=0&&i<3)){ii = 0; jj = 6;}//3
+                    else if((j>=0&&j<3)&&(i>=3&&i<6)){ii = 3; jj = 0;}//4
+                    else if((j>=3&&j<6)&&(i>=3&&i<6)){ii = 3; jj = 3;}//5
+                    else if((j>=6&&j<9)&&(i>=3&&i<6)){ii = 3; jj = 6;}//6
+                    else if((j>=0&&j<3)&&(i>=6&&i<9)){ii = 6; jj = 0;}//7
+                    else if((j>=3&&j<6)&&(i>=6&&i<9)){ii = 6; jj = 3;}//8
+                    else if((j>=6&&j<9)&&(i>=6&&i<9)){ii = 6; jj = 6;}//9
+                    System.out.println("Stop.-"+stop+" N.-"+N+" pValue.-"+pValue+" i.-"+i+" j.-"+j+" ii.-"+ii+" jj.-"+jj+" Funcion.-"+encontrar(pValue, Letter, Value, i, j, ii, jj));
+                    if(!encontrar(pValue, Letter, Value, i, j, ii, jj)){//Retorna f si no lo encuentra
+                        Value[i][j] = pValue;
+                    }else{//Retorna t si lo encontro.
+                        do{
+                            q = ListDescartados[N];
+                            if(q == null){ListDescartados[N] = new Pila(pValue);}
+                            else{
+                                while(q.getNext() != null){q = q.getNext();}
+                                q.putNext(new Pila(pValue));
+                            }
+                            p = ListSolution[N];
+                            if(p.getNext() != null){
+                                ListSolution[N] = p.getNext();
+                                pValue = ListSolution[N].getValue();
+                            }else{
+                                int K = N;
+                                stop = false;
+                                ListSolution[N] = ListDescartados[N];//se regresan todas las posibles soluciones
+                                ListDescartados[N] = null;//Se reinicia los descartados
+                                N = N - 1 - Restablecer(ListSolution, ListDescartados,N-1, 1);
+                                System.out.println("Validacion N.-"+N);
+                                for(int k = N+1; k <= K;k++){
+                                    i = ListIndex[k][0]; j = ListIndex[k][1];
+                                    Value[i][j] = 0;//se regresa el valor anterior como estaba
+                                }
+                            }
+                            System.out.println("Validacion Stop.-"+stop+" N.-"+N+" pValue.-"+pValue+" i.-"+i+" j.-"+j+" ii.-"+ii+" jj.-"+jj+" Funcion.-"+encontrar(pValue, Letter, Value, i, j, ii, jj));
+                        }while(encontrar(pValue, Letter, Value, i, j, ii, jj) && stop);
+                        if(stop){//si stop tiene el valor true insertar valor
+                            Value[i][j] = pValue;
+                        }
+                    }
+                }
+                Mat(Letter, Value,100);
+                C = C + M;
             }
-            //quitar esta sentencia
-            Value[i][j] = 5;
-//            Mat(Letter, Value,C);
+            System.out.println("M.-"+M+" N.-"+N+" C.-"+C);
             N++;
             C++;
+        }
+        for(i = 0; i < 9; i++){
+            for(j = 0; j < 9; j++){
+                if(!Locke2[i][j])
+                    cells[(i*9)+j].setValue(Value[i][j]);
+            }
         }
     }//GEN-LAST:event_solveBackTrackingMenuItemActionPerformed
 
