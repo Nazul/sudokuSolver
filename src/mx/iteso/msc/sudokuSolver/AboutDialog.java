@@ -25,7 +25,7 @@ import javax.swing.KeyStroke;
 
 /**
  *
- * @author Mario_Contreras
+ * @author Mario Contreras
  */
 public class AboutDialog extends javax.swing.JDialog {
 

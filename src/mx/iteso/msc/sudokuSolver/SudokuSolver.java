@@ -26,7 +26,7 @@ import javax.swing.SwingWorker;
 
 /**
  *
- * @author Mario Contreras
+ * @author Mario Contreras & Erick González
  */
 public class SudokuSolver extends javax.swing.JFrame {
     private Cell[] cells = new Cell[81];

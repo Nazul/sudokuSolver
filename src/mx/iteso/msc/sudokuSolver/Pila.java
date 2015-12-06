@@ -1,5 +1,5 @@
 /*
- * Copyright 2015 USER.
+ * Copyright 2015 Mario Contreras & Erick González.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -17,7 +17,7 @@ package mx.iteso.msc.sudokuSolver;
 
 /**
  *
- * @author Erick Gonzalez
+ * @author Erick González
  */
 public class Pila {
      private int  Value;

@@ -1,5 +1,5 @@
 /*
- * Copyright 2015 Mario_Contreras.
+ * Copyright 2015 Mario Contreras & Erick González.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -20,7 +20,7 @@ import java.awt.Color;
 
 /**
  *
- * @author Mario_Contreras
+ * @author Mario Contreras
  */
 public class Cell extends javax.swing.JPanel {
     private boolean locked;
