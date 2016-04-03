@@ -1132,6 +1132,10 @@ public class SudokuSolver extends javax.swing.JFrame {
 
     private void newMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newMenuItemActionPerformed
         // New game
+        for(int i = 0; i < cells.length; i++) {
+            cells[i].setError(false);
+            cells[i].setLocked(false);
+        }
         newGame();
     }//GEN-LAST:event_newMenuItemActionPerformed
 
@@ -1179,11 +1183,16 @@ public class SudokuSolver extends javax.swing.JFrame {
             solution[i] = new Cell();
             solution[i].setLetter(' ');
             copyCell(solution[i], cells[i]);
+            cells[i].setError(false);
             cells[i].setLocked(false);
         }
     }//GEN-LAST:event_newBlankMenuItemActionPerformed
 
     private void newSolvedMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newSolvedMenuItemActionPerformed
+        for(int i = 0; i < cells.length; i++) {
+            cells[i].setError(false);
+            cells[i].setLocked(false);
+        }
         (new NewGridTask()).execute();
     }//GEN-LAST:event_newSolvedMenuItemActionPerformed
 
